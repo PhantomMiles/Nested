@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind componets;
+@tailwind utilities;
+@tailwind screens;
+@tailwind fonts;
+@tailwind colors;
+*{
+    font-family: 'Lato', sans-serif;
+}

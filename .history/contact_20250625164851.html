@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+ <style>
+  .hovered {
+    border: 2px solid #0F172A; /* Deep navy border */
+    box-shadow: 0 0 20px 6px rgba(15, 23, 42, 0.5); /* Deep blue glow */
+    transition: box-shadow 0.3s ease, border 0.3s ease;
+  }
+</style>
+
+
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- Navbar -->
+  
+  <nav id="myHeader" class="py-2 lg:fixed w-full bg-darkBlue transition-all duration-500 z-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="w-full flex flex-col lg:flex-row">
+        <div class=" flex justify-between  lg:flex-row">
+          <a href="index.html" class="flex items-center">
+            <img class="w-12" src="img/logo3 alt.png" alt="" srcset="">
+          </a>
+          <button data-collapse-toggle="navbar" type="button"
+            class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+            aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="hidden w-full lg:flex lg:pl-11 max-lg:py-4" id="navbar">
+          <ul class="flex lg:items-center flex-col max-lg:gap-4 mt-4 lg:mt-0 lg:flex-row max-lg:mb-4">
+            <li>
+              <a href="index.html"
+                class="relative text-white text-base lg:text-base font-medium transition-all duration-500 mb-2 block lg:mr-6 md:mb-0 lg:text-left group">
+                Home
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html"
+                class="relative text-white text-base lg:text-base font-medium transition-all duration-500 mb-2 block lg:mr-6 md:mb-0 lg:text-left group">
+                About us
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue w-full"></span>
+                 <!-- <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span> -->
+              </a>
+            </li>
+
+             <li>
+                <a href="./listing.html"
+               class="relative text-white text-base lg:text-base font-medium transition-all duration-500 mb-2 block lg:mr-6 md:mb-0 lg:text-left group">
+                Listings
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                </li>
+
+                <li>
+                <a href="./membership.html"
+              class="relative text-white text-base lg:text-base font-medium transition-all duration-500 mb-2 block lg:mr-6 md:mb-0 lg:text-left group">
+                  Memberships
+                   <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                </li>
+            
+              <a href="./contact.html"
+                class="relative text-white text-base lg:text-base font-medium transition-all duration-500 mb-2 block lg:mr-6 md:mb-0 lg:text-left group">
+                Contact
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          </ul>
+          <div class="flex lg:items-center justify-start flex-col lg:flex-row max-lg:gap-4 lg:flex-1 lg:justify-end">
+            <a href="login.html"
+              class="relative text-white cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-1 px-3 text-sm overflow-hidden group">
+              Login
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="signup.html"
+              class="relative text-white cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-1 px-3 text-sm overflow-hidden group">
+              Sign Up              
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<section class="max-w-4xl mx-auto px-4 py-12">
+  <h1 class="text-3xl font-semibold text-gray-900 text-center mb-2">Contact Us</h1>
+  <p class="text-center text-gray-600 mb-10">Have a question or need help? We're here to assist you.</p>
+
+  <div class="grid md:grid-cols-2 gap-8">
+    <!-- Contact Info -->
+    <div class="space-y-6">
+      <div>
+        <h2 class="text-xl font-medium text-gray-800">Email</h2>
+        <p class="text-gray-600">nested@gmail.com</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-medium text-gray-800">Phone</h2>
+        <p class="text-gray-600">+234 801-123-4567</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-medium text-gray-800">Office Hours</h2>
+        <p class="text-gray-600">Monday – Friday, 9AM – 6PM (WAT)</p>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <form class="bg-white p-6 rounded-lg shadow-sm space-y-4">
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="name">Your Name</label>
+        <input id="name" type="text" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Akpa Simdi">
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="email">Email Address</label>
+        <input id="email" type="email" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="you@example.com">
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="message">Message</label>
+        <textarea id="message" rows="5" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your message here..."></textarea>
+      </div>
+      <button type="submit" class="w-full bg-[#0f1e40] text-white py-2 rounded-lg hover:bg-blue-900 transition">Send Message</button>
+    </form>
+  </div>
+</section>
+
+
+  <footer class="bg-indigo-900 text-indigo-100 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-6 md:mb-0 flex items-center">
+        <img src="img/logo3 alt.png" alt="Logo" class="w-10 mr-3">
+        <span class="font-bold text-xl">Nested</span>
+      </div>
+      <div class="flex space-x-6 mb-6 md:mb-0">
+        <a href="#" class="hover:text-teal-400 transition">Home</a>
+        <a href="#" class="hover:text-teal-400 transition">About</a>
+        <a href="#" class="hover:text-teal-400 transition">Products</a>
+        <a href="#" class="hover:text-teal-400 transition">Contact</a>
+      </div>
+      <div class="text-sm text-indigo-200">&copy; 2024 Nested. All rights reserved.</div>
+    </div>
+  </footer>
+  </body>
+</html>

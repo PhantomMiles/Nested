@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/output.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body class="text-gray-900 bg-gray-100">
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-white border-r shadow-md">
+        <div class="flex items-center gap-2 p-6">
+           <img class="w-12" src="img/logo_alt.png" alt="" srcset="">
+          <span class="text-2xl font-semibold text-darkBlue">Nested</span>
+        </div>
+        <nav class="mt-6 space-y-2">
+          <a href="#" class="flex items-center gap-3 px-6 py-3 font-medium transition text-darkBlue bg-indigo-50 hover:bg-indigo-100">
+            <i class="fa-solid fa-user"></i>
+            Profile
+          </a>
+          <a href="#" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+            <i class="fa-solid fa-inbox"></i>
+            Inbox
+          </a>
+          <a href="#" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+            <i class="fa-solid fa-receipt"></i>
+            Transaction History
+          </a>
+          <a href="#" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+            <i class="fa-solid fa-bell"></i>
+            Notifications
+          </a>
+          <a href="#" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+            <i class="fa-solid fa-gear"></i>
+            Settings
+          </a>
+          <a href="#" class="flex items-center gap-3 px-6 py-3 text-red-500 transition hover:bg-red-50 hover:text-red-600">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-10">
+        <h1 class="text-3xl font-semibold">Profile</h1>
+        <!-- Profile Card -->
+        <div class="flex flex-col items-center p-6 mb-6 bg-white rounded-lg shadow">
+          <img src="img/user_avatar.png" alt="User Avatar" class="w-24 h-24 mb-4 rounded-full">
+          <h2 class="mb-1 text-xl font-bold">Francis Doe</h2>
+          <p class="mb-4 text-gray-500">UI/UX Designer</p>
+          <button class="px-4 py-2 text-white transition bg-indigo-600 rounded hover:bg-indigo-700">Edit Profile</button>
+        </div>
+
+        <!-- Stats with Graph -->
+        <div class="flex flex-col p-6 mb-6 bg-white rounded-lg shadow">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <div class="text-lg font-semibold">24</div>
+              <div class="text-sm text-gray-500">Messages</div>
+            </div>
+            <div>
+              <div class="text-lg font-semibold">5</div>
+              <div class="text-sm text-gray-500">Notifications</div>
+            </div>
+            <div>
+              <div class="text-lg font-semibold">12</div>
+              <div class="text-sm text-gray-500">Transactions</div>
+            </div>
+          </div>
+          <!-- Simple Bar Graph (SVG) -->
+          <div class="w-full h-24">
+            <svg viewBox="0 0 200 60" class="w-full h-full">
+              <rect x="10" y="30" width="30" height="25" fill="#6366f1"/>
+              <rect x="50" y="20" width="30" height="35" fill="#f59e42"/>
+              <rect x="90" y="10" width="30" height="45" fill="#22c55e"/>
+              <rect x="130" y="35" width="30" height="20" fill="#a5b4fc"/>
+              <rect x="170" y="25" width="20" height="30" fill="#fde68a"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <!-- My Listings Card -->
+          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow">
+            <i class="mb-3 text-4xl text-indigo-600 fa-solid fa-house"></i>
+            <h2 class="mb-1 text-xl font-bold">My Listings</h2>
+            <p class="mb-4 text-gray-500">3 Active Properties</p>
+            <button class="px-4 py-2 text-white transition bg-indigo-600 rounded hover:bg-indigo-700">
+              View Listings
+            </button>
+          </div>
+
+          <!-- New Applications Card -->
+          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow">
+            <i class="mb-3 text-4xl text-green-500 fa-solid fa-file-signature"></i>
+            <h2 class="mb-1 text-xl font-bold">New Applications</h2>
+            <p class="mb-4 text-gray-500">2 Pending Requests</p>
+            <button class="px-4 py-2 text-white transition bg-green-600 rounded hover:bg-green-700">
+              Review Applications
+            </button>
+          </div>
+
+          <!-- Earnings Card -->
+          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow">
+            <i class="mb-3 text-4xl text-yellow-500 fa-solid fa-coins"></i>
+            <h2 class="mb-1 text-xl font-bold">Earnings</h2>
+            <p class="mb-4 text-gray-500">$1,200 This Month</p>
+            <button class="px-4 py-2 text-white transition bg-yellow-500 rounded hover:bg-yellow-600">
+              View Details
+            </button>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="flex flex-col p-6 bg-white rounded-lg shadow md:col-span-3">
+            <h3 class="mb-4 text-lg font-semibold">Quick Actions</h3>
+            <div class="flex flex-col gap-3 md:flex-row">
+              <button class="flex items-center gap-2 px-4 py-2 text-indigo-700 transition rounded bg-indigo-50 hover:bg-indigo-100">
+          <i class="fa-solid fa-pen"></i> New Post
+              </button>
+              <button class="flex items-center gap-2 px-4 py-2 text-green-700 transition rounded bg-green-50 hover:bg-green-100">
+          <i class="fa-solid fa-upload"></i> Upload File
+              </button>
+              <button class="flex items-center gap-2 px-4 py-2 text-yellow-700 transition rounded bg-yellow-50 hover:bg-yellow-100">
+          <i class="fa-solid fa-calendar"></i> Schedule Meeting
+              </button>
+            </div>
+          </div>
+        </div>
+          <!-- Profile Card -->
+          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow">
+            <img src="img/user_avatar.png" alt="User Avatar" class="w-24 h-24 mb-4 rounded-full">
+            <h2 class="mb-1 text-xl font-bold">Francis Doe</h2>
+            <p class="mb-4 text-gray-500">UI/UX Designer</p>
+            <button class="px-4 py-2 text-white transition bg-indigo-600 rounded hover:bg-indigo-700">Edit Profile</button>
+          </div>
+          <!-- Stats -->
+          <div class="flex flex-col justify-center p-6 bg-white rounded-lg shadow">
+            <div class="flex items-center gap-4 mb-4">
+              <i class="text-2xl text-indigo-600 fa-solid fa-envelope"></i>
+              <div>
+                <div class="text-lg font-semibold">24</div>
+                <div class="text-sm text-gray-500">Messages</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 mb-4">
+              <i class="text-2xl text-yellow-500 fa-solid fa-bell"></i>
+              <div>
+                <div class="text-lg font-semibold">5</div>
+                <div class="text-sm text-gray-500">Notifications</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <i class="text-2xl text-green-500 fa-solid fa-receipt"></i>
+              <div>
+                <div class="text-lg font-semibold">12</div>
+                <div class="text-sm text-gray-500">Transactions</div>
+              </div>
+            </div>
+          </div>
+          <!-- Quick Actions -->
+          <div class="p-6 bg-white rounded-lg shadow">
+            <h3 class="mb-4 text-lg font-semibold">Quick Actions</h3>
+            <div class="flex flex-col gap-3">
+              <button class="flex items-center gap-2 px-4 py-2 text-indigo-700 transition rounded bg-indigo-50 hover:bg-indigo-100">
+                <i class="fa-solid fa-pen"></i> New Post
+              </button>
+              <button class="flex items-center gap-2 px-4 py-2 text-green-700 transition rounded bg-green-50 hover:bg-green-100">
+                <i class="fa-solid fa-upload"></i> Upload File
+              </button>
+              <button class="flex items-center gap-2 px-4 py-2 text-yellow-700 transition rounded bg-yellow-50 hover:bg-yellow-100">
+                <i class="fa-solid fa-calendar"></i> Schedule Meeting
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity Table -->
+        <div class="p-6 mt-10 bg-white rounded-lg shadow">
+          <h3 class="mb-4 text-lg font-semibold">Recent Activity</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm text-left">
+              <thead>
+                <tr>
+                  <th class="px-4 py-2 font-medium text-gray-600">Date</th>
+                  <th class="px-4 py-2 font-medium text-gray-600">Activity</th>
+                  <th class="px-4 py-2 font-medium text-gray-600">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="px-4 py-2">2024-06-01</td>
+                  <td class="px-4 py-2">Logged in</td>
+                  <td class="px-4 py-2"><span class="px-2 py-1 text-green-700 bg-green-100 rounded">Success</span></td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2">2024-05-30</td>
+                  <td class="px-4 py-2">Changed password</td>
+                  <td class="px-4 py-2"><span class="px-2 py-1 text-blue-700 bg-blue-100 rounded">Updated</span></td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2">2024-05-28</td>
+                  <td class="px-4 py-2">Uploaded document</td>
+                  <td class="px-4 py-2"><span class="px-2 py-1 text-yellow-700 bg-yellow-100 rounded">Pending</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
