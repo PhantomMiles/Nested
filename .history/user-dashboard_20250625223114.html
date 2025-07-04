@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Dashboard | Nested</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-[#f7f8fa] font-sans">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="flex-shrink-0 w-64 max-h-full bg-white border-r shadow-md">
+            <div class="flex items-center gap-2 p-6">
+                <img class="w-12" src="img/logo_alt.png" alt="" srcset="">
+                <span class="text-2xl font-semibold text-darkBlue">Nested</span>
+            </div>
+            <nav class="mt-6 space-y-2">
+                <a href="user-dashboard.html" class="flex items-center gap-3 px-6 py-3 font-medium transition text-darkBlue bg-indigo-50 hover:bg-indigo-100">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+                <a href="user-inbox.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-inbox"></i>
+                    Inbox
+                </a>
+                <a href="user-transaction.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-receipt"></i>
+                    Transaction History
+                </a>
+                <a href="user-notifications.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-bell"></i>
+                    Notifications
+                </a>
+                <a href="user-settings.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </a>
+                <a href="#logout" class="flex items-center gap-3 px-6 py-3 text-red-500 transition hover:bg-red-50 hover:text-red-600">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1">
+            <div class="max-w-6xl p-4 md:p-8 mx-auto mt-4 md:mt-8 bg-[#f7f8fa] rounded-2xl">
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                    <!-- Profile Card -->
+                    <div class="flex flex-col items-center p-6 bg-white border border-gray-100 shadow rounded-xl">
+                        <div class="relative mb-2">
+                            <img src="img/profile.jpg" alt="Amanda Rito" class="object-cover w-20 h-20 border-2 border-gray-200 rounded-full shadow">
+                            <span class="absolute p-1 text-white bg-indigo-600 border-2 border-white rounded-full cursor-pointer bottom-1 right-1">
+                                <i class="fa fa-camera"></i>
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-base font-semibold text-gray-900">Amanda Rito</span>
+                            <i class="text-xs text-gray-400 cursor-pointer fa fa-pen"></i>
+                        </div>
+                        <div class="w-full mt-4">
+                            <div class="flex justify-between mb-1 text-xs text-gray-500">
+                                <span>Full Name</span>
+                                <span class="font-medium text-gray-800">Amanda Rito Doe</span>
+                            </div>
+                            <div class="flex justify-between mb-1 text-xs text-gray-500">
+                                <span>Phone Num</span>
+                                <span class="font-medium text-gray-800">+234 91 3709 9242</span>
+                            </div>
+                            <div class="flex justify-between mb-1 text-xs text-gray-500">
+                                <span>E-mail</span>
+                                <span class="font-medium text-gray-800">Amanda@gmail.com</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500">
+                                <span>Password</span>
+                                <span class="font-medium text-gray-800">*********</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Account Details Card 1 -->
+                    <div class="flex flex-col justify-between p-6 bg-white border border-gray-100 shadow rounded-xl">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold text-gray-900">Account Details</span>
+                            <i class="text-xs text-gray-400 cursor-pointer fa fa-pen"></i>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-800">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">First Name</span>
+                                <span>Amanda</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Last Name</span>
+                                <span>Chicharito</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Date of Birth</span>
+                                <span>19 May 2003</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Gender</span>
+                                <span>Female</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Payment Methods Card -->
+                    <div class="flex flex-col justify-between p-6 bg-white border border-gray-100 shadow rounded-xl">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold text-gray-900">Payment Methods</span>
+                            <i class="text-xs text-gray-400 cursor-pointer fa fa-pen"></i>
+                        </div>
+                        <div class="mb-3">
+                            <img src="img/card.png" alt="Credit Card" class="object-cover w-full mb-2 rounded-lg" />
+                        </div>
+                        <div class="space-y-1 text-sm text-gray-800">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Bank:</span>
+                                <span>First bank of Nigeria (FBNH)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Acc. Num:</span>
+                                <span>211-233-1234</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Acc. Name:</span>
+                                <span>John Doe Akuna</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Account Details Card 2 -->
+                <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3">
+                    <div></div>
+                    <div class="flex flex-col justify-between p-6 bg-white border border-gray-100 shadow rounded-xl">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold text-gray-900">Account Details</span>
+                            <i class="text-xs text-gray-400 cursor-pointer fa fa-pen"></i>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-800">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Phone Number</span>
+                                <span>+234-813-709-9424</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Recovery e-mail</span>
+                                <span>JohnDoe@gmail.com</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">NIN</span>
+                                <span>222-333-111-444</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/output.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body class="text-gray-900 bg-gray-100">
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-white border-r shadow-md">
+        <div class="flex items-center gap-2 p-6">
+           <img class="w-12" src="img/logo_alt.png" alt="" srcset="">
+          <span class="text-2xl font-semibold text-darkBlue">Nested</span>
+        </div>
+        <nav class="mt-6 space-y-2">
+          <a href="#" class="flex items-center gap-3 px-6 py-3 font-medium transition text-darkBlue bg-indigo-50 hover:bg-indigo-100">
+            <i class="fa-solid fa-user"></i>
+            Profile
+          </a>
+          <a href="#" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+            <i class="fa-solid fa-inbox"></i>
+            Inbox
+          </a>
+          <a href="#" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+            <i class="fa-solid fa-receipt"></i>
+            Transaction History
+          </a>
+          <a href="#" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+            <i class="fa-solid fa-bell"></i>
+            Notifications
+          </a>
+          <a href="#" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+            <i class="fa-solid fa-gear"></i>
+            Settings
+          </a>
+          <a href="#" class="flex items-center gap-3 px-6 py-3 text-red-500 transition hover:bg-red-50 hover:text-red-600">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-8 bg-[#f7f8fa]">
+        <!-- Top Bar -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900">Dashboard Overview</h1>
+            <p class="text-gray-500 mt-1">Welcome back, here's what's happening today</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-100 bg-white" />
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
+            <button class="relative">
+              <i class="fa-regular fa-bell text-2xl text-gray-600"></i>
+              <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full">3</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <!-- Total Revenue -->
+          <div class="bg-white rounded-xl shadow p-6 flex items-center gap-4">
+            <div>
+              <div class="text-gray-500 font-medium">Total Revenue</div>
+              <div class="text-3xl font-bold text-gray-900">$48,291</div>
+              <div class="flex items-center gap-1 mt-1 text-green-600 text-sm">
+                <i class="fa fa-arrow-up"></i>
+                12% <span class="text-gray-400 ml-1">vs last month</span>
+              </div>
+            </div>
+            <div class="ml-auto">
+              <span class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-indigo-50">
+                <i class="fa-solid fa-dollar-sign text-indigo-500 text-2xl"></i>
+              </span>
+            </div>
+          </div>
+          <!-- Total Users -->
+          <div class="bg-white rounded-xl shadow p-6 flex items-center gap-4">
+            <div>
+              <div class="text-gray-500 font-medium">Total Users</div>
+              <div class="text-3xl font-bold text-gray-900">15,847</div>
+              <div class="flex items-center gap-1 mt-1 text-green-600 text-sm">
+                <i class="fa fa-arrow-up"></i>
+                8% <span class="text-gray-400 ml-1">vs last month</span>
+              </div>
+            </div>
+            <div class="ml-auto">
+              <span class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-green-50">
+                <i class="fa-solid fa-users text-green-500 text-2xl"></i>
+              </span>
+            </div>
+          </div>
+          <!-- Total Orders -->
+          <div class="bg-white rounded-xl shadow p-6 flex items-center gap-4">
+            <div>
+              <div class="text-gray-500 font-medium">Total Orders</div>
+              <div class="text-3xl font-bold text-gray-900">2,847</div>
+              <div class="flex items-center gap-1 mt-1 text-green-600 text-sm">
+                <i class="fa fa-arrow-up"></i>
+                15% <span class="text-gray-400 ml-1">vs last month</span>
+              </div>
+            </div>
+            <div class="ml-auto">
+              <span class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-orange-50">
+                <i class="fa-solid fa-cart-shopping text-orange-400 text-2xl"></i>
+              </span>
+            </div>
+          </div>
+          <!-- Products -->
+          <div class="bg-white rounded-xl shadow p-6 flex items-center gap-4">
+            <div>
+              <div class="text-gray-500 font-medium">Products</div>
+              <div class="text-3xl font-bold text-gray-900">1,247</div>
+              <div class="flex items-center gap-1 mt-1 text-green-600 text-sm">
+                <i class="fa fa-arrow-up"></i>
+                5% <span class="text-gray-400 ml-1">vs last month</span>
+              </div>
+            </div>
+            <div class="ml-auto">
+              <span class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-purple-50">
+                <i class="fa-solid fa-box-open text-purple-400 text-2xl"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics and Top Products -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Revenue Analytics -->
+          <div class="bg-white rounded-xl shadow p-6 md:col-span-2 flex flex-col">
+            <div class="flex items-center justify-between mb-2">
+              <div>
+                <div class="text-lg font-semibold text-gray-900">Revenue Analytics</div>
+                <div class="text-gray-500 text-sm">Monthly revenue overview</div>
+              </div>
+              <div class="flex gap-2">
+                <button class="px-3 py-1 rounded bg-indigo-700 text-white font-semibold text-xs">6M</button>
+                <button class="px-3 py-1 rounded bg-gray-100 text-gray-700 font-semibold text-xs">1Y</button>
+              </div>
+            </div>
+            <div class="flex-1 flex items-center justify-center h-56">
+              <!-- Placeholder for chart -->
+              <span class="text-gray-300">[Chart Placeholder]</span>
+            </div>
+          </div>
+          <!-- Top Products -->
+          <div class="bg-white rounded-xl shadow p-6 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-lg font-semibold text-gray-900">Top Products</div>
+              <a href="#" class="text-indigo-700 text-sm font-semibold hover:underline">View All</a>
+            </div>
+            <div class="flex flex-col gap-4">
+              <!-- Product 1 -->
+              <div class="flex items-center gap-3">
+                <img src="img/iphone.png" alt="iPhone 15 Pro" class="w-12 h-12 rounded object-cover bg-gray-100" />
+                <div class="flex-1">
+                  <div class="font-semibold text-gray-900">iPhone 15 Pro</div>
+                  <div class="text-xs text-gray-500">Electronics</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-semibold text-gray-900">$1,299</div>
+                  <div class="text-green-600 text-xs">+12%</div>
+                </div>
+              </div>
+              <!-- Product 2 -->
+              <div class="flex items-center gap-3">
+                <img src="img/macbook.png" alt="MacBook Pro" class="w-12 h-12 rounded object-cover bg-gray-100" />
+                <div class="flex-1">
+                  <div class="font-semibold text-gray-900">MacBook Pro</div>
+                  <div class="text-xs text-gray-500">Computers</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-semibold text-gray-900">$2,499</div>
+                  <div class="text-green-600 text-xs">+8%</div>
+                </div>
+              </div>
+              <!-- Product 3 -->
+              <div class="flex items-center gap-3">
+                <img src="img/airpods.png" alt="AirPods Pro" class="w-12 h-12 rounded object-cover bg-gray-100" />
+                <div class="flex-1">
+                  <div class="font-semibold text-gray-900">AirPods Pro</div>
+                  <div class="text-xs text-gray-500">Audio</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-semibold text-gray-900">$249</div>
+                  <div class="text-green-600 text-xs">+15%</div>
+                </div>
+              </div>
+              <!-- Product 4 -->
+              <div class="flex items-center gap-3">
+                <img src="img/applewatch.png" alt="Apple Watch" class="w-12 h-12 rounded object-cover bg-gray-100" />
+                <div class="flex-1">
+                  <div class="font-semibold text-gray-900">Apple Watch</div>
+                  <div class="text-xs text-gray-500">Wearables</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-semibold text-gray-900">$399</div>
+                  <div class="text-green-600 text-xs">+6%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
