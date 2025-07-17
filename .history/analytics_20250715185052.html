@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nested Dashboard</title>
+    <link href="css/output.css" rel="stylesheet">    
+      <link rel="icon" type="img/ico" href="img/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/d2a04fa078.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="bg-[#f8f9fd] text-[#1d1d1d]">
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside class="w-48 bg-white shadow-lg p-4 flex flex-col justify-between">
+        <div>
+          <div class="mb-5">
+            <img src="img/logo_alt.png" alt="Logo" class="h-20 w-auto" />
+          </div>          
+          <nav class="space-y-2">
+            <a href="realtor-dashboard.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
+              <i class="fas fa-gauge-high text-lg"></i>
+              <span class="text-sm">Dashboard</span>
+            </a>
+            <a href="realtor-inbox.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
+              <i class="fas fa-inbox text-lg"></i>
+              <span class="text-sm">Inbox</span>
+            </a>
+            <a href="account-records.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
+              <i class="fas fa-file-invoice text-lg"></i>
+              <span class="text-sm">Account Record</span>
+            </a>
+            <a href="realtor-notifications.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
+              <i class="fas fa-bell text-lg"></i>
+              <span class="text-sm">Notifications</span>
+            </a>
+            <a href="analytics.html" class="flex items-center gap-2 text-blue-500 font-semibold bg-indigo-100 px-4 py-2 rounded-lg">
+              <i class="fas fa-chart-column text-lg"></i>
+              <span class="text-sm">Analytics</span>
+            </a>
+          </nav>
+
+          <div class="my-4 bg-darkBlue text-center text-white p-4 rounded-xl text-sm">
+            <p class="font-bold mb-2 text-center">Upgrade to pro</p>
+            <p class="text-left">Get access to additional features and exposure today</p>
+            <div class="mt-2 font-bold">
+              <button class="bg-white text-darkBlue text-sm px-3 py-1 rounded">Upgrade</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2 text-sm">
+          <a href="realtor-settings.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
+            <i class="fas fa-cog text-lg"></i>
+            Settings
+          </a>
+          <a href="#" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
+            <i class="fas fa-question-circle text-lg"></i>
+            Help Centre
+          </a>
+          <a href="#" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
+            <i class="fas fa-sign-out text-lg"></i>
+            Logout
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main class="flex-1 p-8 overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold text-darkBlue">Analytics</h1>
+          <p class="text-sm text-gray-600">Welcome, <span class="text-darkBlue font-semibold">Amanda Rito</span></p>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+          <div class="bg-white p-4 rounded-xl shadow text-center">
+            <p class="text-sm text-gray-500">Monthly Visitors</p>
+            <h2 class="text-2xl font-bold">3,457</h2>
+          </div>
+          <div class="bg-white p-4 rounded-xl shadow text-center">
+            <p class="text-sm text-gray-500">Leads Generated</p>
+            <h2 class="text-2xl font-bold">268</h2>
+          </div>
+          <div class="bg-white p-4 rounded-xl shadow text-center">
+            <p class="text-sm text-gray-500">Conversion Rate</p>
+            <h2 class="text-2xl font-bold">7.8%</h2>
+          </div>
+          <div class="bg-white p-4 rounded-xl shadow text-center">
+            <p class="text-sm text-gray-500">Total Listings</p>
+            <h2 class="text-2xl font-bold">112</h2>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div class="bg-white p-6 rounded-xl shadow">
+            <h2 class="text-lg font-semibold mb-4">Visitor Traffic</h2>
+            <canvas id="trafficChart"></canvas>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow">
+            <h2 class="text-lg font-semibold mb-4">Listings Performance</h2>
+            <canvas id="listingsChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Additional Charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div class="bg-white p-6 rounded-xl shadow">
+            <h2 class="text-lg font-semibold mb-4">User Distribution</h2>
+            <canvas id="pieChart"></canvas>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow">
+            <h2 class="text-lg font-semibold mb-4">Revenue Histogram</h2>
+            <canvas id="histogramChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Top Performing Listings -->
+        <div class="bg-white p-6 rounded-xl shadow">
+          <h2 class="text-lg font-semibold mb-4">Top Performing Listings</h2>
+          <ul class="divide-y">
+            <li class="py-2 flex justify-between">
+              <span>3 Bedroom Flat, Royal Estate</span>
+              <span class="text-gray-600">1,034 Views</span>
+            </li>
+            <li class="py-2 flex justify-between">
+              <span>Duplex, Hilltop Road</span>
+              <span class="text-gray-600">952 Views</span>
+            </li>
+            <li class="py-2 flex justify-between">
+              <span>2 Bedroom Bungalow, Goshen</span>
+              <span class="text-gray-600">841 Views</span>
+            </li>
+          </ul>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+      new Chart(trafficCtx, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          datasets: [
+            {
+              label: 'Visitors',
+              data: [1200, 1900, 3000, 2800, 3200, 3457],
+              backgroundColor: 'rgba(59, 130, 246, 0.2)',
+              borderColor: 'rgba(59, 130, 246, 1)',
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4
+            },
+            {
+              label: 'Returning Users',
+              data: [500, 800, 1500, 1200, 1600, 1700],
+              backgroundColor: 'rgba(16, 185, 129, 0.2)',
+              borderColor: 'rgba(16, 185, 129, 1)',
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: true }
+          }
+        }
+      });
+
+      const listingsCtx = document.getElementById('listingsChart').getContext('2d');
+      new Chart(listingsCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Royal Estate', 'Hilltop', 'Goshen', 'Lakeview', 'Cedar Park'],
+          datasets: [{
+            label: 'Views',
+            data: [1034, 952, 841, 679, 624],
+            backgroundColor: 'rgba(16, 185, 129, 0.6)',
+            borderColor: 'rgba(16, 185, 129, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+      const pieCtx = document.getElementById('pieChart').getContext('2d');
+      new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+          labels: ['Buyers', 'Sellers', 'Agents'],
+          datasets: [{
+            label: 'User Distribution',
+            data: [45, 30, 25],
+            backgroundColor: [
+              'rgba(59, 130, 246, 0.6)',
+              'rgba(234, 179, 8, 0.6)',
+              'rgba(239, 68, 68, 0.6)'
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+
+      const histogramCtx = document.getElementById('histogramChart').getContext('2d');
+      new Chart(histogramCtx, {
+        type: 'bar',
+        data: {
+          labels: ['0-10k', '10-20k', '20-30k', '30-40k', '40-50k'],
+          datasets: [{
+            label: 'Revenue Count',
+            data: [5, 12, 9, 6, 3],
+            backgroundColor: 'rgba(107, 114, 128, 0.7)',
+            borderColor: 'rgba(75, 85, 99, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
