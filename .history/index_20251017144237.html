@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/output.css">
+  <title>Nested</title>
+  <link rel="icon" type="img/ico" href="img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-fixed bg-center bg-cover" style="background-image: url('./img/slide.webp')">
+  <nav id="myHeader" class="sticky z-[100] w-full py-2 transition-all duration-500 bg-transparent fixed">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="flex flex-col w-full lg:flex-row">
+        <div class="flex justify-between lg:flex-row">
+          <a href="index.html" class="flex items-center">
+            <img class="w-16 h-16" src="img/logo.png" alt="" srcset="">
+          </a>
+          <button id="mobile-menu-toggle" type="button" class="inline-flex items-center p-2 text-sm text-indigo-400 rounded-lg lg:hidden hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-white">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" cip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>      
+        <!-- Desktop Menu -->
+        <div class="hidden w-full lg:flex lg:pl-11 max-lg:py-4" id="navbar">
+          <ul class="flex flex-col mt-4 lg:items-center max-lg:gap-4 lg:mt-0 lg:flex-row max-lg:mb-4">
+            <li>
+              <a href="index.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Home
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                About us
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+                <a href="listing.html"
+               class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Listings
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              </li>
+            <li>
+              <a href="contact.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Contact
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          </ul>
+          <div class="flex flex-col justify-start lg:items-center lg:flex-row lg:gap-4 lg:flex-1 lg:justify-end">
+            <a href="login.html"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer group">
+              Login
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="signup.html"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer group">
+              Sign Up              
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </div>
+        </div>
+        <!-- Overlay -->
+      <div id="menu-overlay" class="fixed inset-0 hidden bg-black bg-opacity-0 backdrop-blur-sm transition-opacity duration-300 z-[998] lg:hidden"></div>
+
+      <!-- Mobile Menu -->
+      <div id="navbar-mobile" class="fixed top-0 right-0 z-[999] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 shadow-2xl backdrop-blur-md lg:hidden">
+        <ul class="flex flex-col gap-6 p-6 text-white">
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-100">
+            <a href="index.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6"></path></svg>
+              Home
+            </a>
+          </li>
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-200">
+            <a href="about.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16h6"></path></svg>
+              About Us
+            </a>
+          </li>
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-300">
+            <a href="listing.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+              Listings
+            </a>
+          </li>
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-400">
+            <a href="contact.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              Contact
+            </a>
+          </li>
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-500">
+            <a href="login.html" class="flex items-center gap-3 px-4 py-2 font-semibold rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12H3m0 0l4-4m-4 4l4 4"></path></svg>
+              Login
+            </a>
+          </li>
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-600">
+            <a href="signup.html" class="flex items-center gap-3 px-4 py-2 font-semibold rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
+              Sign Up
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+
+  </nav>
+  <main>
+      <section class="h-full pt-0 z-[1] lg:pt-20 lg:pl-8">
+    <div class="py-10 m-5 bg-indigo-100 rounded-xl bg-opacity-70 lg:m-0 2xl:py-16 xl:py-8 lg:rounded-tl-2xl lg:rounded-bl-2xl">
+      <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="grid items-center grid-cols-1 gap-14 lg:grid-cols-1 lg:gap-32">
+          <div class="w-full xl:col-span-5 lg:col-span-6 2xl:-mx-5 xl:-mx-0">
+            <div class="flex items-center justify-center text-sm font-medium text-gray-500 lg:justify-start">
+              <span class="px-3 py-1 mr-3 text-xs font-medium text-white bg-indigo-600 rounded-2xl">New</span>
+              Find Your Next Home
+            </div>
+            <h1 class="py-8 text-center text-gray-900 font-bold font-manrope text-5xl lg:text-left leading-[70px]">
+              Discover <span class="text-indigo-600">Apartments & Homes</span> for Rent
+            </h1>
+            <p class="text-lg text-center text-gray-500 lg:text-left">
+              Browse a wide selection of modern apartments and cozy homes available for rent. Book your next stay with ease and comfort.
+            </p>
+            <form class="p-1.5 my-10 flex items-center gap-y-4 h-auto md:h-16 flex-col md:flex-row justify-between rounded-full md:shadow-[0px_15px_30px_-4px_rgba(16,24,40,0.03)] border border-transparent md:bg-white transition-all duration-500 hover:border-indigo-600 focus-within:border-indigo-600">
+              <input type="text" name="location" placeholder="Enter city or neighborhood"
+                class="text-base rounded-full text-gray-900 flex-1 py-4 px-6 shadow-[0px_15px_30px_-4px_rgba(16,24,40,0.03)] md:shadow-none bg-white md:bg-transparent placeholder:text-gray-400 focus:outline-none md:w-fit w-full" />
+              <button type="submit"class="w-full py-3 text-base font-semibold text-white transition-all duration-500 bg-indigo-600 rounded-full cursor-pointer px-7 hover:bg-indigo-700 md:w-fit">Search</button>
+            </form>
+            <div class="block w-full xl:col-span-5 lg:col-span-2">
+              <div class="w-full sm:w-auto xl:ml-10">
+                <!-- Carousel Container -->
+                <div class="overflow-hidden relative" id="listing-carousel">
+                  <div class="overflow-hidden rounded-2xl">
+                    <div class="flex transition-transform duration-500" id="carousel-track" style="transform: translateX(0%);">
+                      <!-- Slide 1: Modern Apartment -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80" alt="Modern Apartment" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Modern Apartment</h3>
+                          <p class="mb-2 text-sm text-gray-500">2 Beds • 2 Baths • City Center</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,200/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 2: Cozy Family Home -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Cozy Home" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Cozy Family Home</h3>
+                          <p class="mb-2 text-sm text-gray-500">3 Beds • 2 Baths • Suburbs</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,800/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 3: Student Lodge -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80" alt="Student Lodge" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Student Lodge</h3>
+                          <p class="mb-2 text-sm text-gray-500">5 Single Rooms • 1 General Bath • Suburbs</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,000/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 4: Spacious Villa -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80" alt="Spacious Villa" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Spacious Villa</h3>
+                          <p class="mb-2 text-sm text-gray-500">5 Beds • 2 Baths • Suburbs</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦2,500/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 5: Studio Apartment -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Studio Apartment" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Studio Apartment</h3>
+                          <p class="mb-2 text-sm text-gray-500">1 Bed • 1 Bath • Downtown</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦900/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 6: Penthouse Suite -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80" alt="Penthouse Suite" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Penthouse Suite</h3>
+                          <p class="mb-2 text-sm text-gray-500">4 Beds • 3 Baths • City Skyline</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦3,200/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 7: Townhouse -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=600&q=80" alt="Townhouse" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Townhouse</h3>
+                          <p class="mb-2 text-sm text-gray-500">3 Beds • 2.5 Baths • Gated Community</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦2,000/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 8: Loft -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Loft" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Urban Loft</h3>
+                          <p class="mb-2 text-sm text-gray-500">1 Bed • 1 Bath • Industrial District</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,400/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 9: Cottage -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80" alt="Cottage" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Country Cottage</h3>
+                          <p class="mb-2 text-sm text-gray-500">2 Beds • 1 Bath • Countryside</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,100/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 10: Shared Room -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md">
+                        <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80" alt="Shared Room" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Shared Room</h3>
+                          <p class="mb-2 text-sm text-gray-500">1 Bed in Shared Apartment • 1 Bath • City Center</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦600/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Carousel Controls -->
+                  <button id="carousel-prev" type="button" class="absolute left-0 z-10 p-2 transition -translate-y-1/2 bg-white rounded-full shadow top-1/2 hover:bg-indigo-100">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                  </button>
+                  <button id="carousel-next" type="button" class="absolute right-0 z-10 p-2 transition -translate-y-1/2 bg-white rounded-full shadow top-1/2 hover:bg-indigo-100">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </button>
+                  <!-- Carousel Indicators -->
+                  <div class="flex justify-center mt-4 space-x-2" id="carousel-indicators">
+                    <button class="w-3 h-3 bg-indigo-600 rounded-full" data-slide="0"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="1"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="2"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="3"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="4"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="5"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="6"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="7"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="8"></button>
+                  </div>
+                </div>
+                <script>
+                  (function() {
+                    const track = document.getElementById('carousel-track');
+                    const slides = track.children;
+                    const prevBtn = document.getElementById('carousel-prev');
+                    const nextBtn = document.getElementById('carousel-next');
+                    const indicators = document.getElementById('carousel-indicators').children;
+                    let current = 0;
+                    const total = slides.length;
+
+                    function getVisibleSlides() {
+                      const container = track.parentElement;
+                      const slideWidth = slides[0].offsetWidth;
+                      const containerWidth = container.offsetWidth;
+                      return Math.max(1, Math.floor(containerWidth / slideWidth));
+                    }
+
+                    function updateCarousel(index) {
+                      const visibleSlides = getVisibleSlides();
+                      const maxIndex = total - visibleSlides;
+                      // Wrap around for circular navigation
+                      if (index > maxIndex) {
+                        current = 0;
+                      } else if (index < 0) {
+                        current = maxIndex;
+                      } else {
+                        current = index;
+                      }
+                      track.style.transform = `translateX(-${current * 32.5}%)`;
+                      for (let i = 0; i < indicators.length; i++) {
+                        indicators[i].classList.toggle('bg-indigo-600', i === current);
+                        indicators[i].classList.toggle('bg-indigo-300', i !== current);
+                        indicators[i].classList.toggle('bg-indigo-100', i !== current);
+                      }
+                    }
+
+                    prevBtn.addEventListener('click', function() {
+                      updateCarousel(current - 1);
+                    });
+
+                    nextBtn.addEventListener('click', function() {
+                      updateCarousel(current + 1);
+                    });
+
+                    for (let i = 0; i < indicators.length; i++) {
+                      indicators[i].addEventListener('click', function() {
+                        updateCarousel(i);
+                      });
+                    }
+
+                    window.addEventListener('resize', function() {
+                      updateCarousel(current);
+                    });
+
+                    updateCarousel(0);
+                  })();
+                </script>
+              </div>
+            </div>
+            <div class="flex flex-col items-center lg:flex-row">
+              <div class="flex items-center">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=64&h=64" alt="User 1"
+                  class="relative z-50 object-cover w-12 h-12 border-2 border-solid rounded-full border-indigo-50" />
+                <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=64&h=64" alt="User 2"
+                  class="relative z-30 object-cover w-12 h-12 -ml-3 border-2 border-solid rounded-full border-indigo-50" />
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=64&h=64" alt="User 3"
+                  class="relative z-20 object-cover w-12 h-12 -ml-3 border-2 border-solid rounded-full border-indigo-50" />
+              </div>
+              <span class="mt-3 text-base font-medium text-gray-600 lg:ml-3">Happy renters booked this week</span>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Features Section -->
+  <section class="py-20 bg-gradient-to-b from-white to-indigo-50">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="mb-4 text-4xl font-bold text-indigo-700">Why Choose Us?</h2>
+        <p class="text-lg text-gray-500">Experience seamless renting with our unique features</p>
+      </div>
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div class="flex flex-col items-center p-8 transition bg-white shadow-lg rounded-2xl hover:shadow-xl">
+          <div class="p-4 mb-4 bg-teal-100 rounded-full">
+            <svg class="w-10 h-10 text-teal-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 8v4l3 3"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-semibold text-indigo-700">Quick Booking</h3>
+          <p class="text-center text-gray-500">Book your dream home in just a few clicks with instant confirmation.</p>
+        </div>
+        <div class="flex flex-col items-center p-8 transition bg-white shadow-lg rounded-2xl hover:shadow-xl">
+          <div class="p-4 mb-4 bg-indigo-100 rounded-full">
+            <svg class="w-10 h-10 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M5 13l4 4L19 7"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-semibold text-indigo-700">Verified Listings</h3>
+          <p class="text-center text-gray-500">All properties are verified for your peace of mind and security.</p>
+        </div>
+        <div class="flex flex-col items-center p-8 transition bg-white shadow-lg rounded-2xl hover:shadow-xl">
+          <div class="p-4 mb-4 bg-blue-100 rounded-full">
+            <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3z"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-semibold text-indigo-700">24/7 Support</h3>
+          <p class="text-center text-gray-500">Our team is always available to help you with any questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax Section -->
+  <section class="h-[400px] flex items-center justify-center z-[1] bg-fixed bg-center bg-cover" style="background-image: url('./img/bg1.jpg');">
+    <div class="absoute inset-0 bg-indigo-900 bg-opacity-60"></div>
+    <div class="relative text-center">
+      <h2 class="mb-4 text-4xl font-bold text-white md:text-5xl">Live Where You Love</h2>
+      <p class="mb-6 text-lg text-indigo-100">Find spaces that match your lifestyle and aspirations.</p>
+      <a href="listings.html" class="inline-block px-8 py-3 font-semibold text-white transition bg-teal-500 rounded-full hover:bg-teal-600">Explore Listings</a>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="relative z-[1] py-20 bg-gradient-to-b from-white to-blue-50 overflow-visible">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="mb-4 text-4xl font-bold text-indigo-700">What Our Renters Say</h2>
+        <p class="text-lg text-gray-500">Real stories from happy tenants</p>
+      </div>
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div class="flex flex-col items-center p-8 bg-white shadow-lg rounded-2xl">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Testimonial 1" class="w-16 h-16 mb-4 border-4 border-teal-100 rounded-full">
+          <p class="mb-3 italic text-gray-600">"Booking was so easy and the apartment was exactly as described. Highly recommend!"</p>
+          <span class="font-semibold text-indigo-700">Sarah M.</span>
+        </div>
+        <div class="flex flex-col items-center p-8 bg-white shadow-lg rounded-2xl">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Testimonial 2" class="w-16 h-16 mb-4 border-4 border-indigo-100 rounded-full">
+          <p class="mb-3 italic text-gray-600">"Customer support was super helpful and responsive. Found my new home in a day!"</p>
+          <span class="font-semibold text-indigo-700">James K.</span>
+        </div>
+        <div class="flex flex-col items-center p-8 bg-white shadow-lg rounded-2xl">
+          <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Testimonial 3" class="w-16 h-16 mb-4 border-4 border-blue-100 rounded-full">
+          <p class="mb-3 italic text-gray-600">"The listings are all verified and trustworthy. I felt safe throughout the process."</p>
+          <span class="font-semibold text-indigo-700">Alex P.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax CTA Section -->
+  <section class="h-[350px] z-[1] flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('./img/bg2.jpg');">
+    <div class="absolute inset-0 bg-teal-900 bg-opacity-60"></div>
+    <div class="relative text-center">
+      <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">Ready to Move In?</h2>
+      <p class="mb-6 text-lg text-teal-100">Sign up now and get exclusive access to the best rentals.</p>
+      <a href="signup.html" class="inline-block px-8 py-3 font-semibold text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Get Started</a>
+    </div>
+  </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-10 text-indigo-100 bg-indigo-900">
+    <div class="flex flex-col items-center justify-between px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex-row">
+      <div class="flex items-center mb-6 md:mb-0">
+        <img src="img/logo.png" alt="Logo" class="w-20 mr-3">
+        <span class="hidden text-xl font-bold">Nested</span>
+      </div>
+      <div class="flex mb-6 space-x-6 md:mb-0">
+        <a href="#" class="transition hover:text-teal-400">Home</a>
+        <a href="#" class="transition hover:text-teal-400">About</a>
+        <a href="#" class="transition hover:text-teal-400">Products</a>
+        <a href="#" class="transition hover:text-teal-400">Contact</a>
+      </div>
+      <div class="text-sm text-indigo-200">&copy; 2024 Nested. All rights reserved.</div>
+    </div>
+  </footer>
+  <!-- <script>
+     /*function toggleDropdown() {
+      const eventTarget = event.currentTarget || event.target;
+      const targetId = eventTarget.getAttribute('data-target');
+      if (!targetId) return;
+      const dropdown = document.getElementById(targetId);
+      if (!dropdown) return;
+      dropdown.classList.toggle('hidden');
+      dropdown.classList.toggle('open');
+    }*/
+  
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('navbar-mobile');
+
+      toggleBtn.addEventListener('click', function () {
+        mobileMenu.classList.toggle('-translate-x-full');
+        mobileMenu.classList.toggle('translate-x-0');
+      });
+    });
+
+    const overlay = document.getElementById('menu-overlay');
+    toggleBtn.addEventListener('click', function () {
+    mobileMenu.classList.toggle('-translate-x-full');
+    mobileMenu.classList.toggle('translate-x-0');
+    overlay.classList.toggle('hidden');
+    overlay.classList.toggle('block');
+    });
+</script> -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('navbar-mobile');
+      const overlay = document.getElementById('menu-overlay');
+      const menuItems = mobileMenu.querySelectorAll('li');
+
+      toggleBtn.addEventListener('click', function () {
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        overlay.classList.remove('hidden');
+        overlay.classList.add('bg-opacity-50');
+
+        // Animate menu items
+        menuItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.remove('opacity-0', 'translate-x-4');
+            item.classList.add('opacity-100', 'translate-x-0');
+          }, 100 * index);
+        });
+      });
+
+      overlay.addEventListener('click', function () {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
+        overlay.classList.remove('bg-opacity-50');
+
+        // Reset menu items
+        menuItems.forEach((item) => {
+          item.classList.add('opacity-0', 'translate-x-4');
+          item.classList.remove('opacity-100', 'translate-x-0');
+        });
+      });
+    });
+  </script>
+  <script src="js/nav.js"></script>
+</body>
+</html>

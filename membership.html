@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Membership Plans</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+ <style>
+  .hovered {
+    border: 2px solid #0F172A; /* Deep navy border */
+    box-shadow: 0 0 20px 6px rgba(15, 23, 42, 0.5); /* Deep blue glow */
+    transition: box-shadow 0.3s ease, border 0.3s ease;
+  }
+</style>
+
+
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- Navbar -->
+  
+<nav id="myHeader" class="py-2 lg: w-full  transition-all duration-500 z-50 border-b">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="w-full flex flex-col lg:flex-row">
+        <div class=" flex justify-between  lg:flex-row">
+          <a href="index.html" class="flex items-center">
+            <img class="w-16 h-16" src="img/logo3 alt.png" alt="" srcset="">
+          </a>
+          <button data-collapse-toggle="navbar" type="button"
+            class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+            aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="hidden w-full lg:flex lg:pl-11 max-lg:py-4" id="navbar">
+          <ul class="flex lg:items-center flex-col max-lg:gap-4 mt-4 lg:mt-0 lg:flex-row max-lg:mb-4">
+            <li>
+              <a href="index.html"
+                class="relative text-black text-base lg:text-base font-medium transition-all duration-500 mb-2 block lg:mr-6 md:mb-0 lg:text-left group">
+                Home
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html"
+                class="relative text-black text-base lg:text-base font-medium transition-all duration-500 mb-2 block lg:mr-6 md:mb-0 lg:text-left group">
+                About us
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+                <a href="./listing.html"
+               class="relative text-black text-base lg:text-base font-medium transition-all duration-500 mb-2 block lg:mr-6 md:mb-0 lg:text-left group">
+                Listings
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                </li>
+                
+                   
+            <li>
+              
+                <a href="./membership.html"
+              class="relative text-black text-base lg:text-base font-medium transition-all duration-500 mb-2 block lg:mr-6 md:mb-0 lg:text-left group">
+                  Memberships
+                   <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                </li>
+                  
+                      
+              <a href="./contact.html"
+                class="relative text-black text-base lg:text-base font-medium transition-all duration-500 mb-2 block lg:mr-6 md:mb-0 lg:text-left group">
+                Contact
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          </ul>
+          <div class="flex lg:items-center justify-start flex-col lg:flex-row lg:gap-4 lg:flex-1 lg:justify-end">
+            <a href="login.html"
+              class="relative text-black cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-1 px-3 text-sm overflow-hidden group">
+              Login
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="signup.html"
+              class="relative text-black cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-1 px-3 text-sm overflow-hidden group">
+              Sign Up              
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="text-center py-16 px-4">
+    <h2 class="text-4xl font-bold mb-4">Choose the Plan That’s Right for You</h2>
+    <p class="text-lg text-gray-600">Flexible pricing for individuals and teams. Cancel anytime.</p>
+  </section>
+
+  <!-- Pricing Cards -->
+  <section class="max-w-6xl mx-auto px-4 grid gap-6 md:grid-cols-3">
+    <!-- Free Plan -->
+    <div class=" membership-card border rounded-xl p-6 text-center">
+      <h3 class="text-4xl font-bold mb-2">Visitor</h3>
+      <p class="text-xl font-semibold mb-4">Browse listings freely. No account required.</p>
+      <ul class="text-gray-600 mb-6 space-y-2">
+        <li>✓ View available properties</li>
+        <li>✗ Cannot comment or apply </li>
+        <li>✗ Cannot list properties</li>
+      </ul>
+      
+    </div>
+
+    <!-- Pro Plan -->
+    <div class="membership-card border rounded-xl p-6 text-center">
+      <h3 class="text-4xl font-bold mb-2">Member</h3>
+      <p class="text-xl font-semibold mb-4">Create an account to apply or comment on listings.</p>
+      <ul class="text-gray-600 mb-6 space-y-2">
+        <li>✓ View available properties</li>
+        <li>✓ Apply to listings</li>
+        <li>✓ Comment, rate & favorite properties</li>
+        <li>✗ Cannot list properties</li>
+      </ul>
+      <a href="./signup.html"><button class="bg-[#0f1e40] text-white py-2 px-4 rounded-lg hover:bg-blue-900">Register for Free</button></a>
+    </div>
+
+    <!-- Enterprise Plan -->
+    <div class="membership-card border rounded-xl p-6 text-center">
+      <h3 class="text-4xl font-bold mb-2">Premium</h3>
+      <p class="text-xl font-semibold mb-4">Upgrade for full access, including uploading your own listings.</p>
+      <ul class="text-gray-600 mb-6 space-y-2">
+        <li>✓ View available properties</li>
+        <li>✓ Apply to listings</li>
+        <li>✓ Comment, rate & favorite properties</li>
+        <li>✓ Upload & manage properties</li>
+      </ul>
+      <button class="bg-[#0f1e40] text-white py-2 px-4 rounded-lg hover:bg-blue-900">Upgrade to Premium</button>
+    </div>
+  </section>
+
+  <!-- FAQ Section (Optional) -->
+  <section class="max-w-3xl mx-auto px-4 py-16">
+    <h2 class="text-2xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold">Can I cancel my plan anytime?</h3>
+        <p class="text-gray-600">Yes, you can cancel your subscription at any time with no penalties.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold">Is there a free trial for Premium users?</h3>
+        <p class="text-gray-600">Yes, Premium includes a 7-day free trial. You can cancel anytime during the trial and won't be charged.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-indigo-900 text-indigo-100 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-6 md:mb-0 flex items-center">
+        <img src="img/logo3 alt.png" alt="Logo" class="w-10 mr-3">
+        <span class="font-bold text-xl">Nested</span>
+      </div>
+      <div class="flex space-x-6 mb-6 md:mb-0">
+        <a href="#" class="hover:text-teal-400 transition">Home</a>
+        <a href="#" class="hover:text-teal-400 transition">About</a>
+        <a href="#" class="hover:text-teal-400 transition">Products</a>
+        <a href="#" class="hover:text-teal-400 transition">Contact</a>
+      </div>
+      <div class="text-sm text-indigo-200">&copy; 2024 Nested. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+  const cards = document.querySelectorAll('.membership-card');
+
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      cards.forEach(c => c.classList.remove('hovered'));
+      card.classList.add('hovered');
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('hovered');
+    });
+  });
+</script>
+
+
+</body>
+</html>

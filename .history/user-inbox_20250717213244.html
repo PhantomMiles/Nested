@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inbox | Nested</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/output.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d2a04fa078.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-[#f7f8fa] font-sans">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="flex-shrink-0 w-64 max-h-full bg-white border-r shadow-md">
+            <div class="flex items-center gap-2 p-6">
+                <img class="w-12" src="img/logo_alt.png" alt="">
+            </div>
+            <nav class="mt-6 space-y-2">
+                <a href="user-dashboard.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+                <a href="user-inbox.html" class="flex items-center gap-3 px-6 py-3 font-medium transition text-darkBlue bg-indigo-50 hover:bg-indigo-100">
+                    <i class="fa-solid fa-inbox"></i>
+                    Inbox
+                </a>
+                <a href="user-transaction.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-receipt"></i>
+                    Transaction History
+                </a>
+                <a href="user-notifications.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-bell"></i>
+                    Notifications
+                </a>
+                <a href="user-settings.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </a>
+                <a href="#logout" class="flex items-center gap-3 px-6 py-3 text-red-500 transition hover:bg-red-50 hover:text-red-600">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 p">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">Inbox</h1>
+            <div class="max-w-4xl p-8 mx-auto mt-10 bg-white shadow-lg rounded-2xl">
+                
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                        <span class="inline-flex items-center justify-center w-10 h-10 bg-blue-100 text-blue-700 rounded-full">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <div class="flex-1">
+                            <div class="font-semibold text-gray-900">Agent Mary</div>
+                            <div class="text-gray-700">Hi John, your property visit is confirmed for tomorrow at 10:00 AM.</div>
+                            <div class="text-xs text-gray-400 mt-1">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                        <span class="inline-flex items-center justify-center w-10 h-10 bg-green-100 text-green-700 rounded-full">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <div class="flex-1">
+                            <div class="font-semibold text-gray-900">Agent Paul</div>
+                            <div class="text-gray-700">Your offer for the 3 Bedroom Apartment has been received.</div>
+                            <div class="text-xs text-gray-400 mt-1">1 day ago</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                        <span class="inline-flex items-center justify-center w-10 h-10 bg-yellow-100 text-yellow-700 rounded-full">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <div class="flex-1">
+                            <div class="font-semibold text-gray-900">Agent Lisa</div>
+                            <div class="text-gray-700">A new property matching your search is available.</div>
+                            <div class="text-xs text-gray-400 mt-1">3 days ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

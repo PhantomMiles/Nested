@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/output.css">
+  <title>Nested</title>
+  <link rel="icon" type="img/ico" href="img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-fixed bg-center bg-cover" style="background-image: url('./img/slide.webp')">
+  <nav id="myHeader" class="sticky z-[100] w-full py-2 transition-all duration-500 bg-transparent fixed">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="flex flex-col w-full lg:flex-row">
+        <div class="flex justify-between lg:flex-row">
+          <a href="index.html" class="flex items-center">
+            <img class="w-16 h-16" src="img/logo.png" alt="" srcset="">
+          </a>
+          <button id="mobile-menu-toggle" type="button" class="inline-flex items-center p-2 text-sm text-indigo-400 rounded-lg lg:hidden hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-white">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" cip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>      
+        <!-- Desktop Menu -->
+        <div class="hidden w-full lg:flex lg:pl-11 max-lg:py-4" id="navbar">
+          <ul class="flex flex-col mt-4 lg:items-center max-lg:gap-4 lg:mt-0 lg:flex-row max-lg:mb-4">
+            <li>
+              <a href="index.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Home
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                About us
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+                <a href="listing.html"
+               class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Listings
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              </li>
+            <li>
+              <a href="contact.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Contact
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          </ul>
+          <div class="flex flex-col justify-start lg:items-center lg:flex-row lg:gap-4 lg:flex-1 lg:justify-end">
+            <a href="login.html"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer group">
+              Login
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="signup.html"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer group">
+              Sign Up              
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </div>
+        </div>
+        <!-- Overlay -->
+      <div id="menu-overlay" class="fixed inset-0 hidden bg-black bg-opacity-0 backdrop-blur-sm transition-opacity duration-300 z-[998] lg:hidden"></div>
+
+      <!-- Mobile Menu -->
+      <div id="navbar-mobile" class="fixed top-0 right-0 z-[999] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 shadow-2xl backdrop-blur-md lg:hidden">
+        <ul class="flex flex-col gap-6 p-6 text-white">
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-100">
+            <a href="index.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6"></path></svg>
+              Home
+            </a>
+          </li>
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-200">
+            <a href="about.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16h6"></path></svg>
+              About Us
+            </a>
+          </li>
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-300">
+            <a href="listing.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+              Listings
+            </a>
+          </li>
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-400">
+            <a href="contact.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              Contact
+            </a>
+          </li>
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-500">
+            <a href="login.html" class="flex items-center gap-3 px-4 py-2 font-semibold rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12H3m0 0l4-4m-4 4l4 4"></path></svg>
+              Login
+            </a>
+          </li>
+          <li class="opacity-0 translate-x-4 transition-all duration-500 delay-600">
+            <a href="signup.html" class="flex items-center gap-3 px-4 py-2 font-semibold rounded-lg hover:bg-indigo-600 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
+              Sign Up
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+
+  </nav>
+  <main>
+      
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-10 text-indigo-100 bg-indigo-900">
+    <div class="flex flex-col items-center justify-between px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex-row">
+      <div class="flex items-center mb-6 md:mb-0">
+        <img src="img/logo.png" alt="Logo" class="w-20 mr-3">
+        <span class="hidden text-xl font-bold">Nested</span>
+      </div>
+      <div class="flex mb-6 space-x-6 md:mb-0">
+        <a href="#" class="transition hover:text-teal-400">Home</a>
+        <a href="#" class="transition hover:text-teal-400">About</a>
+        <a href="#" class="transition hover:text-teal-400">Products</a>
+        <a href="#" class="transition hover:text-teal-400">Contact</a>
+      </div>
+      <div class="text-sm text-indigo-200">&copy; 2024 Nested. All rights reserved.</div>
+    </div>
+  </footer>
+  <!-- <script>
+     /*function toggleDropdown() {
+      const eventTarget = event.currentTarget || event.target;
+      const targetId = eventTarget.getAttribute('data-target');
+      if (!targetId) return;
+      const dropdown = document.getElementById(targetId);
+      if (!dropdown) return;
+      dropdown.classList.toggle('hidden');
+      dropdown.classList.toggle('open');
+    }*/
+  
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('navbar-mobile');
+
+      toggleBtn.addEventListener('click', function () {
+        mobileMenu.classList.toggle('-translate-x-full');
+        mobileMenu.classList.toggle('translate-x-0');
+      });
+    });
+
+    const overlay = document.getElementById('menu-overlay');
+    toggleBtn.addEventListener('click', function () {
+    mobileMenu.classList.toggle('-translate-x-full');
+    mobileMenu.classList.toggle('translate-x-0');
+    overlay.classList.toggle('hidden');
+    overlay.classList.toggle('block');
+    });
+</script> -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('navbar-mobile');
+      const overlay = document.getElementById('menu-overlay');
+      const menuItems = mobileMenu.querySelectorAll('li');
+
+      toggleBtn.addEventListener('click', function () {
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        overlay.classList.remove('hidden');
+        overlay.classList.add('bg-opacity-50');
+
+        // Animate menu items
+        menuItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.remove('opacity-0', 'translate-x-4');
+            item.classList.add('opacity-100', 'translate-x-0');
+          }, 100 * index);
+        });
+      });
+
+      overlay.addEventListener('click', function () {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
+        overlay.classList.remove('bg-opacity-50');
+
+        // Reset menu items
+        menuItems.forEach((item) => {
+          item.classList.add('opacity-0', 'translate-x-4');
+          item.classList.remove('opacity-100', 'translate-x-0');
+        });
+      });
+    });
+  </script>
+  <script src="js/nav.js"></script>
+</body>
+</html>
