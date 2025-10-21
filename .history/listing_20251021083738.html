@@ -4,74 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/output.css">
-  <title>Contact Us</title>
-  <link rel="icon" type="img/ico" href="img/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
- <style>
-  .hovered {
-    border: 2px solid #0F172A; /* Deep navy border */
-    box-shadow: 0 0 20px 6px rgba(15, 23, 42, 0.5); /* Deep blue glow */
-    transition: box-shadow 0.3s ease, border 0.3s ease;
-  }
-  
-  /* --- Mobile nav stays fixed above everything --- */
-  #navbar-mobile,
-  #menu-overlay {
-    position: fixed !important;
-    top: 0;
-    right: 0;
-    z-index: 9999 !important;
-  }
-
-  /* Overlay dim (optional; keeps scroll visible but adds depth) */
-  #menu-overlay {
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(2px);
-    pointer-events: none; /* allows background scroll */
-  }
-
-  /* Mobile menu panel */
-  #navbar-mobile {
-    height: 100vh;
-    width: 16rem; /* adjust width as you like */
-    background: linear-gradient(135deg, #00008B, #1e3a8a, #134e4a);
-    color: #fff;
-    transform: translateX(100%);
-    transition: transform 0.4s ease-in-out;
-    overflow-y: auto;
-    box-shadow: -4px 0 25px rgba(0, 0, 0, 0.4);
-  }
-
-  /* Open state */
-  #navbar-mobile.active {
-    transform: translateX(0);
-  }
-
-  /* Prevent parallax stacking issues */
-  section.bg-fixed {
-    position: relative;
-    z-index: 0;
-  }
-
-  /* Keep main header fixed */
-  #myHeader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1001;
-  }
-</style>
-
-
+  <title>Our House Listings</title>
 </head>
-<body class="text-gray-900 bg-white">
-
-  <!-- Navbar -->
+<body class="overflow-x-hidden text-gray-800 bg-gray-50">
   
   <nav id="myHeader" class="z-50 w-full py-2 transition-all duration-500 lg:fixed bg-darkBlue">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -80,10 +15,9 @@
           <a href="index.html" class="flex items-center">
             <img class="w-12" src="img/logo.png" alt="" srcset="">
           </a>
-           <button id="mobile-menu-toggle"
-            type="button"
+           <button id="mobile-menu-toggle" data-collapse-toggle="navbar" type="button"
             class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-            aria-controls="navbar" aria-expanded="false">
+            aria-controls="navbar-mobile" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +48,7 @@
                 <a href="./listing.html"
                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
                 Listings
-                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue w-full"></span>
                 </a>
                 </li>
 
@@ -122,7 +56,7 @@
               <a href="./contact.html"
                 class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
                 Contact
-                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue w-full"></span>
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
               </a>
             </li>
           </ul>
@@ -139,8 +73,7 @@
             </a>
           </div>
         </div>
-      <!-- Mobile menu -->
-        <div id="navbar-mobile" class="fixed top-0 right-0 z-[1000] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-darkblue via-indigo-900 to-teal-900 shadow-2xl backdrop-blur-md lg:hidden">
+      <div id="navbar-mobile" class="fixed top-0 right-0 z-[1000] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-darkblue via-indigo-900 to-teal-900 shadow-2xl backdrop-blur-md lg:hidden">
          <div class="flex justify-end p-4">
             <button id="close-menu" class="text-white text-2xl hover:text-red-400 transition">
               <i class='bx bx-x'></i>
@@ -208,54 +141,154 @@
             </div>
           </div>
 
-      </div>
+        </div>
       </div>
     </div>
   </nav>
-  
+  <script>
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
 
-<section class="max-w-4xl px-6 py-12 mx-auto">
-  <h1 class="mt-8 text-3xl font-semibold text-center text-gray-900">Contact Us</h1>
-  <p class="mb-10 text-center text-gray-600">Have a question or need help? We're here to assist you.</p>
+    function openMobileMenu() {
+      mobileMenu.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
 
-  <div class="grid gap-8 md:grid-cols-2">
-    <!-- Contact Info -->
-    <div class="space-y-6">
+    mobileMenuToggle.addEventListener('click', openMobileMenu);
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+    // Close menu on link click (for accessibility)
+    window.closeMobileMenu = closeMobileMenu;
+  </script>
+  <section class="p-6 pt-24 mx-auto max-w-7xl">
+    
+    <div class="flex flex-col items-start justify-between gap-4 mb-6 md:flex-row md:items-center">
       <div>
-        <h2 class="text-xl font-medium text-gray-800">Email</h2>
-        <p class="text-gray-600">nested@gmail.com</p>
+        <h1 class="text-3xl font-bold">Explore House Listings</h1>
+        <p class="text-gray-600">Browse through our selection of available properties</p>
       </div>
-      <div>
-        <h2 class="text-xl font-medium text-gray-800">Phone</h2>
-        <p class="text-gray-600">+234 801-123-4567</p>
-      </div>
-      <div>
-        <h2 class="text-xl font-medium text-gray-800">Office Hours</h2>
-        <p class="text-gray-600">Monday – Friday, 9AM – 6PM (WAT)</p>
+      <div class="w-full md:w-1/3">
+        <input id="searchInput" type="text" placeholder="Search by city, price, or features..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
       </div>
     </div>
 
-    <!-- Contact Form -->
-    <form class="p-6 space-y-4 bg-white rounded-lg shadow-sm">
-      <div>
-        <label class="block mb-1 font-medium text-gray-700" for="name">Your Name</label>
-        <input id="name" type="text" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Akpa Chisimdi">
-      </div>
-      <div>
-        <label class="block mb-1 font-medium text-gray-700" for="email">Email Address</label>
-        <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="you@example.com">
-      </div>
-      <div>
-        <label class="block mb-1 font-medium text-gray-700" for="message">Message</label>
-        <textarea id="message" rows="5" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your message here..."></textarea>
-      </div>
-      <button type="submit" class="w-full bg-[#0f1e40] text-white py-2 rounded-lg hover:bg-blue-900 transition">Send Message</button>
-    </form>
-  </div>
-</section>
+    
+    <div class="flex flex-wrap gap-4 mb-6">
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Price Range</option>
+        <option>$0 - $250,000</option>
+        <option>$250,000 - $500,000</option>
+        <option>$500,000+</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Size</option>
+        <option>1-2 bedrooms</option>
+        <option>3-4 bedrooms</option>
+        <option>5+ bedrooms</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Color</option>
+        <option>White</option>
+        <option>Beige</option>
+        <option>Gray</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Brand</option>
+        <option>Luxury Homes</option>
+        <option>Family Homes</option>
+        <option>Starter Homes</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Customer Ratings</option>
+        <option>4 stars & up</option>
+        <option>3 stars & up</option>
+        <option>All ratings</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Availability</option>
+        <option>In Stock</option>
+        <option>Out of Stock</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Sort By</option>
+        <option>New Arrivals</option>
+        <option>Best Sellers</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+      </select>
+    </div>
 
+    
+    <div id="listingsContainer" class="grid gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
 
-  <footer class="py-10 text-indigo-100 bg-indigo-900">
+      
+      <div class="flex flex-col overflow-hidden bg-white shadow-md listing-item rounded-2xl sm:flex-row lg:flex-col">
+        <img src="./img/bg1.jpg" alt="House" class="object-cover w-full h-48 sm:w-1/3 lg:w-full sm:h-auto">
+        <div class="flex flex-col justify-between p-4">
+          <div>
+            <h2 class="text-xl font-semibold">Modern Family Home</h2>
+            <p class="text-gray-600">123 Maple Street, Springfield</p>
+          </div>
+          <p class="mt-2 text-sm text-gray-700">Spacious 4 bedroom house with a large backyard and garage. Comes with solar panels and a smart thermostat.</p>
+          <div class="flex items-center justify-between mt-4">
+         <div class="text-lg font-bold text-blue-600">$450,000</div>
+         <button class="px-4 py-2 ml-4 text-sm font-semibold text-white transition bg-blue-600 rounded-lg hover:bg-blue-700">
+          View Details
+         </button>
+          </div>
+          <div class="mt-2 text-sm text-gray-500">Brand: Family Homes • 4.5 ★ Rating • In Stock</div>
+
+        </div>
+      </div>
+
+      
+      <div class="flex flex-col overflow-hidden bg-white shadow-md listing-item rounded-2xl sm:flex-row lg:flex-col">
+        <img src="./img/bg1.jpg" alt="House" class="object-cover w-full h-48 sm:w-1/3 lg:w-full sm:h-auto">
+        <div class="flex flex-col justify-between p-4">
+          <div>
+            <h2 class="text-xl font-semibold">Cozy Country Cottage</h2>
+            <p class="text-gray-600">789 Pine Lane, Rivertown</p>
+          </div>
+          <p class="mt-2 text-sm text-gray-700">Charming 2 bedroom cottage with wood interiors, a cozy fireplace, and large garden space.</p>
+          <div class="flex items-center justify-between mt-4">
+  <div class="text-lg font-bold text-blue-600">$325,000</div>
+  <button class="px-4 py-2 ml-4 text-sm font-semibold text-white transition bg-blue-600 rounded-lg hover:bg-blue-700">
+    View Details
+  </button>
+</div>
+<div class="mt-2 text-sm text-gray-500">Brand: Starter Homes • 4.2 ★ Rating • In Stock</div>
+   </div>
+      </div>
+
+  <div class="flex flex-col overflow-hidden bg-white shadow-md listing-item rounded-2xl sm:flex-row lg:flex-col">
+        <img src="./img/bg1.jpg" alt="House" class="object-cover w-full h-48 sm:w-1/3 lg:w-full sm:h-auto">
+        <div class="flex flex-col justify-between p-4">
+          <div>
+            <h2 class="text-xl font-semibold">Modern Family Home</h2>
+            <p class="text-gray-600">123 Maple Street, Springfield</p>
+          </div>
+          <p class="mt-2 text-sm text-gray-700">Spacious 4 bedroom house with a large backyard and garage. Comes with solar panels and a smart thermostat.</p>
+          <div class="flex items-center justify-between mt-4">
+         <div class="text-lg font-bold text-blue-600">$450,000</div>
+         <button class="px-4 py-2 ml-4 text-sm font-semibold text-white transition bg-blue-600 rounded-lg hover:bg-blue-700">
+          View Details
+         </button>
+          </div>
+          <div class="mt-2 text-sm text-gray-500">Brand: Family Homes • 4.5 ★ Rating • In Stock</div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+<footer class="py-10 text-indigo-100 bg-indigo-900">
     <div class="flex flex-col items-center justify-between px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex-row">
       <div class="flex items-center mb-6 md:mb-0">
         <img src="img/logo.png" alt="Logo" class="w-20 mr-3">
@@ -271,20 +304,41 @@
     </div>
   </footer>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const toggleBtn = document.getElementById('mobile-menu-toggle');
-      const closeBtn = document.getElementById('close-menu');
-      const mobileMenu = document.getElementById('navbar-mobile');
+  const listingsContainer = document.getElementById('listingsContainer');
+  const ctaCard = document.querySelector('.cta-card');
 
-      toggleBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-      });
+  const listingTemplates = Array.from(document.querySelectorAll('.listing-item')).map(item => item.outerHTML);
 
-      closeBtn.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-      });
-    });
-  </script>
-  
-  </body>
+  let isLoading = false;
+  let totalListings = document.querySelectorAll('.listing-item').length;
+  const MAX_LISTINGS = 30;
+
+  window.addEventListener('scroll', () => {
+    if (isLoading || totalListings >= MAX_LISTINGS) return;
+
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const fullHeight = document.body.offsetHeight;
+
+    if (scrollTop + windowHeight >= fullHeight - 100) {
+      isLoading = true;
+
+      // Number of items we can still add
+      const remaining = MAX_LISTINGS - totalListings;
+      const itemsToAdd = Math.min(remaining, listingTemplates.length);
+
+      for (let i = 0; i < itemsToAdd; i++) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = listingTemplates[i];
+        const newListing = tempDiv.firstElementChild;
+        listingsContainer.insertBefore(newListing, ctaCard);
+        totalListings++;
+      }
+
+      isLoading = false;
+    }
+  });
+</script>
+<script src="js/nav2.js"></script>
+</body>
 </html>

@@ -1,52 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Nested Realtor Dashboard</title>
-    <link href="css/output.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nested Dashboard</title>
+    <link href="css/output.css" rel="stylesheet">    
     <link rel="icon" type="img/ico" href="img/favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/d2a04fa078.js" crossorigin="anonymous"></script>
-    <style>
-      /* small helper to ensure body/min-height play nicely */
-      html,body{height:100%}
-    </style>
   </head>
   <body class="bg-[#f8f9fd] text-[#1d1d1d]">
-    <div id="dashboardWrapper" class="flex h-full">
-      <!-- Sidebar (hidden by default) -->
-      <aside id="sidebar" class="fixed left-0 top-0 w-64 bg-white shadow-lg p-4 transform -translate-x-full transition-transform duration-300 ease-in-out z-50">
-        <!-- Close button (visible on both desktop & mobile) -->
-        <button id="closeSidebar" class="absolute top-4 right-4 text-darkBlue text-xl focus:outline-none hover:text-indigo-600 transition">
-          <i class="fas fa-times"></i>
-        </button>
-
-        <div class=""> <!-- add top padding so close button doesn't overlap logo -->
+    <div class="flex h-full transition-all duration-300 ease-in-out" id="dashboardWrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar" class="fixed md:static transform -translate-x-full md:translate-x-0 w-64 bg-white shadow-lg p-4 flex flex-col justify-between h-full transition-transform duration-300 ease-in-out z-50">
+        <div>
           <div class="mb-5">
             <img src="img/logo_alt.png" alt="Logo" class="h-20 w-auto" />
-          </div>
-
+          </div>          
           <nav class="space-y-2">
             <a href="realtor-dashboard.html" class="flex items-center gap-2 text-blue-500 font-semibold bg-indigo-100 px-4 py-2 rounded-lg">
-              <i class="fas fa-gauge-high text-lg"></i><span class="text-sm">Dashboard</span>
+              <i class="fas fa-gauge-high text-lg"></i>
+              <span class="text-sm">Dashboard</span>
             </a>
             <a href="realtor-inbox.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-              <i class="fas fa-inbox text-lg"></i><span class="text-sm">Inbox</span>
+              <i class="fas fa-inbox text-lg"></i>
+              <span class="text-sm">Inbox</span>
             </a>
             <a href="account-records.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-              <i class="fas fa-file-invoice text-lg"></i><span class="text-sm">Account Record</span>
+              <i class="fas fa-file-invoice text-lg"></i>
+              <span class="text-sm">Account Record</span>
             </a>
             <a href="realtor-notifications.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-              <i class="fas fa-bell text-lg"></i><span class="text-sm">Notifications</span>
+              <i class="fas fa-bell text-lg"></i>
+              <span class="text-sm">Notifications</span>
             </a>
             <a href="analytics.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-              <i class="fas fa-chart-column text-lg"></i><span class="text-sm">Analytics</span>
+              <i class="fas fa-chart-column text-lg"></i>
+              <span class="text-sm">Analytics</span>
             </a>
           </nav>
 
           <div class="my-4 bg-darkBlue text-center text-white p-4 rounded-xl text-sm">
-            <p class="font-bold mb-2">Upgrade to pro</p>
+            <p class="font-bold mb-2 text-center">Upgrade to pro</p>
             <p class="text-left">Get access to additional features and exposure today</p>
             <div class="mt-2 font-bold">
               <button class="bg-white text-darkBlue text-sm px-3 py-1 rounded">Upgrade</button>
@@ -54,31 +49,35 @@
           </div>
         </div>
 
-        <div class="space-y-2 text-sm mt-auto">
+        <div class="space-y-2 relative z-10 text-sm">
           <a href="realtor-settings.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-            <i class="fas fa-cog text-lg"></i>Settings
+            <i class="fas fa-cog text-lg"></i>
+            Settings
           </a>
           <a href="#" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-            <i class="fas fa-question-circle text-lg"></i>Help Centre
+            <i class="fas fa-question-circle text-lg"></i>
+            Help Centre
           </a>
           <a href="#" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-            <i class="fas fa-sign-out text-lg"></i>Logout
+            <i class="fas fa-sign-out text-lg"></i>
+            Logout
           </a>
         </div>
       </aside>
 
-      <!-- Main content (full width initially) -->
-      <main id="mainContent" class="flex-1 p-8 overflow-y-auto transition-all duration-300 ease-in-out">
-        <!-- Header -->
+      <!-- Overlay -->
+      <div id="overlay" class="fixed inset-0 bg-transparent hidden z-40"></div>
+
+      <!-- Main -->
+      <main id="mainContent" class="flex-1 p-8 overflow-y-auto transition-all duration-300 ease-in-out md:ml-64">
         <div class="flex justify-between items-center mb-6">
           <div class="flex items-center gap-3">
-            <!-- Hamburger always visible top-left -->
-            <button id="menuToggle" class="text-darkBlue text-2xl focus:outline-none">
+            <!-- Hamburger -->
+            <button id="menuToggle" class="text-darkBlue text-2xl md:hidden focus:outline-none">
               <i class="fas fa-bars"></i>
             </button>
             <h1 class="text-2xl font-bold text-darkBlue">Dashboard</h1>
           </div>
-
           <div class="text-sm flex items-center space-x-3">
             <button class="border border-darkBlue text-darkBlue px-3 py-1 rounded-full">Get verified today</button>
             <p class="text-gray-500">Welcome, <span class="text-darkBlue font-semibold">Amanda Rito</span></p>
@@ -123,13 +122,12 @@
           </div>
         </div>
 
-        <!-- Graphs Section -->
+        <!-- Graphs -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div class="bg-white p-4 rounded-xl shadow">
             <p class="font-semibold mb-2">Sales</p>
             <canvas id="salesChart" class="w-full h-48"></canvas>
           </div>
-
           <div class="bg-white p-4 rounded-xl shadow">
             <p class="font-semibold mb-2">Visits</p>
             <canvas id="visitsChart" class="w-full h-48"></canvas>
@@ -182,112 +180,78 @@
       </main>
     </div>
 
-    <!-- Script: open/close behavior -->
+    <!-- JS -->
     <script>
-      (function(){
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('mainContent');
-        const menuToggle = document.getElementById('menuToggle');
-        const closeBtn = document.getElementById('closeSidebar');
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('mainContent');
+      const menuToggle = document.getElementById('menuToggle');
+      const overlay = document.getElementById('overlay');
 
-        // helper: check desktop breakpoint (>=768px)
-        function isDesktop(){ return window.innerWidth >= 768; }
-
-        // start: ensure sidebar hidden and main full width
-        function resetToClosed(){
-          sidebar.classList.add('-translate-x-full');
-          // ensure transform property is 'hidden'
-          mainContent.style.marginLeft = '0';
+      function openSidebar() {
+        sidebar.classList.remove('-translate-x-full');
+        if (window.innerWidth < 768) {
+          overlay.classList.remove('hidden');
+        } else {
+          mainContent.classList.add('md:ml-64');
         }
-        resetToClosed();
+      }
 
-        function openSidebar(){
-          // show sidebar by setting translate to 0
+      function closeSidebar() {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+        mainContent.classList.remove('md:ml-64');
+      }
+
+      menuToggle.addEventListener('click', () => {
+        if (sidebar.classList.contains('-translate-x-full')) openSidebar();
+        else closeSidebar();
+      });
+
+      overlay.addEventListener('click', closeSidebar);
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+          overlay.classList.add('hidden');
           sidebar.classList.remove('-translate-x-full');
-          sidebar.classList.add('translate-x-0');
-
-          if (isDesktop()){
-            // push main content by sidebar width (w-64 = 16rem)
-            mainContent.style.marginLeft = '16rem';
-          } else {
-            // mobile: do not push main content, it stays full width underneath
-            mainContent.style.marginLeft = '0';
-          }
-        }
-
-        function closeSidebar(){
-          sidebar.classList.remove('translate-x-0');
-          sidebar.classList.add('-translate-x-full');
-          mainContent.style.marginLeft = '0';
-        }
-
-        // events
-        menuToggle.addEventListener('click', (e)=> {
-          // toggle open/close
-          if (sidebar.classList.contains('-translate-x-full')){
-            openSidebar();
-          } else {
-            closeSidebar();
-          }
-        });
-
-        closeBtn.addEventListener('click', () => {
+          mainContent.classList.add('md:ml-64');
+        } else {
           closeSidebar();
-        });
+        }
+      });
 
-        // when resizing: if desktop and sidebar currently open, ensure push is applied
-        window.addEventListener('resize', () => {
-          if (isDesktop()){
-            // if sidebar is visible (no -translate), apply push
-            if (!sidebar.classList.contains('-translate-x-full')){
-              mainContent.style.marginLeft = '16rem';
-            } else {
-              mainContent.style.marginLeft = '0';
-            }
-          } else {
-            // mobile: always keep content full width
-            mainContent.style.marginLeft = '0';
-          }
-        });
+      // Charts
+      const salesCtx = document.getElementById('salesChart').getContext('2d');
+      new Chart(salesCtx, {
+        type: 'line',
+        data: {
+          labels: ['01/07/25', '02/07/25', '03/07/25', '04/07/25', '05/07/25'],
+          datasets: [{
+            label: 'Sales',
+            data: [120, 80, 75, 60, 250],
+            borderColor: 'rgba(255,99,132,1)',
+            backgroundColor: 'rgba(255,99,132,0.2)',
+            tension: 0.3,
+            fill: true
+          }]
+        },
+        options: { 
+          responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}} }
+      });
 
-        // accessibility: close on ESC
-        window.addEventListener('keydown', (e)=>{
-          if (e.key === 'Escape') closeSidebar();
-        });
-      })();
-    </script>
-
-    <!-- Charts initialization (kept simple from earlier file) -->
-    <script>
-      const salesCtx = document.getElementById('salesChart')?.getContext('2d');
-      if (salesCtx){
-        new Chart(salesCtx, {
-          type: 'line',
-          data: {
-            labels: ['01/07/25','02/07/25','03/07/25','04/07/25','05/07/25'],
-            datasets:[{
-              label:'Sales',
-              data:[120,80,75,60,250],
-              borderColor:'rgba(255,99,132,1)',
-              backgroundColor:'rgba(255,99,132,0.2)',
-              tension:0.3, fill:true
-            }]
-          },
-          options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
-        });
-      }
-
-      const visitsCtx = document.getElementById('visitsChart')?.getContext('2d');
-      if (visitsCtx){
-        new Chart(visitsCtx, {
-          type:'bar',
-          data:{
-            labels:['01','02','03','04','05'],
-            datasets:[{label:'Visits',data:[400,700,500,900,200],backgroundColor:'rgba(0,0,139,0.9)',borderRadius:6}]
-          },
-          options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
-        });
-      }
+      const visitsCtx = document.getElementById('visitsChart').getContext('2d');
+      new Chart(visitsCtx, {
+        type: 'bar',
+        data: {
+          labels: ['01','02','03','04','05'],
+          datasets: [{
+            label: 'Visits',
+            data: [400,700,500,900,200],
+            backgroundColor: 'rgba(0,0,139,0.9)',
+            borderRadius: 6
+          }]
+        },
+        options: { responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}} }
+      });
     </script>
   </body>
 </html>

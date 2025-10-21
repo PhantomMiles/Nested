@@ -5,11 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/output.css">
   <title>Contact Us</title>
-  <link rel="icon" type="img/ico" href="img/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
  <style>
   .hovered {
     border: 2px solid #0F172A; /* Deep navy border */
@@ -140,7 +135,7 @@
           </div>
         </div>
       <!-- Mobile menu -->
-        <div id="navbar-mobile" class="fixed top-0 right-0 z-[1000] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-darkblue via-indigo-900 to-teal-900 shadow-2xl backdrop-blur-md lg:hidden">
+        div id="navbar-mobile" class="fixed top-0 right-0 z-[1000] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-darkblue via-indigo-900 to-teal-900 shadow-2xl backdrop-blur-md lg:hidden">
          <div class="flex justify-end p-4">
             <button id="close-menu" class="text-white text-2xl hover:text-red-400 transition">
               <i class='bx bx-x'></i>
@@ -212,7 +207,28 @@
       </div>
     </div>
   </nav>
-  
+  <script>
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+    function openMobileMenu() {
+      mobileMenu.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    mobileMenuToggle.addEventListener('click', openMobileMenu);
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+    // Close menu on link click (for accessibility)
+    window.closeMobileMenu = closeMobileMenu;
+  </script>
 
 <section class="max-w-4xl px-6 py-12 mx-auto">
   <h1 class="mt-8 text-3xl font-semibold text-center text-gray-900">Contact Us</h1>
@@ -270,21 +286,5 @@
       <div class="text-sm text-indigo-200">&copy; 2024 Nested. All rights reserved.</div>
     </div>
   </footer>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const toggleBtn = document.getElementById('mobile-menu-toggle');
-      const closeBtn = document.getElementById('close-menu');
-      const mobileMenu = document.getElementById('navbar-mobile');
-
-      toggleBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-      });
-
-      closeBtn.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-      });
-    });
-  </script>
-  
   </body>
 </html>
