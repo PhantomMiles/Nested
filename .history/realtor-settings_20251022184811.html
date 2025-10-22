@@ -33,7 +33,7 @@
             <a href="account-records.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
               <i class="fas fa-file-invoice text-lg"></i><span class="text-sm">Account Record</span>
             </a>
-            <a href="realtor-notifications.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg bg-indigo-100">
+            <a href="realtor-notifications.html" class="flex items-center gap-2 px-4 py-2 text-blue-500 rounded-lg font-semibold bg-indigo-100">
               <i class="fas fa-bell text-lg"></i><span class="text-sm">Notifications</span>
             </a>
             <a href="analytics.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
@@ -51,7 +51,7 @@
         </div>
 
         <div class="space-y-2 text-sm mt-auto">
-          <a href="realtor-settings.html" class="flex items-center gap-2 px-4 py-2 text-blue-500 font-semibold rounded-lg bg-indigo-100">
+          <a href="realtor-settings.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
             <i class="fas fa-cog text-lg"></i>Settings
           </a>
           <a href="#" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
@@ -74,7 +74,7 @@
             </button>
           </div>
           <h1 class="text-2xl font-bold text-darkBlue">Settings</h1>
-          <p class="text-sm text-gray-600">Manage your account settings</p>
+          <p class="text-sm text-gray-600">Manage your </p>
         </div>
 
         <!-- Profile Settings -->
@@ -175,79 +175,6 @@
         </div>
       </div>
     </div>
-    <script>
-      (function(){
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('mainContent');
-        const menuToggle = document.getElementById('menuToggle');
-        const closeBtn = document.getElementById('closeSidebar');
-
-        // helper: check desktop breakpoint (>=768px)
-        function isDesktop(){ return window.innerWidth >= 768; }
-
-        // start: ensure sidebar hidden and main full width
-        function resetToClosed(){
-          sidebar.classList.add('-translate-x-full');
-          // ensure transform property is 'hidden'
-          mainContent.style.marginLeft = '0';
-        }
-        resetToClosed();
-
-        function openSidebar(){
-          // show sidebar by setting translate to 0
-          sidebar.classList.remove('-translate-x-full');
-          sidebar.classList.add('translate-x-0');
-
-          if (isDesktop()){
-            // push main content by sidebar width (w-64 = 16rem)
-            mainContent.style.marginLeft = '16rem';
-          } else {
-            // mobile: do not push main content, it stays full width underneath
-            mainContent.style.marginLeft = '0';
-          }
-        }
-
-        function closeSidebar(){
-          sidebar.classList.remove('translate-x-0');
-          sidebar.classList.add('-translate-x-full');
-          mainContent.style.marginLeft = '0';
-        }
-
-        // events
-        menuToggle.addEventListener('click', (e)=> {
-          // toggle open/close
-          if (sidebar.classList.contains('-translate-x-full')){
-            openSidebar();
-          } else {
-            closeSidebar();
-          }
-        });
-
-        closeBtn.addEventListener('click', () => {
-          closeSidebar();
-        });
-
-        // when resizing: if desktop and sidebar currently open, ensure push is applied
-        window.addEventListener('resize', () => {
-          if (isDesktop()){
-            // if sidebar is visible (no -translate), apply push
-            if (!sidebar.classList.contains('-translate-x-full')){
-              mainContent.style.marginLeft = '16rem';
-            } else {
-              mainContent.style.marginLeft = '0';
-            }
-          } else {
-            // mobile: always keep content full width
-            mainContent.style.marginLeft = '0';
-          }
-        });
-
-        // accessibility: close on ESC
-        window.addEventListener('keydown', (e)=>{
-          if (e.key === 'Escape') closeSidebar();
-        });
-      })();
-    </script>
     <script>
       function openDialog() {
         document.getElementById('confirmModal').classList.remove('hidden');

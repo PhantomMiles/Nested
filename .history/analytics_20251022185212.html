@@ -5,44 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nested Dashboard</title>
     <link href="css/output.css" rel="stylesheet">    
-    <link rel="icon" type="img/ico" href="img/favicon.ico">
+      <link rel="icon" type="img/ico" href="img/favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/d2a04fa078.js" crossorigin="anonymous"></script>
   </head>
   <body class="bg-[#f8f9fd] text-[#1d1d1d]">
-    <div id="dashboardWrapper" class="flex h-full">
-      <!-- Sidebar (hidden by default) -->
-      <aside id="sidebar" class="fixed left-0 top-0 w-64 bg-white shadow-lg p-4 transform -translate-x-full transition-transform duration-300 ease-in-out z-50">
-        <!-- Close button (visible on both desktop & mobile) -->
-        <button id="closeSidebar" class="absolute top-4 right-4 text-darkBlue text-xl focus:outline-none hover:text-indigo-600 transition">
-          <i class="fas fa-times"></i>
-        </button>
-
-        <div class=""> <!-- add top padding so close button doesn't overlap logo -->
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside class="w-48 bg-white shadow-lg p-4 flex flex-col justify-between">
+        <div>
           <div class="mb-5">
             <img src="img/logo_alt.png" alt="Logo" class="h-20 w-auto" />
-          </div>
-
+          </div>          
           <nav class="space-y-2">
-            <a href="realtor-dashboard.html" class="flex items-center gap-2 text-darkBlue hover:bg-indigo-100 px-4 py-2 rounded-lg">
-              <i class="fas fa-gauge-high text-lg"></i><span class="text-sm">Dashboard</span>
+            <a href="realtor-dashboard.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
+              <i class="fas fa-gauge-high text-lg"></i>
+              <span class="text-sm">Dashboard</span>
             </a>
             <a href="realtor-inbox.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-              <i class="fas fa-inbox text-lg"></i><span class="text-sm">Inbox</span>
+              <i class="fas fa-inbox text-lg"></i>
+              <span class="text-sm">Inbox</span>
             </a>
             <a href="account-records.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-              <i class="fas fa-file-invoice text-lg"></i><span class="text-sm">Account Record</span>
+              <i class="fas fa-file-invoice text-lg"></i>
+              <span class="text-sm">Account Record</span>
             </a>
             <a href="realtor-notifications.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-              <i class="fas fa-bell text-lg"></i><span class="text-sm">Notifications</span>
+              <i class="fas fa-bell text-lg"></i>
+              <span class="text-sm">Notifications</span>
             </a>
-            <a href="analytics.html" class="flex items-center gap-2 px-4 py-2 text-blue-500 rounded-lg font-semibold bg-indigo-100">
-              <i class="fas fa-chart-column text-lg"></i><span class="text-sm">Analytics</span>
+            <a href="analytics.html" class="flex items-center gap-2 text-blue-500 font-semibold bg-indigo-100 px-4 py-2 rounded-lg">
+              <i class="fas fa-chart-column text-lg"></i>
+              <span class="text-sm">Analytics</span>
             </a>
           </nav>
 
           <div class="my-4 bg-darkBlue text-center text-white p-4 rounded-xl text-sm">
-            <p class="font-bold mb-2">Upgrade to pro</p>
+            <p class="font-bold mb-2 text-center">Upgrade to pro</p>
             <p class="text-left">Get access to additional features and exposure today</p>
             <div class="mt-2 font-bold">
               <button class="bg-white text-darkBlue text-sm px-3 py-1 rounded">Upgrade</button>
@@ -50,29 +49,25 @@
           </div>
         </div>
 
-        <div class="space-y-2 text-sm mt-auto">
+        <div class="space-y-2 text-sm">
           <a href="realtor-settings.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-            <i class="fas fa-cog text-lg"></i>Settings
+            <i class="fas fa-cog text-lg"></i>
+            Settings
           </a>
           <a href="#" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-            <i class="fas fa-question-circle text-lg"></i>Help Centre
+            <i class="fas fa-question-circle text-lg"></i>
+            Help Centre
           </a>
           <a href="#" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
-            <i class="fas fa-sign-out text-lg"></i>Logout
+            <i class="fas fa-sign-out text-lg"></i>
+            Logout
           </a>
         </div>
       </aside>
 
-
       <!-- Main -->
-      <main id="mainContent" class="flex-1 p-8 overflow-y-auto">
+      <main class="flex-1 p-8 overflow-y-auto">
         <div class="flex justify-between items-center mb-6">
-          <div class="flex items-center gap-3">
-            <!-- Hamburger always visible top-left -->
-            <button id="menuToggle" class="text-darkBlue text-2xl focus:outline-none">
-              <i class="fas fa-bars"></i>
-            </button>
-          </div>
           <h1 class="text-2xl font-bold text-darkBlue">Analytics</h1>
           <p class="text-sm text-gray-600">Welcome, <span class="text-darkBlue font-semibold">Amanda Rito</span></p>
         </div>

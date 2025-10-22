@@ -27,13 +27,13 @@
             <a href="realtor-dashboard.html" class="flex items-center gap-2 text-darkBlue hover:bg-indigo-100 px-4 py-2 rounded-lg">
               <i class="fas fa-gauge-high text-lg"></i><span class="text-sm">Dashboard</span>
             </a>
-            <a href="realtor-inbox.html" class="flex items-center gap-2 px-4 py-2 text-blue-500 font-semibold rounded-lg bg-indigo-100">
+            <a href="realtor-inbox.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
               <i class="fas fa-inbox text-lg"></i><span class="text-sm">Inbox</span>
             </a>
-            <a href="account-records.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
+            <a href="account-records.html" class="flex items-center gap-2 px-4 py-2 text-blue-500 rounded-lg font-semibold bg-indigo-100">
               <i class="fas fa-file-invoice text-lg"></i><span class="text-sm">Account Record</span>
             </a>
-            <a href="realtor-notifications.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
+            <a href="realtor-notifications.html" class="flex items-center gap-2 px-4 py-2 text-darkBkue rounded-lg hover:bg-indigo-100">
               <i class="fas fa-bell text-lg"></i><span class="text-sm">Notifications</span>
             </a>
             <a href="analytics.html" class="flex items-center gap-2 px-4 py-2 text-darkBlue rounded-lg hover:bg-indigo-100">
@@ -63,8 +63,9 @@
         </div>
       </aside>
 
+
       <!-- Main -->
-       <main id="mainContent" class="flex-1 p-8 overflow-y-auto">
+      <main id="mainContent" class="flex-1 p-8 overflow-y-auto">
         <div class="flex justify-between items-center mb-6">
           <div class="flex items-center gap-3">
             <!-- Hamburger always visible top-left -->
@@ -72,43 +73,93 @@
               <i class="fas fa-bars"></i>
             </button>
           </div>
-          <h1 class="text-2xl font-bold text-darkBlue">Inbox</h1>
+          <h1 class="text-2xl font-bold text-darkBlue">Account Records</h1>
           <p class="text-sm text-gray-600">Welcome, <span class="text-darkBlue font-semibold">Amanda Rito</span></p>
         </div>
 
-        <!-- Inbox Layout -->
+        <!-- Account Balance Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div class="bg-white p-4 rounded-xl shadow text-center">
+            <p class="text-sm text-gray-500 mb-1">Current Balance</p>
+            <h2 class="text-2xl font-bold">₦87,500.00</h2>
+          </div>
+          <div class="bg-white p-4 rounded-xl shadow text-center">
+            <p class="text-sm text-gray-500 mb-1">Total Spent</p>
+            <h2 class="text-2xl font-bold">₦182,000.00</h2>
+          </div>
+          <div class="bg-white p-4 rounded-xl shadow text-center">
+            <p class="text-sm text-gray-500 mb-1">Upcoming Charges</p>
+            <h2 class="text-2xl font-bold">₦5,000.00</h2>
+          </div>
+        </div>
+
+        <!-- Account Records Table -->
+        <div class="bg-white p-6 rounded-xl shadow mb-6">
+          <h2 class="text-xl font-semibold mb-4">Recent Transactions</h2>
+          <table class="w-full table-auto text-left">
+            <thead>
+              <tr class="text-gray-600 text-sm border-b">
+                <th class="pb-2">Transaction</th>
+                <th class="pb-2">Amount</th>
+                <th class="pb-2">Date</th>
+                <th class="pb-2">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t text-sm">
+                <td class="py-2 flex items-center gap-2">
+                  <i class="fas fa-credit-card text-darkBlue"></i>
+                  Subscription Renewal
+                </td>
+                <td>₦5,000.00</td>
+                <td>30/06/2025</td>
+                <td class="text-green-600">Successful</td>
+              </tr>
+              <tr class="border-t text-sm">
+                <td class="py-2 flex items-center gap-2">
+                  <i class="fas fa-bullhorn text-darkBlue"></i>
+                  Listing Boost
+                </td>
+                <td>₦2,500.00</td>
+                <td>28/06/2025</td>
+                <td class="text-yellow-600">Pending</td>
+              </tr>
+              <tr class="border-t text-sm">
+                <td class="py-2 flex items-center gap-2">
+                  <i class="fas fa-tools text-darkBlue"></i>
+                  Custom Feature Request
+                </td>
+                <td>₦8,000.00</td>
+                <td>25/06/2025</td>
+                <td class="text-red-600">Failed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Payment Methods Section -->
         <div class="bg-white p-6 rounded-xl shadow">
-          <h2 class="text-xl font-semibold mb-4">Messages</h2>
-          <ul class="divide-y divide-gray-200">
-            <li class="py-4 flex items-start gap-4">
-              <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Sender">
-              <div class="flex-1">
-                <div class="flex justify-between items-center">
-                  <h3 class="font-medium">John Doe</h3>
-                  <span class="text-sm text-gray-500">2h ago</span>
+          <h2 class="text-xl font-semibold mb-4">Saved Payment Methods</h2>
+          <ul class="space-y-4">
+            <li class="flex justify-between items-center">
+              <div class="flex items-center gap-3">
+                <i class="fas fa-cc-visa text-2xl text-blue-600"></i>
+                <div>
+                  <p class="font-medium">Visa Ending in 1245</p>
+                  <p class="text-sm text-gray-500">Expires 04/27</p>
                 </div>
-                <p class="text-sm text-gray-700">Hello, I would like to schedule a property viewing...</p>
               </div>
+              <button class="text-sm text-red-500 hover:underline">Remove</button>
             </li>
-            <li class="py-4 flex items-start gap-4">
-              <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Sender">
-              <div class="flex-1">
-                <div class="flex justify-between items-center">
-                  <h3 class="font-medium">Jane Smith</h3>
-                  <span class="text-sm text-gray-500">5h ago</span>
+            <li class="flex justify-between items-center">
+              <div class="flex items-center gap-3">
+                <i class="fas fa-cc-mastercard text-2xl text-red-600"></i>
+                <div>
+                  <p class="font-medium">Mastercard Ending in 9821</p>
+                  <p class="text-sm text-gray-500">Expires 12/26</p>
                 </div>
-                <p class="text-sm text-gray-700">Can you provide more details on the Goshen listing?</p>
               </div>
-            </li>
-            <li class="py-4 flex items-start gap-4">
-              <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Sender">
-              <div class="flex-1">
-                <div class="flex justify-between items-center">
-                  <h3 class="font-medium">Kingsley O.</h3>
-                  <span class="text-sm text-gray-500">1d ago</span>
-                </div>
-                <p class="text-sm text-gray-700">Thank you for the update. I’ve completed payment.</p>
-              </div>
+              <button class="text-sm text-red-500 hover:underline">Remove</button>
             </li>
           </ul>
         </div>
