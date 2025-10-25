@@ -71,5 +71,22 @@
       </div>   
     </div>
   </div>
+<script>
+  document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = this.email.value.trim();
+    const password = this.password.value.trim();
+
+    if (email && password) {
+      localStorage.setItem('loggedInUser', email);
+      alert('Welcome, ' + email);
+      window.location.href = 'index.html';
+    } else {
+      alert('Please fill out all fields.');
+    }
+  });
+</script>
+
+
 </body>
 </html>

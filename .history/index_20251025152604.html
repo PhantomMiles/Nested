@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/output.css">
+  <title>Nested</title>
+  <link rel="icon" type="img/ico" href="img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <style>
+  /* --- Mobile nav stays fixed above everything --- */
+    #navbar-mobile,
+    #menu-overlay {
+      position: fixed !important;
+      top: 0;
+      right: 0;
+      z-index: 9999 !important;
+    }
+
+    /* Overlay dim (optional; keeps scroll visible but adds depth) */
+    #menu-overlay {
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(2px);
+      pointer-events: none; /* allows background scroll */
+    }
+
+    /* Mobile menu panel */
+    #navbar-mobile {
+      height: 100vh;
+      width: 16rem; /* adjust width as you like */
+      background: linear-gradient(135deg, #00008B, #1e3a8a, #134e4a);
+      color: #fff;
+      transform: translateX(100%);
+      transition: transform 0.4s ease-in-out;
+      overflow-y: auto;
+      box-shadow: -4px 0 25px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Open state */
+    #navbar-mobile.active {
+      transform: translateX(0);
+    }
+
+    /* Prevent parallax stacking issues */
+    section.bg-fixed {
+      position: relative;
+      z-index: 0;
+    }
+
+    /* Keep main header fixed */
+    #myHeader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1001;
+    }
+  </style>
+
+
+
+</head>
+<body class="bg-fixed bg-center bg-no-repeat bg-cover" style="background-image: url('./img/slide.webp')">
+  <nav id="myHeader" class=" z-[999] w-full py-2 transition-all duration-500 bg-transparent lg:fixed">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="flex flex-col w-full lg:flex-row">
+        <div class="flex justify-between lg:flex-row">
+          <a href="index.html" class="flex items-center">
+            <img class="w-16 h-16" src="img/logo.png" alt="" srcset="">
+          </a>
+          <button id="mobile-menu-toggle" type="button" class="inline-flex items-center p-2 text-sm text-indigo-400 rounded-lg lg:hidden hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-white">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" cip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>      
+        <!-- Desktop Menu -->
+        <div class="hidden w-full lg:flex lg:pl-11 max-lg:py-4" id="navbar">
+          <ul class="flex flex-col mt-4 lg:items-center max-lg:gap-4 lg:mt-0 lg:flex-row max-lg:mb-4">
+            <li>
+              <a href="index.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left">
+                Home
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left">
+                About us
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+                <a href="listing.html"
+               class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left">
+                Listings
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              </li>
+            <li>
+              <a href="contact.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left">
+                Contact
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          </ul>
+          <div class="flex flex-col justify-start lg:items-center lg:flex-row lg:gap-4 lg:flex-1 lg:justify-end">
+            <a href="login.html" id="loginLink"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer">
+              Login
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="signup.html" 
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer">
+              Sign Up              
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            
+          </div>
+          <!-- User Profile (Hidden by default) -->
+          <div id="userProfile" class="relative hidden ml-4">
+            <button id="profileBtn" class="flex items-center focus:outline-none">
+              <img src="img/user-avatar.png" alt="User Avatar" class="border-2 border-indigo-500 rounded-full w-9 h-9">
+            </button>
+
+            <!-- Dropdown -->
+            <div id="profileDropdown" class="absolute right-0 z-50 hidden w-48 mt-2 transition-all duration-200 ease-in-out bg-white border border-gray-100 rounded-lg shadow-lg">
+              <a href="user-profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-100">Profile</a>
+              <a href="user-notifications.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-100">Notifications</a>
+              <a href="user-settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-100">Settings</a>
+              <a href="#" id="logoutLink" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-100">Logout</a>
+            </div>
+          </div>
+        </div>
+        <div id="menu-overlay" class="fixed inset-0 hidden h-full bg-black bg-opacity-50 z-[1000] lg:hidden"></div>
+        <div id="navbar-mobile" class="fixed top-0 right-0 z-[1000] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-darkBlue via-indigo-900 to-teal-900 shadow-2xl backdrop-blur-md lg:hidden">
+         <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-2xl text-white transition hover:text-red-400">
+              <i class='bx bx-x'></i>
+            </button>
+          </div>
+
+          <ul class="flex flex-col gap-2 px-6 py-3 text-white">
+            <li>
+              <a href="index.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-home'></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-info-circle'></i>
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="listing.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-building-house'></i>
+                Listings
+              </a>
+            </li>
+            <li>
+              <a href="contact.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-phone'></i>
+                Contact
+              </a>
+            </li>
+            <div class="h-px my-8 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+            <li>
+              <a href="login.html" class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 border-2 menu-item border-indigo-400/50 rounded-2xl backdrop-filter backdrop-blur-lg hover:border-indigo-400 hover:bg-indigo-500/20">
+                <i class='text-xl bx bx-log-in'></i>
+                Login
+              </a>
+            </li>
+            <li>
+              <a href="signup.html" class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 bg-indigo-600 menu-item rounded-2xl hover:bg-indigo-900 hover:shadow-xl glow-effect">
+                <i class='text-xl bx bx-user-plus'></i>
+                Sign Up
+              </a>
+            </li>
+          </ul>
+          <div class="pt-6 mt-12 border-t border-white/10">
+            <p class="text-sm text-center text-indigo-200/70">© 2024 Nested. All rights reserved.</p>
+            <div class="flex justify-center mt-4 space-x-6">
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                </svg>
+              </a>
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3.64l.36-4H14V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+
+              </a>
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378 0 0-.599 2.282-.744 2.840-.282 1.084-1.064 2.456-1.549 3.235C9.584 23.815 10.77 24.001 12.017 24.001c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+    </div>
+    
+  </nav>
+  <section class="z-10 h-full pt-0 lg:pt-20 lg:pl-8">
+    <div class="py-10 m-5 overflow-hidden bg-indigo-100 rounded-xl bg-opacity-70 lg:m-0 2xl:py-16 xl:py-8 lg:rounded-tl-2xl lg:rounded-bl-2xl">
+      <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="grid items-center grid-cols-1 gap-14 lg:grid-cols-1 lg:gap-32">
+          <div class="w-full xl:col-span-5 lg:col-span-6 2xl:-mx-5 xl:-mx-0">
+            <div class="flex items-center justify-center text-sm font-medium text-gray-500 lg:justify-start">
+              <span class="px-3 py-1 mr-3 text-xs font-medium text-white bg-indigo-600 rounded-2xl">New</span>
+              Find Your Next Home
+            </div>
+            <h1 class="py-8 text-center text-gray-900 font-bold font-manrope text-5xl lg:text-left leading-[70px]">
+              Discover <span class="text-indigo-600">Apartments & Homes</span> for Rent
+            </h1>
+            <p class="text-lg text-center text-gray-500 lg:text-left">
+              Browse a wide selection of modern apartments and cozy homes available for rent. Book your next stay with ease and comfort.
+            </p>
+            <form class="p-1.5 my-10 flex items-center gap-y-4 h-auto md:h-16 flex-col md:flex-row justify-between rounded-full md:shadow-[0px_15px_30px_-4px_rgba(16,24,40,0.03)] border border-transparent md:bg-white transition-all duration-500 hover:border-indigo-600 focus-within:border-indigo-600">
+              <input type="text" name="location" placeholder="Enter city or neighborhood"
+                class="text-base rounded-full text-gray-900 flex-1 py-4 px-6 shadow-[0px_15px_30px_-4px_rgba(16,24,40,0.03)] md:shadow-none bg-white md:bg-transparent placeholder:text-gray-400 focus:outline-none md:w-fit w-full" />
+              <button type="submit"class="w-full py-3 text-base font-semibold text-white transition-all duration-500 bg-indigo-600 rounded-full cursor-pointer px-7 hover:bg-indigo-700 md:w-fit">Search</button>
+            </form>
+            <div class="block w-full xl:col-span-5 lg:col-span-2">
+              <div class="w-full sm:w-auto xl:ml-10">
+                <!-- Carousel Container -->
+                <div class="relative" id="listing-carousel">
+                  <div class="rounded-2xl">
+                    <div class="flex transition-transform duration-500" id="carousel-track" style="transform: translateX(0%);">
+                      <!-- Slide 1: Modern Apartment -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80" alt="Modern Apartment" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Modern Apartment</h3>
+                          <p class="mb-2 text-sm text-gray-500">2 Beds • 2 Baths • City Center</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,200/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 2: Cozy Family Home -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Cozy Home" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Cozy Family Home</h3>
+                          <p class="mb-2 text-sm text-gray-500">3 Beds • 2 Baths • Suburbs</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,800/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 3: Student Lodge -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80" alt="Student Lodge" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Student Lodge</h3>
+                          <p class="mb-2 text-sm text-gray-500">5 Single Rooms • 1 General Bath • Suburbs</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,000/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 4: Spacious Villa -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80" alt="Spacious Villa" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Spacious Villa</h3>
+                          <p class="mb-2 text-sm text-gray-500">5 Beds • 2 Baths • Suburbs</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦2,500/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 5: Studio Apartment -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Studio Apartment" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Studio Apartment</h3>
+                          <p class="mb-2 text-sm text-gray-500">1 Bed • 1 Bath • Downtown</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦900/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 6: Penthouse Suite -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80" alt="Penthouse Suite" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Penthouse Suite</h3>
+                          <p class="mb-2 text-sm text-gray-500">4 Beds • 3 Baths • City Skyline</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦3,200/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 7: Townhouse -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=600&q=80" alt="Townhouse" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Townhouse</h3>
+                          <p class="mb-2 text-sm text-gray-500">3 Beds • 2.5 Baths • Gated Community</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦2,000/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 8: Loft -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Loft" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Urban Loft</h3>
+                          <p class="mb-2 text-sm text-gray-500">1 Bed • 1 Bath • Industrial District</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,400/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 9: Cottage -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80" alt="Cottage" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Country Cottage</h3>
+                          <p class="mb-2 text-sm text-gray-500">2 Beds • 1 Bath • Countryside</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,100/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 10: Shared Room -->
+                      <div class="min-w-[400px] bg-white rounded-2xl shadow-md">
+                        <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80" alt="Shared Room" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Shared Room</h3>
+                          <p class="mb-2 text-sm text-gray-500">1 Bed in Shared Apartment • 1 Bath • City Center</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦600/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Carousel Controls -->
+                  <button id="carousel-prev" type="button" class="absolute left-0 z-10 p-2 transition -translate-y-1/2 bg-white rounded-full shadow top-1/2 hover:bg-indigo-100">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                  </button>
+                  <button id="carousel-next" type="button" class="absolute right-0 z-10 p-2 transition -translate-y-1/2 bg-white rounded-full shadow top-1/2 hover:bg-indigo-100">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </button>
+                  <!-- Carousel Indicators -->
+                  <div class="flex justify-center mt-4 space-x-2" id="carousel-indicators">
+                    <button class="w-3 h-3 bg-indigo-600 rounded-full" data-slide="0"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="1"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="2"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="3"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="4"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="5"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="6"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="7"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="8"></button>
+                  </div>
+                </div>
+                <script>
+                  (function() {
+                    const track = document.getElementById('carousel-track');
+                    const slides = track.children;
+                    const prevBtn = document.getElementById('carousel-prev');
+                    const nextBtn = document.getElementById('carousel-next');
+                    const indicators = document.getElementById('carousel-indicators').children;
+                    let current = 0;
+                    const total = slides.length;
+
+                    function getVisibleSlides() {
+                      const container = track.parentElement;
+                      const slideWidth = slides[0].offsetWidth;
+                      const containerWidth = container.offsetWidth;
+                      return Math.max(1, Math.floor(containerWidth / slideWidth));
+                    }
+
+                    function updateCarousel(index) {
+                      const visibleSlides = getVisibleSlides();
+                      const maxIndex = total - visibleSlides;
+                      // Wrap around for circular navigation
+                      if (index > maxIndex) {
+                        current = 0;
+                      } else if (index < 0) {
+                        current = maxIndex;
+                      } else {
+                        current = index;
+                      }
+                      track.style.transform = `translateX(-${current * 32.5}%)`;
+                      for (let i = 0; i < indicators.length; i++) {
+                        indicators[i].classList.toggle('bg-indigo-600', i === current);
+                        indicators[i].classList.toggle('bg-indigo-300', i !== current);
+                        indicators[i].classList.toggle('bg-indigo-100', i !== current);
+                      }
+                    }
+
+                    prevBtn.addEventListener('click', function() {
+                      updateCarousel(current - 1);
+                    });
+
+                    nextBtn.addEventListener('click', function() {
+                      updateCarousel(current + 1);
+                    });
+
+                    for (let i = 0; i < indicators.length; i++) {
+                      indicators[i].addEventListener('click', function() {
+                        updateCarousel(i);
+                      });
+                    }
+
+                    window.addEventListener('resize', function() {
+                      updateCarousel(current);
+                    });
+
+                    updateCarousel(0);
+                  })();
+                </script>
+              </div>
+            </div>
+            <div class="flex flex-col items-center lg:flex-row">
+              <div class="flex items-center">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=64&h=64" alt="User 1"
+                  class="relative z-50 object-cover w-12 h-12 border-2 border-solid rounded-full border-indigo-50" />
+                <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=64&h=64" alt="User 2"
+                  class="relative z-30 object-cover w-12 h-12 -ml-3 border-2 border-solid rounded-full border-indigo-50" />
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=64&h=64" alt="User 3"
+                  class="relative z-20 object-cover w-12 h-12 -ml-3 border-2 border-solid rounded-full border-indigo-50" />
+              </div>
+              <span class="mt-3 text-base font-medium text-gray-600 lg:ml-3">Happy renters booked this week</span>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Features Section -->
+  <section class="py-20 bg-gradient-to-b from-white to-indigo-50">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="mb-4 text-4xl font-bold text-indigo-700">Why Choose Us?</h2>
+        <p class="text-lg text-gray-500">Experience seamless renting with our unique features</p>
+      </div>
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div class="flex flex-col items-center p-8 transition bg-white shadow-lg rounded-2xl hover:shadow-xl">
+          <div class="p-4 mb-4 bg-teal-100 rounded-full">
+            <svg class="w-10 h-10 text-teal-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 8v4l3 3"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-semibold text-indigo-700">Quick Booking</h3>
+          <p class="text-center text-gray-500">Book your dream home in just a few clicks with instant confirmation.</p>
+        </div>
+        <div class="flex flex-col items-center p-8 transition bg-white shadow-lg rounded-2xl hover:shadow-xl">
+          <div class="p-4 mb-4 bg-indigo-100 rounded-full">
+            <svg class="w-10 h-10 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M5 13l4 4L19 7"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-semibold text-indigo-700">Verified Listings</h3>
+          <p class="text-center text-gray-500">All properties are verified for your peace of mind and security.</p>
+        </div>
+        <div class="flex flex-col items-center p-8 transition bg-white shadow-lg rounded-2xl hover:shadow-xl">
+          <div class="p-4 mb-4 bg-blue-100 rounded-full">
+            <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3z"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-semibold text-indigo-700">24/7 Support</h3>
+          <p class="text-center text-gray-500">Our team is always available to help you with any questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax Section -->
+  <section class="relative h-[400px] flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('./img/bg1.jpg');">
+    <div class="absolute inset-0 bg-indigo-900 bg-opacity-60"></div>
+    <div class="relative z-10 text-center"> 
+      <h2 class="mb-4 text-4xl font-bold text-white md:text-5xl">Live Where You Love</h2>
+      <p class="mb-6 text-lg text-indigo-100">Find spaces that match your lifestyle and aspirations.</p>
+      <a href="#" class="inline-block px-8 py-3 font-semibold text-white transition bg-teal-500 rounded-full hover:bg-teal-600">Explore Listings</a>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-20 bg-gradient-to-b from-white to-blue-50">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="mb-4 text-4xl font-bold text-indigo-700">What Our Renters Say</h2>
+        <p class="text-lg text-gray-500">Real stories from happy tenants</p>
+      </div>
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div class="flex flex-col items-center p-8 bg-white shadow-lg rounded-2xl">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Testimonial 1" class="w-16 h-16 mb-4 border-4 border-teal-100 rounded-full">
+          <p class="mb-3 italic text-gray-600">"Booking was so easy and the apartment was exactly as described. Highly recommend!"</p>
+          <span class="font-semibold text-indigo-700">Sarah M.</span>
+        </div>
+        <div class="flex flex-col items-center p-8 bg-white shadow-lg rounded-2xl">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Testimonial 2" class="w-16 h-16 mb-4 border-4 border-indigo-100 rounded-full">
+          <p class="mb-3 italic text-gray-600">"Customer support was super helpful and responsive. Found my new home in a day!"</p>
+          <span class="font-semibold text-indigo-700">James K.</span>
+        </div>
+        <div class="flex flex-col items-center p-8 bg-white shadow-lg rounded-2xl">
+          <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Testimonial 3" class="w-16 h-16 mb-4 border-4 border-blue-100 rounded-full">
+          <p class="mb-3 italic text-gray-600">"The listings are all verified and trustworthy. I felt safe throughout the process."</p>
+          <span class="font-semibold text-indigo-700">Alex P.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax CTA Section -->
+  <section class="relative h-[350px] flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('./img/bg2.jpg');">
+    <div class="absolute inset-0 bg-teal-900 bg-opacity-60"></div>
+    <div class="relative z-10 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">Ready to Move In?</h2>
+      <p class="mb-6 text-lg text-teal-100">Sign up now and get exclusive access to the best rentals.</p>
+      <a href="signup.html" class="inline-block px-8 py-3 font-semibold text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 text-indigo-100 bg-indigo-900">
+    <div class="flex flex-col items-center justify-between px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex-row">
+      <div class="flex items-center mb-6 md:mb-0">
+        <img src="img/logo.png" alt="Logo" class="w-20 mr-3">
+        <span class="hidden text-xl font-bold">Nested</span>
+      </div>
+      <div class="flex mb-6 space-x-6 md:mb-0">
+        <a href="#" class="transition hover:text-teal-400">Home</a>
+        <a href="#" class="transition hover:text-teal-400">About</a>
+        <a href="#" class="transition hover:text-teal-400">Products</a>
+        <a href="#" class="transition hover:text-teal-400">Contact</a>
+      </div>
+      <div class="text-sm text-indigo-200">&copy; 2024 Nested. All rights reserved.</div>
+    </div>
+  </footer>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const closeBtn = document.getElementById('close-menu');
+      const mobileMenu = document.getElementById('navbar-mobile');
+
+      toggleBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+      });
+
+      closeBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+  </script>
+
+
+
+  <script src="js/nav.js"></script>
+</body>
+</html>
