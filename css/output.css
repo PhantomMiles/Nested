@@ -1826,6 +1826,10 @@ video {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
+.bg-\[url\(\.\/img\/bg\.jpg\)\] {
+  background-image: url(./img/bg.jpg);
+}
+
 .from-darkBlue {
   --tw-gradient-from: #00008B var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(0 0 139 / 0) var(--tw-gradient-to-position);
