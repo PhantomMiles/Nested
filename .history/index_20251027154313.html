@@ -234,243 +234,214 @@
             <div class="block w-full xl:col-span-5 lg:col-span-2">
               <div class="w-full sm:w-auto xl:ml-10">
                 <!-- Carousel Container -->
-                <div class="relative" id="listing-carousel">
-                <div class="rounded-2xl overflow-hidden">
-                <div class="flex transition-transform duration-500" id="carousel-track" style="transform: translateX(0%);">
-                  <!-- Slide 1: Modern Apartment -->
-                  <div class="w-full min-w-full sm:min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md sm:mr-6">
-                  <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80" alt="Modern Apartment" class="object-cover w-full h-48">
-                  <div class="p-5">
-                    <h3 class="text-lg font-semibold text-gray-900">Modern Apartment</h3>
-                    <p class="mb-2 text-sm text-gray-500">2 Beds • 2 Baths • City Center</p>
-                    <div class="flex items-center justify-between">
-                    <span class="text-lg font-bold text-indigo-600">₦1,200/mo</span>
-                    <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                <div class="relative w-screen " id="listing-carousel">
+                  <div class="rounded-2xl">
+                    <div class="flex transition-transform duration-500" id="carousel-track" style="transform: translateX(0%);">
+                      <!-- Slide 1: Modern Apartment -->
+                      <div class="min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80" alt="Modern Apartment" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Modern Apartment</h3>
+                          <p class="mb-2 text-sm text-gray-500">2 Beds • 2 Baths • City Center</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,200/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 2: Cozy Family Home -->
+                      <div class="min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Cozy Home" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Cozy Family Home</h3>
+                          <p class="mb-2 text-sm text-gray-500">3 Beds • 2 Baths • Suburbs</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,800/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 3: Student Lodge -->
+                      <div class="min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80" alt="Student Lodge" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Student Lodge</h3>
+                          <p class="mb-2 text-sm text-gray-500">5 Single Rooms • 1 General Bath • Suburbs</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,000/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 4: Spacious Villa -->
+                      <div class="min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80" alt="Spacious Villa" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Spacious Villa</h3>
+                          <p class="mb-2 text-sm text-gray-500">5 Beds • 2 Baths • Suburbs</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦2,500/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 5: Studio Apartment -->
+                      <div class="min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Studio Apartment" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Studio Apartment</h3>
+                          <p class="mb-2 text-sm text-gray-500">1 Bed • 1 Bath • Downtown</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦900/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 6: Penthouse Suite -->
+                      <div class="min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80" alt="Penthouse Suite" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Penthouse Suite</h3>
+                          <p class="mb-2 text-sm text-gray-500">4 Beds • 3 Baths • City Skyline</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦3,200/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 7: Townhouse -->
+                      <div class="min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=600&q=80" alt="Townhouse" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Townhouse</h3>
+                          <p class="mb-2 text-sm text-gray-500">3 Beds • 2.5 Baths • Gated Community</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦2,000/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 8: Loft -->
+                      <div class="min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Loft" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Urban Loft</h3>
+                          <p class="mb-2 text-sm text-gray-500">1 Bed • 1 Bath • Industrial District</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,400/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 9: Cottage -->
+                      <div class="min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md mr-6">
+                        <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80" alt="Cottage" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Country Cottage</h3>
+                          <p class="mb-2 text-sm text-gray-500">2 Beds • 1 Bath • Countryside</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦1,100/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Slide 10: Shared Room -->
+                      <div class="min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md">
+                        <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80" alt="Shared Room" class="object-cover w-full h-48">
+                        <div class="p-5">
+                          <h3 class="text-lg font-semibold text-gray-900">Shared Room</h3>
+                          <p class="mb-2 text-sm text-gray-500">1 Bed in Shared Apartment • 1 Bath • City Center</p>
+                          <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-indigo-600">₦600/mo</span>
+                            <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  <!-- Carousel Controls -->
+                  <button id="carousel-prev" type="button" class="absolute left-0 z-10 p-2 transition -translate-y-1/2 bg-white rounded-full shadow top-1/2 hover:bg-indigo-100">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                  </button>
+                  <button id="carousel-next" type="button" class="absolute right-0 z-10 p-2 transition -translate-y-1/2 bg-white rounded-full shadow top-1/2 hover:bg-indigo-100">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </button>
+                  <!-- Carousel Indicators -->
+                  <div class="flex justify-center mt-4 space-x-2" id="carousel-indicators">
+                    <button class="w-3 h-3 bg-indigo-600 rounded-full" data-slide="0"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="1"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="2"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="3"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="4"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="5"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="6"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="7"></button>
+                    <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="8"></button>
                   </div>
-
-                  <!-- Slide 2: Luxury Villa -->
-                  <div class="w-full min-w-full sm:min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md sm:mr-6">
-                  <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Luxury Villa" class="object-cover w-full h-48">
-                  <div class="p-5">
-                    <h3 class="text-lg font-semibold text-gray-900">Luxury Villa</h3>
-                    <p class="mb-2 text-sm text-gray-500">4 Beds • 3 Baths • Suburban</p>
-                    <div class="flex items-center justify-between">
-                    <span class="text-lg font-bold text-indigo-600">₦2,500/mo</span>
-                    <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
-                    </div>
-                  </div>
-                  </div>
-
-                  <!-- Slide 3: Cozy Studio -->
-                  <div class="w-full min-w-full sm:min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md sm:mr-6">
-                  <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80" alt="Cozy Studio" class="object-cover w-full h-48">
-                  <div class="p-5">
-                    <h3 class="text-lg font-semibold text-gray-900">Cozy Studio</h3>
-                    <p class="mb-2 text-sm text-gray-500">1 Bed • 1 Bath • Downtown</p>
-                    <div class="flex items-center justify-between">
-                    <span class="text-lg font-bold text-indigo-600">₦800/mo</span>
-                    <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
-                    </div>
-                  </div>
-                  </div>
-
-                  <!-- Slide 4: Beachfront Condo -->
-                  <div class="w-full min-w-full sm:min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md sm:mr-6">
-                  <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80" alt="Beachfront Condo" class="object-cover w-full h-48">
-                  <div class="p-5">
-                    <h3 class="text-lg font-semibold text-gray-900">Beachfront Condo</h3>
-                    <p class="mb-2 text-sm text-gray-500">3 Beds • 2 Baths • Oceanview</p>
-                    <div class="flex items-center justify-between">
-                    <span class="text-lg font-bold text-indigo-600">₦3,000/mo</span>
-                    <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
-                    </div>
-                  </div>
-                  </div>
-
-                  <!-- Slide 5: Mountain Retreat -->
-                  <div class="w-full min-w-full sm:min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md sm:mr-6">
-                  <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=600&q=80" alt="Mountain Retreat" class="object-cover w-full h-48">
-                  <div class="p-5">
-                    <h3 class="text-lg font-semibold text-gray-900">Mountain Retreat</h3>
-                    <p class="mb-2 text-sm text-gray-500">2 Beds • 2 Baths • Mountain View</p>
-                    <div class="flex items-center justify-between">
-                    <span class="text-lg font-bold text-indigo-600">₦1,800/mo</span>
-                    <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
-                    </div>
-                  </div>
-                  </div>
-
-                  <!-- Slide 6: Urban Loft -->
-                  <div class="w-full min-w-full sm:min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md sm:mr-6">
-                  <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=600&q=80" alt="Urban Loft" class="object-cover w-full h-48">
-                  <div class="p-5">
-                    <h3 class="text-lg font-semibold text-gray-900">Urban Loft</h3>
-                    <p class="mb-2 text-sm text-gray-500">1 Bed • 1.5 Bath • City View</p>
-                    <div class="flex items-center justify-between">
-                    <span class="text-lg font-bold text-indigo-600">₦1,500/mo</span>
-                    <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
-                    </div>
-                  </div>
-                  </div>
-
-                  <!-- Slide 7: Garden Townhouse -->
-                  <div class="w-full min-w-full sm:min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md sm:mr-6">
-                  <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=600&q=80" alt="Garden Townhouse" class="object-cover w-full h-48">
-                  <div class="p-5">
-                    <h3 class="text-lg font-semibold text-gray-900">Garden Townhouse</h3>
-                    <p class="mb-2 text-sm text-gray-500">3 Beds • 2.5 Baths • Garden</p>
-                    <div class="flex items-center justify-between">
-                    <span class="text-lg font-bold text-indigo-600">₦2,200/mo</span>
-                    <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
-                    </div>
-                  </div>
-                  </div>
-
-                  <!-- Slide 8: Penthouse Suite -->
-                  <div class="w-full min-w-full sm:min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md sm:mr-6">
-                  <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80" alt="Penthouse Suite" class="object-cover w-full h-48">
-                  <div class="p-5">
-                    <h3 class="text-lg font-semibold text-gray-900">Penthouse Suite</h3>
-                    <p class="mb-2 text-sm text-gray-500">4 Beds • 3.5 Baths • Skyline View</p>
-                    <div class="flex items-center justify-between">
-                    <span class="text-lg font-bold text-indigo-600">₦4,000/mo</span>
-                    <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
-                    </div>
-                  </div>
-                  </div>
-
-                  <!-- Slide 9: Lakefront Cottage -->
-                  <div class="w-full min-w-full sm:min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md sm:mr-6">
-                  <img src="https://images.unsplash.com/photo-1464146072230-91cabc968266?auto=format&fit=crop&w=600&q=80" alt="Lakefront Cottage" class="object-cover w-full h-48">
-                  <div class="p-5">
-                    <h3 class="text-lg font-semibold text-gray-900">Lakefront Cottage</h3>
-                    <p class="mb-2 text-sm text-gray-500">2 Beds • 1 Bath • Lake View</p>
-                    <div class="flex items-center justify-between">
-                    <span class="text-lg font-bold text-indigo-600">₦1,700/mo</span>
-                    <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
-                    </div>
-                  </div>
-                  </div>
-
-                  <!-- Slide 10: Historic Manor -->
-                  <div class="w-full min-w-full sm:min-w-[300px] lg:min-w-[400px] bg-white rounded-2xl shadow-md sm:mr-6">
-                  <img src="https://images.unsplash.com/photo-1505843513577-22bb7d21e455?auto=format&fit=crop&w=600&q=80" alt="Historic Manor" class="object-cover w-full h-48">
-                  <div class="p-5">
-                    <h3 class="text-lg font-semibold text-gray-900">Historic Manor</h3>
-                    <p class="mb-2 text-sm text-gray-500">5 Beds • 4 Baths • Historic District</p>
-                    <div class="flex items-center justify-between">
-                    <span class="text-lg font-bold text-indigo-600">₦3,500/mo</span>
-                    <button class="px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-full hover:bg-indigo-700">Book Now</button>
-                    </div>
-                  </div>
-                  </div>
-
-                </div>
-                </div>
-                <!-- Carousel Controls -->
-                <button id="carousel-prev" type="button" class="absolute left-2 sm:left-0 z-10 p-2 transition -translate-y-1/2 bg-white rounded-full shadow top-1/2 hover:bg-indigo-100">
-                  <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M15 19l-7-7 7-7"></path>
-                  </svg>
-                </button>
-                <button id="carousel-next" type="button" class="absolute right-2 sm:right-0 z-10 p-2 transition -translate-y-1/2 bg-white rounded-full shadow top-1/2 hover:bg-indigo-100">
-                  <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </button>
-                <!-- Carousel Indicators -->
-                <div class="flex justify-center mt-4 space-x-2" id="carousel-indicators">
-                  <button class="w-3 h-3 bg-indigo-600 rounded-full" data-slide="0"></button>
-                  <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="1"></button>
-                  <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="2"></button>
-                  <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="3"></button>
-                  <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="4"></button>
-                  <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="5"></button>
-                  <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="6"></button>
-                  <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="7"></button>
-                  <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="8"></button>
-                  <button class="w-3 h-3 bg-indigo-300 rounded-full" data-slide="9"></button>
-                </div>
                 </div>
                 <script>
-                (function() {
-                const track = document.getElementById('carousel-track');
-                const slides = track.children;
-                const prevBtn = document.getElementById('carousel-prev');
-                const nextBtn = document.getElementById('carousel-next');
-                const indicators = document.getElementById('carousel-indicators').children;
-                let current = 0;
-                const total = slides.length;
+                  (function() {
+                    const track = document.getElementById('carousel-track');
+                    const slides = track.children;
+                    const prevBtn = document.getElementById('carousel-prev');
+                    const nextBtn = document.getElementById('carousel-next');
+                    const indicators = document.getElementById('carousel-indicators').children;
+                    let current = 0;
+                    const total = slides.length;
 
-                function getVisibleSlides() {
-                  if (window.innerWidth < 640) { // sm breakpoint
-                  return 1;
-                  }
-                  const container = track.parentElement;
-                  const slideWidth = slides[0].offsetWidth;
-                  const containerWidth = container.offsetWidth;
-                  return Math.max(1, Math.floor(containerWidth / slideWidth));
-                }
+                    function getVisibleSlides() {
+                      const container = track.parentElement;
+                      const slideWidth = slides[0].offsetWidth;
+                      const containerWidth = container.offsetWidth;
+                      return Math.max(1, Math.floor(containerWidth / slideWidth));
+                    }
 
-                function updateCarousel(index) {
-                  const visibleSlides = getVisibleSlides();
-                  const maxIndex = total - visibleSlides;
-                  
-                  if (index > maxIndex) {
-                  current = 0;
-                  } else if (index < 0) {
-                  current = maxIndex;
-                  } else {
-                  current = index;
-                  }
+                    function updateCarousel(index) {
+                      const visibleSlides = getVisibleSlides();
+                      const maxIndex = total - visibleSlides;
+                      // Wrap around for circular navigation
+                      if (index > maxIndex) {
+                        current = 0;
+                      } else if (index < 0) {
+                        current = maxIndex;
+                      } else {
+                        current = index;
+                      }
+                      track.style.transform = `translateX(-${current * 32.5}%)`;
+                      for (let i = 0; i < indicators.length; i++) {
+                        indicators[i].classList.toggle('bg-indigo-600', i === current);
+                        indicators[i].classList.toggle('bg-indigo-300', i !== current);
+                        indicators[i].classList.toggle('bg-indigo-100', i !== current);
+                      }
+                    }
 
-                  // Calculate translation based on screen size
-                  const translateX = window.innerWidth < 640 ? 
-                  current * 100 : // Full width on mobile
-                  current * 32.5;  // Original desktop width
-                  
-                  track.style.transform = `translateX(-${translateX}%)`;
-                  
-                  // Update indicators
-                  for (let i = 0; i < indicators.length; i++) {
-                  indicators[i].classList.toggle('bg-indigo-600', i === current);
-                  indicators[i].classList.toggle('bg-indigo-300', i !== current);
-                  }
-                }
+                    prevBtn.addEventListener('click', function() {
+                      updateCarousel(current - 1);
+                    });
 
-                prevBtn.addEventListener('click', () => updateCarousel(current - 1));
-                nextBtn.addEventListener('click', () => updateCarousel(current + 1));
+                    nextBtn.addEventListener('click', function() {
+                      updateCarousel(current + 1);
+                    });
 
-                // Add touch support for mobile
-                let touchStartX = 0;
-                let touchEndX = 0;
+                    for (let i = 0; i < indicators.length; i++) {
+                      indicators[i].addEventListener('click', function() {
+                        updateCarousel(i);
+                      });
+                    }
 
-                track.addEventListener('touchstart', e => {
-                  touchStartX = e.changedTouches[0].screenX;
-                });
+                    window.addEventListener('resize', function() {
+                      updateCarousel(current);
+                    });
 
-                track.addEventListener('touchend', e => {
-                  touchEndX = e.changedTouches[0].screenX;
-                  if (touchStartX - touchEndX > 50) {
-                  updateCarousel(current + 1);
-                  } else if (touchEndX - touchStartX > 50) {
-                  updateCarousel(current - 1);
-                  }
-                });
-
-                indicators.forEach((indicator, index) => {
-                  indicator.addEventListener('click', () => updateCarousel(index));
-                });
-
-                window.addEventListener('resize', () => updateCarousel(current));
-
-                updateCarousel(0);
-                })();
+                    updateCarousel(0);
+                  })();
                 </script>
-                </div>
               </div>
+            </div>
             <div class="flex flex-col items-center lg:flex-row">
               <div class="flex items-center">
                 <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=64&h=64" alt="User 1"
