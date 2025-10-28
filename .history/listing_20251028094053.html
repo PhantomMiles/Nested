@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/output.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body { 
+  font-family: 'Lato', sans-serif; 
+  position: relative;
+}
+
+/* Modern hamburger animation */
+.hamburger {
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.05);
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 3px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+}
+
+.hamburger-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hamburger:hover .hamburger-line::before {
+  opacity: 1;
+}
+
+/* Active state animations */
+.hamburger.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.hamburger.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile menu animations */
+.mobile-menu {
+  transform: translateX(100%);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* Backdrop blur effect */
+.backdrop {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Stagger animation for menu items */
+.menu-item {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.3s ease;
+}
+
+.mobile-menu.open .menu-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobile-menu.open .menu-item:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.open .menu-item:nth-child(2) { transition-delay: 0.2s; }
+.mobile-menu.open .menu-item:nth-child(3) { transition-delay: 0.3s; }
+.mobile-menu.open .menu-item:nth-child(4) { transition-delay: 0.4s; }
+.mobile-menu.open .menu-item:nth-child(5) { transition-delay: 0.5s; }
+.mobile-menu.open .menu-item:nth-child(6) { transition-delay: 0.6s; }
+
+/* Glowing effect */
+.glow-effect {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+/* Custom scrollbar for mobile menu */
+.mobile-menu::-webkit-scrollbar {
+  width: 4px;
+}
+
+.mobile-menu::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.5);
+  border-radius: 2px;
+}
+
+/* Prism effect for menu items */
+.prism-effect {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.prism-effect:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+}
+
+.listing-item {
+  padding: 3px;
+  margin-bottom: 8px;
+}
+#listingsContainer {
+  gap: 1rem;
+}
+
+</style>
+
+</head>
+<body class="overflow-x-hidden text-gray-800 bg-gray-50">
+
+  <nav id="myHeader" class="top-0 left-0 z-[9999] w-full bg-indigo-900 text-white shadow-md lg:fixed">
+  <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between w-full">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center">
+        <img class="w-16 h-16" src="img/logo.png" alt="Logo">
+      </a>
+
+      <!-- Desktop Menu (md and up) -->
+        <div class="hidden w-full lg:flex lg:pl-11 max-lg:py-4" id="navbar">
+          <ul class="flex flex-col mt-4 lg:items-center max-lg:gap-4 lg:mt-0 lg:flex-row max-lg:mb-4">
+            <li>
+              <a href="index.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Home
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                About us
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+
+             <li>
+                <a href="listing.html"
+               class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Listings
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue w-full"></span>
+                </a>
+                </li>
+
+            <li>
+              <a href="contact.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Contact
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          </ul>
+          <div class="flex flex-col justify-start lg:items-center lg:flex-row lg:gap-4 lg:flex-1 lg:justify-end">
+            <a href="login.html" id="loginLink"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer">
+              Login
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="signup.html" id="signupLink"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer">
+              Sign Up              
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <!-- User Profile (Hidden by default) -->
+            <div id="userProfile" class="relative hidden ml-4">
+              <button id="profileBtn" class="flex items-center focus:outline-none">
+                <img src="img/user-avatar.png" alt="User Avatar" class="border-2 border-indigo-500 rounded-full w-9 h-9">
+              </button>
+
+              <!-- Dropdown -->
+              <div id="profileDropdown" class="absolute right-0 z-50 hidden w-48 mt-2 transition-all duration-200 ease-in-out bg-white border border-gray-100 rounded-lg shadow-lg">
+                <a href="user-profile.html" class="block px-4 py-2 text-indigo-700 text-md hover:bg-indigo-100"><i class='text-md bx bx-user-circle'></i> Profile</a>
+                <a href="user-notifications.html" class="block px-4 py-2 text-indigo-700 text-md hover:bg-indigo-100"><i class='text-md bx bx-bell'></i> Notifications</a>
+                <a href="user-settings.html" class="block px-4 py-2 text-indigo-700 text-md hover:bg-indigo-100"><i class='text-md bx bx-cog'></i> Settings</a>
+                <a href="#" id="logoutLink" class="block px-4 py-2 text-red-600 text-md hover:bg-red-100"><i class='text-md bx bx-log-out'></i> Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div id="navbar-mobile" class="fixed top-0 right-0 z-[1000] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-darkblue via-indigo-900 to-teal-900 shadow-2xl backdrop-blur-md lg:hidden">
+         <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-2xl text-white transition hover:text-red-400">
+              <i class='bx bx-x'></i>
+            </button>
+          </div>
+
+          <ul class="flex flex-col gap-2 px-6 py-3 text-white">
+            <li>
+              <a href="index.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-home'></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-info-circle'></i>
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="listing.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-building-house'></i>
+                Listings
+              </a>
+            </li>
+            <li>
+              <a href="contact.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-phone'></i>
+                Contact
+              </a>
+            </li>
+            <div class="h-px my-8 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+            <li>
+              <a href="login.html" class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 border-2 menu-item border-indigo-400/50 rounded-2xl backdrop-filter backdrop-blur-lg hover:border-indigo-400 hover:bg-indigo-500/20">
+                <i class='text-xl bx bx-log-in'></i>
+                Login
+              </a>
+            </li>
+            <li>
+              <a href="signup.html" class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 bg-indigo-600 menu-item rounded-2xl hover:bg-indigo-900 hover:shadow-xl glow-effect">
+                <i class='text-xl bx bx-user-plus'></i>
+                Sign Up
+              </a>
+            </li>
+          </ul>
+          <div class="pt-6 mt-12 border-t border-white/10">
+            <p class="text-sm text-center text-indigo-200/70">© 2024 Nested. All rights reserved.</p>
+            <div class="flex justify-center mt-4 space-x-6">
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                </svg>
+              </a>
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3.64l.36-4H14V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+
+              </a>
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378 0 0-.599 2.282-.744 2.840-.282 1.084-1.064 2.456-1.549 3.235C9.584 23.815 10.77 24.001 12.017 24.001c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+      </div>
+
+      <!-- Mobile Hamburger (hidden on md+) -->
+      <button id="mobile-menu-toggle" class="p-2 transition rounded-lg md:hidden hover:bg-indigo-800">
+        <div class="hamburger" id="hamburger">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu-overlay" class="fixed inset-0 z-40 invisible transition-all duration-300 opacity-0 bg-black/50 backdrop-blur-sm"></div>
+
+  <!-- Mobile Slide-Out Menu -->
+  <div id="navbar-mobile" class="mobile-menu fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-indigo-900 border-l border-white/10 z-50 overflow-y-auto">
+    <div class="p-6">
+      <!-- Close Button -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center">
+         <img class="w-12" src="img/logo.png" alt="" srcset="">
+        </div>
+        <button id="close-mobile-menu" class="p-2 transition-colors rounded-lg hover:bg-white/10">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Menu Items -->
+      <div class="space-y-3">
+        <a href="index.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect group">
+          <svg class="w-5 h-5 mr-4 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
+          <span class="font-medium">Home</span>
+          <svg class="w-4 h-4 ml-auto text-indigo-300 transition-transform transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+        
+        <a href="about.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect group">
+          <svg class="w-5 h-5 mr-4 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="font-medium">About Us</span>
+          <svg class="w-4 h-4 ml-auto text-indigo-300 transition-transform transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+        
+        <a href="listing.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect group">
+          <svg class="w-5 h-5 mr-4 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+          <span class="font-medium">Listings</span>
+          <svg class="w-4 h-4 ml-auto text-indigo-300 transition-transform transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+        
+        <a href="contact.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect group">
+          <svg class="w-5 h-5 mr-4 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a1 1 0 002 2z"></path>
+          </svg>
+          <span class="font-medium">Contact</span>
+          <svg class="w-4 h-4 ml-auto text-indigo-300 transition-transform transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+      
+      <!-- Divider -->
+      <div class="h-px my-8 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+      
+      <!-- Auth Buttons -->
+      <div class="space-y-3">
+        <a href="login.html" class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 border-2 menu-item border-indigo-400/50 rounded-2xl backdrop-filter backdrop-blur-lg hover:border-indigo-400 hover:bg-indigo-500/20">
+          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+          </svg>
+          <span class="font-semibold">Login</span>
+        </a>
+        
+        <a href="signup.html" class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 bg-indigo-600 menu-item rounded-2xl hover:bg-indigo-900 hover:shadow-xl glow-effect">
+          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+          </svg>
+          <span class="font-semibold">Sign Up</span>
+        </a>
+      </div>
+      
+      <!-- Footer in Mobile Menu -->
+      <div class="pt-6 mt-12 border-t border-white/10">
+        <p class="text-sm text-center text-indigo-200/70">© 2024 Nested. All rights reserved.</p>
+        <div class="flex justify-center mt-4 space-x-6">
+          <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378 0 0-.599 2.282-.744 2.840-.282 1.084-1.064 2.456-1.549 3.235C9.584 23.815 10.77 24.001 12.017 24.001c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+  <section class="p-6 pt-16 mx-auto sm:pt-20 md:pt-24 lg:pt-28 max-w-7xl">
+
+
+    
+    <div class="flex flex-col items-start justify-between gap-4 mb-6 md:flex-row md:items-center">
+      <div>
+        <h1 class="text-3xl font-bold">Explore House Listings</h1>
+        <p class="text-gray-600">Browse through our selection of available properties</p>
+      </div>
+      <div class="w-full md:w-1/3">
+        <input id="searchInput" type="text" placeholder="Search by city, price, or features..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+      </div>
+    </div>
+
+    
+    <div class="flex flex-wrap gap-4 mb-6">
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Price Range</option>
+        <option>$0 - $250,000</option>
+        <option>$250,000 - $500,000</option>
+        <option>$500,000+</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Size</option>
+        <option>1-2 bedrooms</option>
+        <option>3-4 bedrooms</option>
+        <option>5+ bedrooms</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Color</option>
+        <option>White</option>
+        <option>Beige</option>
+        <option>Gray</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Brand</option>
+        <option>Luxury Homes</option>
+        <option>Family Homes</option>
+        <option>Starter Homes</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Customer Ratings</option>
+        <option>4 stars & up</option>
+        <option>3 stars & up</option>
+        <option>All ratings</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Availability</option>
+        <option>In Stock</option>
+        <option>Out of Stock</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Sort By</option>
+        <option>New Arrivals</option>
+        <option>Best Sellers</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+      </select>
+    </div>
+
+    
+    <div id="listingsContainer" class="grid gap-6 mb-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+      <!-- Luxury Villa -->
+      <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+        <div class="relative">
+          <img src="./img/luxury-villa.jpg" alt="Luxury Villa" class="object-cover w-full h-56">
+          <span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-500 rounded-full top-4 right-4">New</span>
+        </div>
+        <div class="flex flex-col justify-between p-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-800">Luxury Villa in Beverly Hills</h2>
+            <p class="mt-2 text-gray-600">789 Palm St, Beverly Hills</p>
+            <div class="flex gap-4 mt-4">
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bed'></i>5 beds</span>
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bath'></i>4 baths</span>
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-area'></i>4,500 sq.ft</span>
+            </div>
+            <p class="mt-4 text-gray-600">Stunning villa with infinity pool, home theater, and panoramic city views.</p>
+          </div>
+          <div class="flex items-center justify-between mt-6">
+            <div class="text-2xl font-bold text-indigo-600">$3,200,000</div>
+            <button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">
+              View Details
+            </button>
+          </div>
+          <div class="flex items-center justify-between mt-4 text-sm text-gray-500">
+            <span>Luxury Collection</span>
+            <div class="flex items-center">
+              <i class='text-yellow-400 bx bxs-star'></i>
+              <span class="ml-1">4.8 (45 reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modern Apartment -->
+      <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+        <div class="relative">
+          <img src="./img/modern-apartment.jpg" alt="Modern Apartment" class="object-cover w-full h-56">
+          <span class="absolute px-3 py-1 text-sm font-semibold text-white bg-red-500 rounded-full top-4 right-4">Featured</span>
+        </div>
+        <div class="flex flex-col justify-between p-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-800">Modern Apartment in NYC</h2>
+            <p class="mt-2 text-gray-600">321 Broadway, New York</p>
+            <div class="flex gap-4 mt-4">
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bed'></i>2 beds</span>
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bath'></i>2 baths</span>
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-area'></i>1,200 sq.ft</span>
+            </div>
+            <p class="mt-4 text-gray-600">Sleek apartment with city skyline views, modern kitchen, and rooftop access.</p>
+          </div>
+          <div class="flex items-center justify-between mt-6">
+            <div class="text-2xl font-bold text-indigo-600">$950,000</div>
+            <button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">
+              View Details
+            </button>
+          </div>
+          <div class="flex items-center justify-between mt-4 text-sm text-gray-500">
+            <span>Urban Collection</span>
+            <div class="flex items-center">
+              <i class='text-yellow-400 bx bxs-star'></i>
+              <span class="ml-1">4.5 (30 reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Family Home -->
+      <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+        <div class="relative">
+          <img src="./img/family-home.jpg" alt="Family Home" class="object-cover w-full h-56">
+          <span class="absolute px-3 py-1 text-sm font-semibold text-white bg-yellow-500 rounded-full top-4 right-4">Popular</span>       
+        </div>
+        <div class="flex flex-col justify-between p-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-800">Charming Family Home</h2>
+            <p class="mt-2 text-gray-600">456 Maple Ave, Springfield</p>
+            <div class="flex gap-4 mt-4">
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bed'></i>4 beds</span>
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bath'></i>3 baths</span>
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-area'></i>2,500 sq.ft</span>
+            </div>
+          
+      </div>
+
+      <!-- Mountain Cabin -->
+      <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+      <div class="relative">
+        <img src="./img/mountain-cabin.jpg" alt="Mountain Cabin" class="object-cover w-full h-56">
+        <span class="absolute px-3 py-1 text-sm font-semibold text-white bg-blue-500 rounded-full top-4 right-4">Seasonal</span>
+      </div>
+      <div class="flex flex-col justify-between p-6">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800">Cozy Mountain Cabin</h2>
+          <p class="mt-2 text-gray-600">123 Pine Trail, Aspen</p>
+          <div class="flex gap-4 mt-4">
+            <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bed'></i>3 beds</span>
+            <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bath'></i>2 baths</span>
+            <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-area'></i>1,800 sq.ft</span>
+          </div>
+          <p class="mt-4 text-gray-600">Rustic cabin with modern amenities, fireplace, and stunning mountain views.</p>
+        </div>
+        <div class="flex items-center justify-between mt-6">
+          <div class="text-2xl font-bold text-indigo-600">$750,000</div>
+          <button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">
+            View Details
+          </button>
+        </div>
+        <div class="flex items-center justify-between mt-4 text-sm text-gray-500">
+        <span>Mountain Collection</span>
+        <div class="flex items-center">
+          <i class='text-yellow-400 bx bxs-star'></i>
+          <span class="ml-1">4.6 (20 reviews)</span>
+        </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- Lakefront Property -->
+      <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+      <div class="relative">
+        <img src="./img/lakefront.jpg" alt="Lakefront Property" class="object-cover w-full h-56">
+        <span class="absolute px-3 py-1 text-sm font-semibold text-white bg-purple-500 rounded-full top-4 right-4">Premium</span>
+      </div>
+      <div class="flex flex-col justify-between p-6">
+        <div>
+        <h2 class="text-2xl font-bold text-gray-800">Lakefront Paradise</h2>
+        <p class="mt-2 text-gray-600">456 Lake View Dr, Lake Tahoe</p>
+        <div class="flex gap-4 mt-4">
+          <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bed'></i>4 beds</span>
+          <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bath'></i>3 baths</span>
+          <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-area'></i>3,200 sq.ft</span>
+        </div>
+        <p class="mt-4 text-gray-600">Luxurious lakefront property with private dock, wraparound deck, and panoramic views.</p>
+        </div>
+        <div class="flex items-center justify-between mt-6">
+        <div class="text-2xl font-bold text-indigo-600">$1,850,000</div>
+        <button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">
+          View Details
+        </button>
+        </div>
+        <div class="flex items-center justify-between mt-4 text-sm text-gray-500">
+        <span>Waterfront Collection</span>
+        <div class="flex items-center">
+          <i class='text-yellow-400 bx bxs-star'></i>
+          <span class="ml-1">4.9 (35 reviews)</span>
+        </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- Urban Loft -->
+      <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+        <div class="relative">
+          <img src="./img/urban-loft.jpg" alt="Urban Loft" class="object-cover w-full h-56">
+          <span class="absolute px-3 py-1 text-sm font-semibold text-white bg-orange-500 rounded-full top-4 right-4">Hot</span>
+        </div>
+        <div class="flex flex-col justify-between p-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-800">Industrial Chic Loft</h2>
+            <p class="mt-2 text-gray-600">789 Artist Row, Chicago</p>
+            <div class="flex gap-4 mt-4">
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bed'></i>1 bed</span>
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bath'></i>2 baths</span>
+              <span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-area'></i>1,500 sq.ft</span>
+            </div>
+            <p class="mt-4 text-gray-600">Converted warehouse loft with exposed brick, high ceilings, and artist studio space.</p>
+          </div>
+          <div class="flex items-center justify-between mt-6">
+            <div class="text-2xl font-bold text-indigo-600">$525,000</div>
+            <button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">
+              View Details
+            </button>
+            </div>
+            <div class="flex items-center justify-between mt-4 text-sm text-gray-500">
+            <span>Urban Collection</span>
+            <div class="flex items-center">
+              <i class='text-yellow-400 bx bxs-star'></i>
+              <span class="ml-1">4.7 (25 reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div id="pagination" class="flex items-center justify-center gap-2 mt-8">
+      <button id="prevPage" class="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">Prev</button>
+      <span id="pageNumbers" class="flex gap-2"></span>
+      <button id="nextPage" class="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">Next</button>
+    </div>
+
+
+     
+  </section>
+<footer class="py-10 text-indigo-100 bg-indigo-900">
+    <div class="flex flex-col items-center justify-between px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex-row">
+      <div class="flex items-center mb-6 md:mb-0">
+        <img src="img/logo.png" alt="Logo" class="w-20 mr-3">
+        <span class="text-xl font-bold">Nested</span>
+      </div>
+      <div class="flex mb-6 space-x-6 md:mb-0">
+        <a href="#" class="transition hover:text-teal-400">Home</a>
+        <a href="#" class="transition hover:text-teal-400">About</a>
+        <a href="#" class="transition hover:text-teal-400">Products</a>
+        <a href="#" class="transition hover:text-teal-400">Contact</a>
+      </div>
+      <div class="text-sm text-indigo-200">&copy; 2024 Nested. All rights reserved.</div>
+    </div>
+  </footer>
+<script> 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const listingItems = document.querySelectorAll(".listing-item");
+  const paginationEl = document.getElementById("pagination");
+
+  // Responsive itemsPerPage
+  function getItemsPerPage() {
+    if (window.innerWidth < 640) return 9;   // mobile
+    if (window.innerWidth < 1024) return 12; // tablet
+    return 15;                               // desktop
+  }
+
+  let itemsPerPage = getItemsPerPage();
+  let currentPage = 1;
+
+  function showPage(page) {
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+
+    listingItems.forEach((item, index) => {
+      item.style.display = (index >= start && index < end) ? "block" : "none";
+    });
+
+    renderPagination();
+  }
+
+  function renderPagination() {
+    const totalPages = Math.ceil(listingItems.length / itemsPerPage);
+    paginationEl.innerHTML = "";
+
+    const prevBtn = document.createElement("button");
+    prevBtn.textContent = "Prev";
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.className = "px-3 py-1 border rounded disabled:opacity-50";
+    prevBtn.onclick = () => {
+      currentPage--;
+      showPage(currentPage);
+    };
+    paginationEl.appendChild(prevBtn);
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      btn.className = `px-3 py-1 border rounded ${i === currentPage ? "bg-blue-600 text-white" : ""}`;
+      btn.onclick = () => {
+        currentPage = i;
+        showPage(currentPage);
+      };
+      paginationEl.appendChild(btn);
+    }
+
+    const nextBtn = document.createElement("button");
+    nextBtn.textContent = "Next";
+    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.className = "px-3 py-1 border rounded disabled:opacity-50";
+    nextBtn.onclick = () => {
+      currentPage++;
+      showPage(currentPage);
+    };
+    paginationEl.appendChild(nextBtn);
+  }
+
+  // Handle resize → recalc itemsPerPage
+  window.addEventListener("resize", () => {
+    const newItemsPerPage = getItemsPerPage();
+    if (newItemsPerPage !== itemsPerPage) {
+      itemsPerPage = newItemsPerPage;
+      currentPage = 1; // reset to first page
+      showPage(currentPage);
+    }
+  });
+
+  // Initialize
+  showPage(currentPage);
+});
+
+
+  // ---- Modern Hamburger Menu ----
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('navbar-mobile');
+  const overlay = document.getElementById('mobile-menu-overlay');
+  const closeBtn = document.getElementById('close-mobile-menu');
+
+  function openMenu() {
+    hamburger.classList.add('active');
+    mobileMenu.classList.add('open');
+    overlay.classList.remove('invisible', 'opacity-0');
+    overlay.classList.add('visible', 'opacity-100');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    overlay.classList.remove('visible', 'opacity-100');
+    overlay.classList.add('invisible', 'opacity-0');
+    document.body.style.overflow = '';
+  }
+
+  toggleBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  const menuLinks = mobileMenu.querySelectorAll('a');
+  menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      closeMenu();
+    }
+  });
+
+  mobileMenu.addEventListener('click', function(e) { e.stopPropagation(); });
+
+
+</script>
+    
+<script src="js/nav2.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>
+        
