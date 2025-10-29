@@ -77,11 +77,13 @@
 
     const email = this.email.value.trim();
     const password = this.password.value.trim();
+
     const storedUser = localStorage.getItem('user_' + email);
 
     if (storedUser) {
       const user = JSON.parse(storedUser);
       if (user.password === password) {
+        // Save active session
         localStorage.setItem('loggedInUser', email);
         alert('Welcome back, ' + user.name + '!');
         window.location.href = 'index.html';
@@ -93,6 +95,7 @@
     }
   });
 </script>
+
 
 </body>
 </html>

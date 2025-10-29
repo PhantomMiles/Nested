@@ -43,7 +43,7 @@
           <span class="mx-3 text-sm text-gray-400">or continue with email</span>
           <hr class="flex-grow border-gray-300">
         </div>
-        <form id="loginForm" action="" method="GET" class="space-y-4">
+        <form action="" method="GET" class="space-y-4">
           
           <input type="email" name="email" placeholder="Email" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23248a]">
           <div class="relative">
@@ -77,11 +77,13 @@
 
     const email = this.email.value.trim();
     const password = this.password.value.trim();
+
     const storedUser = localStorage.getItem('user_' + email);
 
     if (storedUser) {
       const user = JSON.parse(storedUser);
       if (user.password === password) {
+        // Save active session
         localStorage.setItem('loggedInUser', email);
         alert('Welcome back, ' + user.name + '!');
         window.location.href = 'index.html';
@@ -93,6 +95,7 @@
     }
   });
 </script>
+
 
 </body>
 </html>

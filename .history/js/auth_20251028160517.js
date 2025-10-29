@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const userProfile = document.getElementById("userProfile");
   const profileBtn = document.getElementById("profileBtn");
   const profileDropdown = document.getElementById("profileDropdown");
-  const profileUserName = document.getElementById("profileUserName");
 
   // Mobile elements
   const mobileUserInfo = document.getElementById("mobileUserInfo");
@@ -14,38 +13,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileAuthLinks = document.getElementById("mobileAuthLinks");
   const mobileProfileLinks = document.getElementById("mobileProfileLinks");
 
-  const loggedInEmail = localStorage.getItem("loggedInUser");
-  let userName = "";
+  const isLoggedIn = localStorage.getItem("loggedInUser");
 
-  if (loggedInEmail) {
-    const storedUser = localStorage.getItem("user_" + loggedInEmail);
-    if (storedUser) {
-      const userData = JSON.parse(storedUser);
-      userName = userData.name || loggedInEmail;
-    }
-  }
-
-  // ===== Update Navbar State =====
-  if (loggedInEmail && userName) {
+  // ===== Handle Login State =====
+  if (isLoggedIn) {
     // Desktop
     loginLink?.classList.add("hidden");
     signupLink?.classList.add("hidden");
     userProfile?.classList.remove("hidden");
-    if (profileUserName) profileUserName.textContent = userName;
 
     // Mobile
     mobileAuthLinks?.classList.add("hidden");
     mobileUserInfo?.classList.remove("hidden");
     mobileProfileLinks?.classList.remove("hidden");
-    mobileUserName.textContent = userName;
+    mobileUserName.textContent = isLoggedIn;
   }
 
-  // ===== Dropdown Toggle =====
+  // ===== Desktop Dropdown Toggle =====
   if (profileBtn && profileDropdown) {
     profileBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       profileDropdown.classList.toggle("hidden");
     });
+
     document.addEventListener("click", (e) => {
       if (!userProfile.contains(e.target)) {
         profileDropdown.classList.add("hidden");

@@ -4,29 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/output.css">
-  <title>Log In | Nested</title>
+  <title>Sign Up | Nested</title>
   <link rel="icon" type="img/ico" href="img/favicon.ico">
 </head>
 <body style="background-image: url('img/bg.jpg');" class="min-h-screen bg-center bg-no-repeat bg-cover">
   <div class="flex min-h-screen">
-    <!-- Right: Welcome Section (now on the right) -->
-    <div class="relative flex flex-col items-end justify-center order-2 hidden w-1/2 px-12 md:flex md:order-2">
-      
+    <!-- Left: Welcome Section -->
+    <div class="relative flex-col justify-center hidden w-1/2 px-12 md:flex">
+      <div class="absolute inset-0 z-0 opacity-30" style="background-image: url('img/bg-pattern.png'); background-repeat: repeat;"></div>
       <div class="relative z-10">
-        <div class="flex flex-col items-end">
+        <div class="flex flex-col items-start">
           <img src="img/logo.png" alt="Nested Logo" class="mb-4 w-28">
-          <h1 class="max-w-md mb-4 text-5xl font-bold text-right text-white">Welcome Back!</h1>
-          <p class="max-w-md mb-8 text-lg text-right text-white">
+          <h1 class="mb-4 text-5xl font-bold text-white">Welcome Back!</h1>
+          <p class="max-w-md mb-8 text-lg text-white">
             Nigeria’s number one platform for real estate and properties, connecting realtors and landlords to clients.
           </p>
           <a href="index.html" class="bg-white text-[#0a1e6b] font-semibold px-8 py-3 rounded-lg shadow hover:bg-gray-100 transition">Learn More</a>
         </div>
       </div>
     </div>
-    <!-- Left: Signup Form (now on the left) -->
-    <div class="flex flex-col items-center justify-center order-1 w-full md:w-1/2 md:order-1">
+    <!-- Right: Signup Form -->
+    <div class="flex flex-col items-center justify-center w-full md:w-1/2">
       <div class="w-full max-w-md p-8 bg-white shadow-lg rounded-xl">
-        <h2 class="text-3xl font-bold text-center text-[#23248a] mb-8">Log In</h2>
+        <h2 class="text-3xl font-bold text-center text-[#23248a] mb-8">Sign Up</h2>
         <div class="flex justify-center gap-4 mb-6">
           <button class="p-2 transition border border-gray-200 rounded-lg hover:bg-gray-100">
             <img src="img/google.svg" alt="Google" class="w-6 h-6">
@@ -43,8 +43,8 @@
           <span class="mx-3 text-sm text-gray-400">or continue with email</span>
           <hr class="flex-grow border-gray-300">
         </div>
-        <form id="loginForm" action="" method="GET" class="space-y-4">
-          
+        <form id="" action="/signup" method="POST" class="space-y-4">
+          <input type="text" name="fullname" placeholder="Full Name" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23248a]">
           <input type="email" name="email" placeholder="Email" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23248a]">
           <div class="relative">
             <input type="password" name="password" placeholder="Password" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23248a] pr-10">
@@ -62,37 +62,39 @@
             </label>
             <a href="#" class="text-[#23248a] text-sm hover:underline">Forgot Password?</a>
           </div>
-          <button type="submit" class="w-full bg-[#23248a] text-white py-3 rounded-md font-semibold hover:bg-[#0a1e6b] transition">Log In</button>
+          <button type="submit" class="w-full bg-[#23248a] text-white py-3 rounded-md font-semibold hover:bg-[#0a1e6b] transition">Sign Up</button>
         </form>
         <p class="mt-6 text-sm text-center text-gray-600">
-          Don't have an account?
-          <a href="signup.html" class="text-[#23248a] font-semibold hover:underline">Sign Up</a>
+          Already have an account?
+          <a href="/login.html" class="text-[#23248a] font-semibold hover:underline">Sign In</a>
         </p>
-      </div>   
+      </div>
     </div>
   </div>
 <script>
-  document.getElementById('loginForm').addEventListener('submit', function (e) {
+  document.getElementById('signupForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
+    const name = this.name.value.trim();
     const email = this.email.value.trim();
     const password = this.password.value.trim();
-    const storedUser = localStorage.getItem('user_' + email);
 
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      if (user.password === password) {
-        localStorage.setItem('loggedInUser', email);
-        alert('Welcome back, ' + user.name + '!');
-        window.location.href = 'index.html';
-      } else {
-        alert('Incorrect password.');
-      }
+    if (name && email && password) {
+      // Save to localStorage
+      const userData = { name, email, password };
+      localStorage.setItem('user_' + email, JSON.stringify(userData));
+
+      // Keep user logged in immediately after signup
+      localStorage.setItem('loggedInUser', email);
+
+      alert('Welcome, ' + name + '!');
+      window.location.href = 'index.html';
     } else {
-      alert('No account found for this email.');
+      alert('Please fill out all fields.');
     }
   });
 </script>
+
 
 </body>
 </html>
