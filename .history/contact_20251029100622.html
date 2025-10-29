@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/output.css">
+  <title>Contact Us</title>
+  <link rel="icon" type="img/ico" href="img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+ <style>
+  .hovered {
+    border: 2px solid #0F172A; /* Deep navy border */
+    box-shadow: 0 0 20px 6px rgba(15, 23, 42, 0.5); /* Deep blue glow */
+    transition: box-shadow 0.3s ease, border 0.3s ease;
+  }
+  
+  /* --- Mobile nav stays fixed above everything --- */
+  #navbar-mobile,
+  #menu-overlay {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    z-index: 9999 !important;
+  }
+
+  /* Overlay dim (optional; keeps scroll visible but adds depth) */
+  #menu-overlay {
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
+    pointer-events: none; /* allows background scroll */
+  }
+
+  /* Mobile menu panel */
+  #navbar-mobile {
+    height: 100vh;
+    width: 16rem; /* adjust width as you like */
+    background: linear-gradient(135deg, #00008B, #1e3a8a, #134e4a);
+    color: #fff;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    overflow-y: auto;
+    box-shadow: -4px 0 25px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Open state */
+  #navbar-mobile.active {
+    transform: translateX(0);
+  }
+
+  /* Prevent parallax stacking issues */
+  section.bg-fixed {
+    position: relative;
+    z-index: 0;
+  }
+
+  /* Keep main header fixed */
+  #myHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+  }
+</style>
+
+
+</head>
+<body class="text-gray-900 bg-white">
+
+  <!-- Navbar -->
+  
+  <nav id="myHeader" class="z-50 w-full py-2 transition-all duration-500 lg:fixed bg-darkBlue">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="flex flex-col w-full lg:flex-row">
+        <div class="flex justify-between lg:flex-row">
+          <a href="index.html" class="flex items-center">
+            <img class="w-12" src="img/logo.png" alt="" srcset="">
+          </a>
+           <button id="mobile-menu-toggle"
+            type="button"
+            class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            aria-controls="navbar" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="hidden w-full lg:flex lg:pl-11 max-lg:py-4" id="navbar">
+          <ul class="flex flex-col mt-4 lg:items-center max-lg:gap-4 lg:mt-0 lg:flex-row max-lg:mb-4">
+            <li>
+              <a href="index.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Home
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                About us
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+
+             <li>
+                <a href="./listing.html"
+               class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Listings
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                </li>
+
+            <li>
+              <a href="./contact.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Contact
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue w-full"></span>
+              </a>
+            </li>
+          </ul>
+          <div class="flex flex-col justify-start lg:items-center lg:flex-row lg:gap-4 lg:flex-1 lg:justify-end">
+            <a href="login.html" id="loginLink"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer">
+              Login
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="signup.html" id="signupLink"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer">
+              Sign Up              
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <!-- User Profile (Hidden by default) -->
+            <div id="userProfile" class="relative hidden ml-4">
+              <button id="profileBtn" class="flex items-center focus:outline-none">
+                <img src="img/user-avatar.png" alt="User Avatar" class="border-2 border-indigo-500 rounded-full w-9 h-9">
+              </button>
+
+              <!-- Dropdown -->
+              <div id="profileDropdown" class="absolute right-0 z-50 hidden w-48 mt-2 transition-all duration-200 ease-in-out bg-white border border-gray-100 rounded-lg shadow-lg">
+                <a href="user-profile.html" class="block px-4 py-2 text-indigo-700 text-md hover:bg-indigo-100"><i class='text-md bx bx-user-circle'></i> Profile</a>
+                <a href="user-notifications.html" class="block px-4 py-2 text-indigo-700 text-md hover:bg-indigo-100"><i class='text-md bx bx-bell'></i> Notifications</a>
+                <a href="user-settings.html" class="block px-4 py-2 text-indigo-700 text-md hover:bg-indigo-100"><i class='text-md bx bx-cog'></i> Settings</a>
+                <a href="#" id="logoutLink" class="block px-4 py-2 text-red-600 text-md hover:bg-red-100"><i class='text-md bx bx-log-out'></i> Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- Mobile menu -->
+      <div id="navbar-mobile" class="fixed top-0 right-0 z-[1000] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-darkblue via-indigo-900 to-teal-900 shadow-2xl backdrop-blur-md lg:hidden">
+         <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-2xl text-white transition hover:text-red-400">
+              <i class='bx bx-x'></i>
+            </button>
+          </div>
+
+          <ul class="flex flex-col gap-2 px-6 py-3 text-white">
+            <li>
+              <a href="index.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-home'></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-info-circle'></i>
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="listing.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-building-house'></i>
+                Listings
+              </a>
+            </li>
+            <li>
+              <a href="contact.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-phone'></i>
+                Contact
+              </a>
+            </li>
+            <div class="h-px my-8 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+            <li>
+              <a href="login.html" class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 border-2 menu-item border-indigo-400/50 rounded-2xl backdrop-filter backdrop-blur-lg hover:border-indigo-400 hover:bg-indigo-500/20">
+                <i class='text-xl bx bx-log-in'></i>
+                Login
+              </a>
+            </li>
+            <li>
+              <a href="signup.html" class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 bg-indigo-600 menu-item rounded-2xl hover:bg-indigo-900 hover:shadow-xl glow-effect">
+                <i class='text-xl bx bx-user-plus'></i>
+                Sign Up
+              </a>
+            </li>
+          </ul>
+          <div class="pt-6 mt-12 border-t border-white/10">
+            <p class="text-sm text-center text-indigo-200/70">© 2024 Nested. All rights reserved.</p>
+            <div class="flex justify-center mt-4 space-x-6">
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                </svg>
+              </a>
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3.64l.36-4H14V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+
+              </a>
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378 0 0-.599 2.282-.744 2.840-.282 1.084-1.064 2.456-1.549 3.235C9.584 23.815 10.77 24.001 12.017 24.001c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+      </div>
+      </div>
+    </div>
+  </nav>
+  
+
+<section class="max-w-4xl px-6 py-12 mx-auto">
+  <h1 class="mt-8 text-3xl font-semibold text-center text-gray-900">Contact Us</h1>
+  <p class="mb-10 text-center text-gray-600">Have a question or need help? We're here to assist you.</p>
+
+  <div class="grid gap-8 md:grid-cols-2">
+    <!-- Contact Info -->
+    <div class="space-y-6">
+      <div>
+        <h2 class="text-xl font-medium text-gray-800">Email</h2>
+        <p class="text-gray-600">nested@gmail.com</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-medium text-gray-800">Phone</h2>
+        <p class="text-gray-600">+234 801-123-4567</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-medium text-gray-800">Office Hours</h2>
+        <p class="text-gray-600">Monday – Friday, 9AM – 6PM (WAT)</p>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <form class="p-6 space-y-4 bg-white rounded-lg shadow-sm">
+      <div>
+        <label class="block mb-1 font-medium text-gray-700" for="name">Your Name</label>
+        <input id="name" type="text" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Akpa Chisimdi">
+      </div>
+      <div>
+        <label class="block mb-1 font-medium text-gray-700" for="email">Email Address</label>
+        <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="you@example.com">
+      </div>
+      <div>
+        <label class="block mb-1 font-medium text-gray-700" for="message">Message</label>
+        <textarea id="message" rows="5" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your message here..."></textarea>
+      </div>
+      <button type="submit" class="w-full bg-[#0f1e40] text-white py-2 rounded-lg hover:bg-blue-900 transition">Send Message</button>
+    </form>
+  </div>
+</section>
+
+
+  <footer class="py-10 text-indigo-100 bg-indigo-900">
+    <div class="flex flex-col items-center justify-between px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex-row">
+      <div class="flex items-center mb-6 md:mb-0">
+        <img src="img/logo.png" alt="Logo" class="w-20 mr-3">
+        <span class="text-xl font-bold">Nested</span>
+      </div>
+      <div class="flex mb-6 space-x-6 md:mb-0">
+        <a href="#" class="transition hover:text-teal-400">Home</a>
+        <a href="#" class="transition hover:text-teal-400">About</a>
+        <a href="#" class="transition hover:text-teal-400">Products</a>
+        <a href="#" class="transition hover:text-teal-400">Contact</a>
+      </div>
+      <div class="text-sm text-indigo-200">&copy; 2024 Nested. All rights reserved.</div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const closeBtn = document.getElementById('close-menu');
+      const mobileMenu = document.getElementById('navbar-mobile');
+
+      toggleBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+      });
+
+      closeBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+  </script>
+  <script src="js/auth.js"></script>
+  </body>
+</html>
