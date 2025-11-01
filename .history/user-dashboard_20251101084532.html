@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Profile | Nested</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="css/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .sidebar-transform{transition:transform .28s cubic-bezier(.2,.9,.2,1)}
+    .animate-fade-in{animation:fadeIn .22s ease-in-out}
+    @keyframes fadeIn{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:scale(1)}}
+    .main-scroll::-webkit-scrollbar{width:8px}
+    .main-scroll::-webkit-scrollbar-thumb{background:#cbd5e0;border-radius:6px}
+  </style>
+</head>
+<body class="bg-[#f7f8fa] font-sans">
+  <div class="flex h-screen">
+    <!-- Primary Sidebar -->
+    <aside id="primarySidebar" class="fixed top-0 left-0 z-50 w-64 h-full -translate-x-full bg-white border-r shadow-md sidebar-transform">
+      <div class="flex items-center gap-2 p-6 border-b">
+        <img class="w-12" src="img/logo_alt.png" alt="Nested Logo">
+        <button id="closeSidebarBtn" class="p-1 ml-auto rounded hover:bg-gray-100" aria-label="Close sidebar">
+          <i class="text-2xl text-gray-600 bi bi-x"></i>
+        </button>
+      </div>
+
+      <nav class="px-0 mt-6 space-y-1 overflow-y-auto">
+        <a href="index.html" class="flex items-center gap-3 px-6 py-3 hover:bg-gray-100">
+            <i class="w-5 text-lg text-center bi bi-house-door"></i><span>Home</span>
+        </a>
+        <a href="user-dashboard.html" class="flex items-center gap-3 px-6 py-3 text-indigo-700 bg-indigo-50">
+            <i class="w-5 text-lg text-center bi bi-person-circle"></i><span>Profile</span></a>
+        <a href="user-inbox.html" class="flex items-center gap-3 px-6 py-3 hover:bg-gray-100"><i class="w-5 text-lg text-center bi bi-inbox"></i><span>Inbox</span></a>
+        <a href="user-transaction.html" class="flex items-center gap-3 px-6 py-3 hover:bg-gray-100"><i class="w-5 text-lg text-center bi bi-receipt"></i><span>Transaction History</span></a>
+        <a href="user-notifications.html" class="relative flex items-center gap-3 px-6 py-3 hover:bg-gray-100">
+          <i class="w-5 text-lg text-center bi bi-bell"></i><span>Notifications</span>
+          <span id="sidebarNotifBadge" class="absolute inline-flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full right-6">0</span>
+        </a>
+        <a href="user-settings.html" class="flex items-center gap-3 px-6 py-3 hover:bg-gray-100"><i class="w-5 text-lg text-center bi bi-gear-wide-connected"></i><span>Settings</span></a>
+      </nav>
+
+      <div class="p-4 border-t">
+        <button onclick="openLogoutModal()" class="flex items-center w-full gap-3 px-2 py-3 text-red-600 rounded-lg hover:bg-red-50"><i class="w-5 text-lg text-center bi bi-box-arrow-right"></i>Logout</button>
+      </div>
+    </aside>
+
+    <!-- Overlay -->
+    <div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-black/40"></div>
+
+    <!-- Main -->
+    <main class="flex-1 overflow-auto main-scroll">
+      <div class="px-6 py-8 mx-auto max-w-7xl">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-4">
+            <button id="openSidebarBtn" class="p-2 rounded hover:bg-gray-100"><svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+            <div>
+              <h1 class="text-3xl font-bold text-[#23248a]">Welcome, Amanda Rito</h1>
+              <p class="mt-1 text-gray-600">Here's your Nested profile overview</p>
+            </div>
+          </div>
+          <div>
+            <button class="hidden text-2xl text-gray-500 md:inline-flex hover:text-indigo-700"><i class="bi bi-trash3"></i></button>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="bg-[#f7f8fa] rounded-lg p-4">
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
+            <!-- Profile card -->
+            <div class="p-6 bg-white border border-gray-100 shadow rounded-xl">
+              <div class="flex flex-col items-center">
+                <div class="relative">
+                  <img src="img/profile.jpg" alt="Amanda" class="object-cover w-20 h-20 border-2 border-gray-200 rounded-full">
+                  <span class="absolute bottom-0 right-0 p-1 text-white bg-indigo-600 border-2 border-white rounded-full"><i class="bi bi-camera"></i></span>
+                </div>
+                <div class="flex items-center gap-2 mt-3">
+                  <div class="text-base font-semibold text-gray-900">Amanda Rito</div>
+                  <i class="text-xs text-gray-400 bi bi-pencil"></i>
+                </div>
+                <div class="w-full mt-4 space-y-2 text-xs text-gray-700">
+                  <div class="flex justify-between"><span class="text-gray-500">Full Name</span><span class="font-medium">Amanda Rito Doe</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Phone Num</span><span class="font-medium">+234 91 3709 9242</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">E-mail</span><span class="font-medium">amanda@gmail.com</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Password</span><span class="font-medium">*********</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Personal Details -->
+            <div class="p-4 bg-white border border-gray-100 shadow rounded-xl">
+              <div class="flex items-center justify-between mb-2">
+                <div class="font-semibold text-gray-900">Personal Details</div>
+                <i class="text-xs text-gray-400 bi bi-pencil"></i>
+              </div>
+              <div class="space-y-2 text-sm text-gray-800">
+                <div class="flex justify-between"><span class="text-gray-500">First Name</span><span>Amanda</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Last Name</span><span>Chicharito</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Date of Birth</span><span>19 May 2003</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Gender</span><span>Female</span></div>
+              </div>
+            </div>
+
+            <!-- Account Details -->
+            <div class="p-4 bg-white border border-gray-100 shadow rounded-xl">
+              <div class="flex items-center justify-between mb-2">
+                <div class="font-semibold text-gray-900">Account Details</div>
+                <i class="text-xs text-gray-400 bi bi-pencil"></i>
+              </div>
+              <div class="space-y-2 text-sm text-gray-800">
+                <div class="flex justify-between"><span class="text-gray-500">Phone Number</span><span>+234-813-709-9424</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Recovery e-mail</span><span>JohnDoe@gmail.com</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">NIN</span><span>222-333-111-444</span></div>
+              </div>
+            </div>
+
+            <!-- Payment -->
+            <div class="p-4 bg-white border border-gray-100 shadow rounded-xl">
+              <div class="flex items-center justify-between mb-2">
+                <div class="font-semibold text-gray-900">Payment Methods</div>
+                <i class="text-xs text-gray-400 bi bi-pencil"></i>
+              </div>
+              <div><img src="img/card.jpg" alt="card" class="w-full mb-2 rounded-lg"></div>
+              <div class="space-y-1 text-sm text-gray-800">
+                <div class="flex justify-between"><span class="text-gray-500">Bank:</span><span>First bank of Nigeria (FBNH)</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Acc. Num:</span><span>211-233-1234</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Acc. Name:</span><span>John Doe Akuna</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="h-1 bg-[#23248a] rounded my-6"></div>
+
+          <!-- Recently viewed + stats -->
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-5">
+            <div class="bg-white rounded-xl p-6 shadow border border-gray-100 md:col-span-3 min-h-[160px]">
+              <div class="flex items-center justify-between mb-4">
+                <div class="font-semibold">Recently Viewed Properties</div>
+                <a href="#" class="font-medium text-indigo-600">View All</a>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center gap-4">
+                  <img src="img/property1.jpg" alt="" class="object-cover w-12 h-12 bg-gray-100 rounded-lg">
+                  <div class="flex-1">
+                    <div class="font-medium text-gray-900">3 Bedroom Apartment</div>
+                    <div class="text-xs text-gray-500">Lekki, Lagos</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="font-semibold text-gray-900">₦120,000/mo</div>
+                    <div class="text-xs text-green-600">Available</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <img src="img/property2.jpg" alt="" class="object-cover w-12 h-12 bg-gray-100 rounded-lg">
+                  <div class="flex-1">
+                    <div class="font-medium text-gray-900">Luxury Duplex</div>
+                    <div class="text-xs text-gray-500">Ikoyi, Lagos</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="font-semibold text-gray-900">₦350,000/mo</div>
+                    <div class="text-xs text-red-600">Occupied</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <img src="img/property3.jpg" alt="" class="object-cover w-12 h-12 bg-gray-100 rounded-lg">
+                  <div class="flex-1">
+                    <div class="font-medium text-gray-900">Studio Flat</div>
+                    <div class="text-xs text-gray-500">Yaba, Lagos</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="font-semibold text-gray-900">₦80,000/mo</div>
+                    <div class="text-xs text-green-600">Available</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 md:col-span-2">
+              <div class="flex items-center justify-between p-4 bg-white border border-gray-100 shadow rounded-xl">
+                <div><div class="text-xs text-gray-500">Saved Properties</div><div class="text-xl font-bold">8</div></div>
+                <div class="flex items-center justify-center w-10 h-10 text-white bg-indigo-700 rounded-lg">
+                    <i class="text-xl bi bi-heart-fill"></i></div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-white border border-gray-100 shadow rounded-xl">
+                <div><div class="text-xs text-gray-500">Active Inquiries</div><div class="text-xl font-bold">3</div></div>
+                <div class="flex items-center justify-center w-10 h-10 text-green-700 bg-green-100 rounded-lg">
+                    <i class="text-xl bi bi-chat-left-dots"></i></div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-white border border-gray-100 shadow rounded-xl">
+                <div><div class="text-xs text-gray-500">Visits Scheduled</div><div class="text-xl font-bold">2</div></div>
+                <div class="flex items-center justify-center w-10 h-10 text-yellow-700 bg-yellow-100 rounded-lg">
+                    <i class="text-xl bi bi-calendar-check"></i></div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-white border border-gray-100 shadow rounded-xl">
+                <div>
+                    <div class="text-xs text-gray-500">Offers Made</div>
+                    <div class="text-xl font-bold">1</div></div>
+                <div class="flex items-center justify-center w-10 h-10 text-purple-700 bg-purple-100 rounded-lg">
+                    <i class="text-xl bi bi-file-earmark-text"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Mobile bottom nav -->
+  <nav class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t shadow-lg md:hidden">
+    <div class="flex items-center justify-around py-2">
+      <a href="index.html" class="flex flex-col items-center text-gray-500"><i class="mb-1 text-xl bi bi-house"></i><span class="text-xs">Home</span></a>
+      <a href="user-dashboard.html" class="flex flex-col items-center text-indigo-600"><i class="mb-1 text-xl bi bi-person"></i><span class="text-xs">Profile</span></a>
+      <a href="user-inbox.html" class="flex flex-col items-center text-gray-500"><i class="mb-1 text-xl bi bi-inbox"></i><span class="text-xs">Inbox</span></a>
+      <a href="user-notifications.html" class="relative flex flex-col items-center text-gray-500"><i class="mb-1 text-xl bi bi-bell"></i><span class="text-xs">Alerts</span><span id="mobileNotifBadge" class="absolute inline-flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full -top-1 -right-1">0</span></a>
+      <a href="user-transaction.html" class="flex flex-col items-center text-gray-500"><i class="mb-1 text-xl bi bi-receipt"></i><span class="text-xs">History</span></a>
+      <button id="openSidebarBtnBottom" class="flex flex-col items-center text-gray-500"><i class="mb-1 text-xl bi bi-list"></i><span class="text-xs">Menu</span></button>
+    </div>
+  </nav>
+
+  <!-- Logout modal -->
+  <div id="logoutModal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black/50">
+    <div class="w-full max-w-sm p-6 text-center bg-white shadow-lg rounded-xl animate-fade-in">
+      <h3 class="text-lg font-semibold">Confirm Logout</h3>
+      <p class="mt-2 text-gray-600">Are you sure you want to logout?</p>
+      <div class="flex justify-center gap-3 mt-4">
+        <button onclick="closeLogoutModal()" class="px-4 py-2 bg-gray-200 rounded">Cancel</button>
+        <button onclick="confirmLogout()" class="px-4 py-2 text-white bg-red-600 rounded">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById('primarySidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const openBtn = document.getElementById('openSidebarBtn');
+    const openBtnBottom = document.getElementById('openSidebarBtnBottom');
+    const closeBtn = document.getElementById('closeSidebarBtn');
+
+    function openSidebar(){ sidebar.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); document.body.style.overflow='hidden'; }
+    function closeSidebar(){ sidebar.classList.add('-translate-x-full'); overlay.classList.add('hidden'); document.body.style.overflow=''; }
+    if (openBtn) openBtn.addEventListener('click', openSidebar);
+    if (openBtnBottom) openBtnBottom.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', e => { if (e.key==='Escape') closeSidebar(); });
+
+    function openLogoutModal(){ document.getElementById('logoutModal').classList.remove('hidden'); }
+    function closeLogoutModal(){ document.getElementById('logoutModal').classList.add('hidden'); }
+    function confirmLogout(){ localStorage.removeItem('nestedUser'); window.location.href='login.html'; }
+
+    function updateNotifBadges(){
+      let count = 0;
+      try{
+        const u = JSON.parse(localStorage.getItem('nestedUser'));
+        if (u && Number(u.notifications)) count = Number(u.notifications);
+      }catch(e){}
+      if (!count) count = 5;
+      const sb = document.getElementById('sidebarNotifBadge');
+      const mb = document.getElementById('mobileNotifBadge');
+      if (sb) { sb.textContent = count>99? '99+': count; if(count===0) sb.classList.add('hidden'); else sb.classList.remove('hidden'); }
+      if (mb) { mb.textContent = count>99? '99+': count; if(count===0) mb.classList.add('hidden'); else mb.classList.remove('hidden'); }
+    }
+    updateNotifBadges();
+    window.addEventListener('storage', updateNotifBadges);
+  </script>
+</body>
+</html>

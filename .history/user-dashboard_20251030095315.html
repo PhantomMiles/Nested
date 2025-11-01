@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Dashboard | Nested</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/output.css" rel="stylesheet">  
+    <link rel="icon" type="img/ico" href="img/favicon.ico">
+    <script src="https://kit.fontawesome.com/d2a04fa078.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+</head>
+<body class="bg-[#f7f8fa] font-sans overflow-hidden">
+    <div class="flex h-screen">
+        <!-- Desktop Sidebar (hidden on mobile and tablet) -->
+        <aside class="hidden lg:flex flex-col w-64 bg-white border-r shadow-md fixed left-0 top-0 h-full z-40">
+            <div class="flex items-center gap-2 p-6 border-b">
+                <img class="w-12" src="img/logo_alt.png" alt="Nested Logo" srcset="">
+            </div>
+            <nav class="flex-1 mt-6 space-y-2 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-3 px-6 py-3 font-medium transition hover:bg-gray-100">
+                    <i class="fa-solid fa-home w-5 text-center"></i>
+                    Home
+                </a>
+                <a href="user-dashboard.html" class="flex items-center gap-3 px-6 py-3 font-medium transition nav-active hover:bg-indigo-50">
+                    <i class="fa-solid fa-user w-5 text-center"></i>
+                    Profile
+                </a>
+                <a href="user-inbox.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-inbox w-5 text-center"></i>
+                    Inbox
+                </a>
+                <a href="user-transaction.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-receipt w-5 text-center"></i>
+                    Transaction History
+                </a>
+                <a href="user-notifications.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-bell w-5 text-center"></i>
+                    Notifications
+                </a>
+                <a href="user-settings.html" class="flex items-center gap-3 px-6 py-3 transition hover:bg-gray-100">
+                    <i class="fa-solid fa-gear w-5 text-center"></i>
+                    Settings
+                </a>
+            </nav>
+            <div class="p-4 border-t">
+                <button onclick="openLogoutModal()" class="flex items-center gap-3 w-full px-6 py-3 text-red-600 rounded-lg hover:bg-red-50 transition">
+                    <i class="fas fa-sign-out w-5 text-center"></i>
+                    Logout
+                </button>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 bg-[#f7f8fa] min-h-screen overflow-y-auto main-scroll lg:ml-64 md:ml-20 pb-20 md:pb-0">
+            <div class="px-4 py-8 mx-auto max-w-7xl">
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold text-[#23248a]">Welcome, Amanda Rito</h1>
+                        <p class="mt-1 text-gray-600">Here's your Nested profile overview</p>
+                    </div>
+                    <button class="text-2xl text-gray-500 hover:text-indigo-700">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+                <!-- Profile & Details Cards -->
+                <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
+                    <!-- Profile Card -->
+                    <div class="flex flex-col items-center p-4 bg-white border border-gray-200 shadow rounded-xl md:col-span-1">
+                        <div class="relative mb-2">
+                            <img src="img/profile.jpg" alt="Amanda Rito" class="object-cover w-20 h-20 border-2 border-gray-200 rounded-full shadow">
+                            <span class="absolute p-1 text-white bg-indigo-600 border-2 border-white rounded-full cursor-pointer bottom-1 right-1">
+                                <i class="fa fa-camera"></i>
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-base font-semibold text-gray-900">Amanda Rito</span>
+                            <i class="text-xs text-gray-400 cursor-pointer fa fa-pen"></i>
+                        </div>
+                        <div class="w-full text-xs text-gray-700">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-500">Full Name</span>
+                                <span class="font-medium">Amanda Rito Doe</span>
+                            </div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-500">Phone Num</span>
+                                <span class="font-medium">+234 91 3709 9242</span>
+                            </div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-500">E-mail</span>
+                                <span class="font-medium">Amanda@gmail.com</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Password</span>
+                                <span class="font-medium">*********</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Personal Details -->
+                    <div class="p-4 bg-white border border-gray-200 shadow rounded-xl md:col-span-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold text-gray-900">Personal Details</span>
+                            <i class="text-xs text-gray-400 cursor-pointer fa fa-pen"></i>
+                        </div>
+                        <div class="space-y-1 text-xs text-gray-700">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">First Name</span>
+                                <span>Amanda</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Last Name</span>
+                                <span>Chicharito</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Date of Birth</span>
+                                <span>19 May 2003</span>
+            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Gender</span>
+                                <span>Female</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Account Details -->
+                    <div class="p-4 bg-white border border-gray-200 shadow rounded-xl md:col-span-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold text-gray-900">Account Details</span>
+                            <i class="text-xs text-gray-400 cursor-pointer fa fa-pen"></i>
+                        </div>
+                        <div class="space-y-1 text-xs text-gray-700">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Phone Number</span>
+                                <span>+234-813-709-9424</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Recovery e-mail</span>
+                                <span>JohnDoe@gmail.com</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">NIN</span>
+                                <span>222-333-111-444</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Payment Methods -->
+                    <div class="p-4 bg-white border border-gray-200 shadow rounded-xl md:col-span-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold text-gray-900">Payment Methods</span>
+                            <i class="text-xs text-gray-400 cursor-pointer fa fa-pen"></i>
+                        </div>
+                        <div class="mb-2">
+                            <img src="img/card.jpg" alt="Credit Card" class="object-cover w-full mb-2 rounded-lg" />
+                        </div>
+                        <div class="space-y-1 text-xs text-gray-700">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Bank:</span>
+                                <span>First bank of Nigeria (FBNH)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Acc. Num:</span>
+                                <span>211-233-1234</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Acc. Name:</span>
+                                <span>John Doe Akuna</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Divider -->
+                <div class="h-1 bg-[#23248a] rounded my-4"></div>
+                <!-- Recently Viewed & Stats -->
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-5">
+                    <!-- Recently Viewed Properties -->
+                    <div class="flex flex-col p-4 bg-white border border-gray-200 shadow rounded-xl md:col-span-3">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-lg font-semibold text-gray-900">Recently Viewed Properties</div>
+                            <a href="#recently-viewed" class="text-sm font-semibold text-indigo-700 hover:underline">View All</a>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <!-- Property 1 -->
+                            <div class="flex items-center gap-4 p-3 transition rounded-lg hover:bg-gray-50">
+                                <img src="img/property1.jpg" alt="Property 1" class="object-cover w-16 h-16 bg-gray-100 rounded-lg" />
+                                <div class="flex-1">
+                                    <div class="font-semibold text-gray-900">3 Bedroom Apartment</div>
+                                    <div class="text-xs text-gray-500">Lekki, Lagos</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-semibold text-gray-900">₦120,000/mo</div>
+                                    <div class="text-xs text-green-600">Available</div>
+                                </div>
+                            </div>
+                            <!-- Property 2 -->
+                            <div class="flex items-center gap-4 p-3 transition rounded-lg hover:bg-gray-50">
+                                <img src="img/property2.jpg" alt="Property 2" class="object-cover w-16 h-16 bg-gray-100 rounded-lg" />
+                                <div class="flex-1">
+                                    <div class="font-semibold text-gray-900">Luxury Duplex</div>
+                                    <div class="text-xs text-gray-500">Ikoyi, Lagos</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-semibold text-gray-900">₦350,000/mo</div>
+                                    <div class="text-xs text-red-600">Occupied</div>
+                                </div>
+                            </div>
+                            <!-- Property 3 -->
+                            <div class="flex items-center gap-4 p-3 transition rounded-lg hover:bg-gray-50">
+                                <img src="img/property3.jpg" alt="Property 3" class="object-cover w-16 h-16 bg-gray-100 rounded-lg" />
+                                <div class="flex-1">
+                                    <div class="font-semibold text-gray-900">Studio Flat</div>
+                                    <div class="text-xs text-gray-500">Yaba, Lagos</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-semibold text-gray-900">₦80,000/mo</div>
+                                    <div class="text-xs text-green-600">Available</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-2 col-span-2 gap-4">
+                        <div class="flex items-center h-32 p-4 bg-white border border-gray-200 shadow rounded-xl">
+                            <div>
+                                <div class="text-xs text-gray-500">Saved Properties</div>
+                                <div class="text-xl font-bold text-gray-900">8</div>
+                            </div>
+                            <span class="ml-auto inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#23248a]">
+                                <i class="text-white fa-solid fa-heart"></i>
+                            </span>
+                        </div>
+                        <div class="flex items-center h-32 p-4 bg-white border border-gray-200 shadow rounded-xl">
+                            <div>
+                                <div class="text-xs text-gray-500">Active Inquiries</div>
+                                <div class="text-xl font-bold text-gray-900">3</div>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 ml-auto bg-green-100 rounded-lg">
+                                <i class="text-green-600 fa-solid fa-comments"></i>
+                            </span>
+                        </div>
+                        <div class="flex items-center h-32 p-4 bg-white border border-gray-200 shadow rounded-xl">
+                            <div>
+                                <div class="text-xs text-gray-500">Visits Scheduled</div>
+                                <div class="text-xl font-bold text-gray-900">2</div>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 ml-auto bg-yellow-100 rounded-lg">
+                                <i class="text-yellow-600 fa-solid fa-calendar-check"></i>
+                            </span>
+                        </div>
+                        <div class="flex items-center h-32 p-4 bg-white border border-gray-200 shadow rounded-xl">
+                            <div>
+                                <div class="text-xs text-gray-500">Offers Made</div>
+                                <div class="text-xl font-bold text-gray-900">1</div>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 ml-auto bg-purple-100 rounded-lg">
+                                <i class="text-purple-600 fa-solid fa-file-signature"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg z-50">
+        <div class="flex justify-around items-center py-2">
+            <a href="./logged-in-homepage.html" class="flex flex-col items-center py-2 px-3 text-gray-500 hover:text-indigo-600 transition-colors">
+                <i class="fa-solid fa-home text-xl mb-1"></i>
+                <span class="text-xs">Home</span>
+            </a>
+            <a href="user-dashboard.html" class="flex flex-col items-center py-2 px-3 text-indigo-600">
+                <i class="fa-solid fa-user text-xl mb-1"></i>
+                <span class="text-xs font-medium">Profile</span>
+            </a>
+            <a href="user-inbox.html" class="flex flex-col items-center py-2 px-3 text-gray-500 hover:text-indigo-600 transition-colors">
+                <i class="fa-solid fa-inbox text-xl mb-1"></i>
+                <span class="text-xs">Inbox</span>
+            </a>
+            <a href="user-notifications.html" class="flex flex-col items-center py-2 px-3 text-gray-500 hover:text-indigo-600 transition-colors">
+                <i class="fa-solid fa-bell text-xl mb-1"></i>
+                <span class="text-xs">Alerts</span>
+            </a>
+            <a href="user-transaction.html" class="flex flex-col items-center py-2 px-3 text-gray-500 hover:text-indigo-600 transition-colors">
+                <i class="fa-solid fa-receipt text-xl mb-1"></i>
+                <span class="text-xs">History</span>
+            </a>
+            <button onclick="openMobileSidebar()" class="flex flex-col items-center py-2 px-3 text-gray-500 hover:text-indigo-600 transition-colors">
+                <i class="fa-solid fa-bars text-xl mb-1"></i>
+                <span class="text-xs">Menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Logout Modal -->
+    <div id="logoutModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-sm text-center space-y-4 animate-fade-in mx-4">
+            <h2 class="text-xl font-semibold text-[#23248a]">Confirm Logout</h2>
+            <p class="text-gray-600">Are you sure you want to logout?</p>
+            <div class="flex justify-center gap-4 mt-4">
+                <button onclick="closeLogoutModal()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">
+                    Cancel
+                </button>
+                <button onclick="confirmLogout()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+<script>
+  // Logout Modal Functions
+  function openLogoutModal() {
+    document.getElementById('logoutModal').classList.remove('hidden');
+  }
+
+  function closeLogoutModal() {
+    document.getElementById('logoutModal').classList.add('hidden');
+  }
+
+  function confirmLogout() {
+    window.location.href = 'login.html'; 
+  }
+
+  // Mobile Sidebar Functions
+  function openMobileSidebar() {
+    const sidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('mobileOverlay');
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  }
+
+  function closeMobileSidebar() {
+    const sidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('mobileOverlay');
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = ''; // Restore scrolling
+  }
+
+  // Touch/Swipe functionality for mobile sidebar
+  let touchStartX = null;
+  let touchStartY = null;
+  let isSwiping = false;
+
+  document.addEventListener('touchstart', function(e) {
+    if (window.innerWidth < 768) { // Only on mobile
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchmove', function(e) {
+    if (!touchStartX || !touchStartY || window.innerWidth >= 768) return;
+    
+    const touchCurrentX = e.touches[0].clientX;
+    const touchCurrentY = e.touches[0].clientY;
+    const diffX = touchCurrentX - touchStartX;
+    const diffY = touchCurrentY - touchStartY;
+    
+    // Only trigger if horizontal swipe is dominant
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 30) {
+      isSwiping = true;
+      
+      // Right swipe from left edge (open sidebar)
+      if (diffX > 50 && touchStartX < 50) {
+        openMobileSidebar();
+      }
+      
+      // Left swipe on open sidebar (close sidebar)
+      const sidebar = document.getElementById('mobileSidebar');
+      if (sidebar.classList.contains('open') && diffX < -50) {
+        closeMobileSidebar();
+      }
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', function() {
+    touchStartX = null;
+    touchStartY = null;
+    isSwiping = false;
+  }, { passive: true });
+
+  // Close modal when clicking outside
+  document.getElementById('logoutModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeLogoutModal();
+    }
+  });
+
+  // Handle escape key for modal and sidebar
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeLogoutModal();
+      closeMobileSidebar();
+    }
+  });
+
+  // Close sidebar when clicking on overlay
+  document.getElementById('mobileOverlay').addEventListener('click', function() {
+    closeMobileSidebar();
+  });
+
+  // Handle window resize to close mobile sidebar on larger screens
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 768) {
+      closeMobileSidebar();
+    }
+  });
+</script>
+
+</body> 
+</html>

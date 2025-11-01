@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inbox | Nested</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/output.css" rel="stylesheet">  
+    <link rel="icon" type="img/ico" href="img/favicon.ico">
+    <script src="https://kit.fontawesome.com/d2a04fa078.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+     
+</head>
+<body class="bg-[#f7f8fa] font-sans overflow-hidden">
+    <div class="flex h-screen">
+        <!-- Desktop Sidebar (hidden on mobile and tablet) -->
+       <aside id="sidebar"
+         class="fixed inset-y-0 left-0 z-50 w-64 transition-transform duration-300 ease-in-out transform -translate-x-full bg-white border-r shadow-md">
+            <div class="flex items-center justify-between p-6 border-b">
+            <div class="flex items-center gap-3">
+                <img class="w-10" src="img/logo_alt.png" alt="Nested Logo">
+                <span class="text-lg font-bold text-[#23248a]">Nested</span>
+            </div>
+      `
+
+    <nav class="px-2 mt-6 overflow-y-auto">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50">
+        <i class="w-5 text-center fa-solid fa-home"></i> Home
+      </a>
+      <a href="user-dashboard.html" class="flex items-center gap-3 px-4 py-3 text-indigo-600 rounded-lg bg-indigo-50">
+        <i class="w-5 text-center fa-solid fa-user"></i> Profile
+      </a>
+      <a href="user-inbox.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50">
+        <i class="w-5 text-center fa-solid fa-inbox"></i> Inbox
+      </a>
+      <a href="user-transaction.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50">
+        <i class="w-5 text-center fa-solid fa-receipt"></i> Transactions
+      </a>
+      <a href="user-notifications.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50">
+        <i class="w-5 text-center fa-solid fa-bell"></i> Notifications
+      </a>
+      <a href="user-settings.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50">
+        <i class="w-5 text-center fa-solid fa-gear"></i> Settings
+      </a>
+      <div class="px-4 mt-6">
+        <button onclick="openLogoutModal()" class="w-full px-4 py-3 text-left text-red-600 rounded-lg hover:bg-red-50">
+          <i class="inline-block w-4 mr-2 fas fa-sign-out"></i> Logout
+                </button>
+            </div>
+            </nav>
+        </aside>
+
+        <!-- Tablet Sidebar (hidden on mobile and desktop) -->
+        <aside class="fixed top-0 left-0 z-40 flex-col hidden w-20 h-full bg-white border-r shadow-md md:flex lg:hidden">
+            <div class="flex items-center justify-center p-4 border-b">
+                <img class="w-8" src="img/logo_alt.png" alt="Nested Logo">
+            </div>
+            <nav class="flex-1 mt-6 space-y-2 overflow-y-auto">
+                <a href="index.html" class="relative flex items-center justify-center py-4 mx-2 transition rounded-lg hover:bg-gray-100 group">
+                    <i class="text-lg fa-solid fa-home"></i>
+                    <div class="absolute px-2 py-1 ml-2 text-sm text-white transition-opacity bg-gray-800 rounded opacity-0 pointer-events-none left-full group-hover:opacity-100 whitespace-nowrap">
+                        Home
+                    </div>
+                </a>
+                <a href="user-dashboard.html" class="relative flex items-center justify-center py-4 mx-2 transition rounded-lg hover:bg-gray-100 group">
+                    <i class="text-lg fa-solid fa-user"></i>
+                    <div class="absolute px-2 py-1 ml-2 text-sm text-white transition-opacity bg-gray-800 rounded opacity-0 pointer-events-none left-full group-hover:opacity-100 whitespace-nowrap">
+                        Profile
+                    </div>
+                </a>
+                <a href="user-inbox.html" class="relative flex items-center justify-center py-4 mx-2 transition rounded-lg nav-active hover:bg-indigo-50 group">
+                    <i class="text-lg fa-solid fa-inbox"></i>
+                    <div class="absolute px-2 py-1 ml-2 text-sm text-white transition-opacity bg-gray-800 rounded opacity-0 pointer-events-none left-full group-hover:opacity-100 whitespace-nowrap">
+                        Inbox
+                    </div>
+                </a>
+                <a href="user-transaction.html" class="relative flex items-center justify-center py-4 mx-2 transition rounded-lg hover:bg-gray-100 group">
+                    <i class="text-lg fa-solid fa-receipt"></i>
+                    <div class="absolute px-2 py-1 ml-2 text-sm text-white transition-opacity bg-gray-800 rounded opacity-0 pointer-events-none left-full group-hover:opacity-100 whitespace-nowrap">
+                        Transactions
+                    </div>
+                </a>
+                <a href="user-notifications.html" class="relative flex items-center justify-center py-4 mx-2 transition rounded-lg hover:bg-gray-100 group">
+                    <i class="text-lg fa-solid fa-bell"></i>
+                    <div class="absolute px-2 py-1 ml-2 text-sm text-white transition-opacity bg-gray-800 rounded opacity-0 pointer-events-none left-full group-hover:opacity-100 whitespace-nowrap">
+                        Notifications
+                    </div>
+                </a>
+                <a href="user-settings.html" class="relative flex items-center justify-center py-4 mx-2 transition rounded-lg hover:bg-gray-100 group">
+                    <i class="text-lg fa-solid fa-gear"></i>
+                    <div class="absolute px-2 py-1 ml-2 text-sm text-white transition-opacity bg-gray-800 rounded opacity-0 pointer-events-none left-full group-hover:opacity-100 whitespace-nowrap">
+                        Settings
+                    </div>
+                </a>
+            </nav>
+            <div class="p-2 border-t">
+                <button onclick="openLogoutModal()" class="relative flex items-center justify-center w-full py-4 text-red-600 transition rounded-lg hover:bg-red-50 group">
+                    <i class="text-lg fas fa-sign-out"></i>
+                    <div class="absolute px-2 py-1 ml-2 text-sm text-white transition-opacity bg-gray-800 rounded opacity-0 pointer-events-none left-full group-hover:opacity-100 whitespace-nowrap">
+                        Logout
+                    </div>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Slide-out Sidebar -->
+        <aside id="mobileSidebar" class="fixed top-0 left-0 z-50 h-full bg-white border-r shadow-xl md:hidden mobile-sidebar w-80">
+            <div class="flex items-center justify-between p-6 border-b">
+                <div class="flex items-center gap-3">
+                    <img class="w-10" src="img/logo_alt.png" alt="Nested Logo">
+                    <span class="text-xl font-bold text-[#23248a]">Nested</span>
+                </div>
+                <button onclick="closeMobileSidebar()" class="p-2 rounded-lg hover:bg-gray-100">
+                    <i class="text-xl text-gray-600 fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- User Profile Section -->
+            <div class="p-6 border-b bg-gradient-to-r from-indigo-50 to-purple-50">
+                <div class="flex items-center gap-3">
+                    <img src="img/profile.jpg" alt="Amanda Rito" class="w-12 h-12 border-2 border-indigo-200 rounded-full">
+                    <div>
+                        <div class="font-semibold text-gray-900">Amanda Rito</div>
+                        <div class="text-sm text-gray-600">Customer</div>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="flex-1 px-4 mt-6 space-y-2 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-4 px-4 py-3 transition rounded-lg hover:bg-gray-100">
+                    <i class="w-6 text-lg text-center text-gray-600 fa-solid fa-home"></i>
+                    <span class="font-medium">Home</span>
+                </a>
+                <a href="user-dashboard.html" class="flex items-center gap-4 px-4 py-3 transition rounded-lg hover:bg-gray-100">
+                    <i class="w-6 text-lg text-center text-gray-600 fa-solid fa-user"></i>
+                    <span class="font-medium">Profile</span>
+                </a>
+                <a href="user-inbox.html" class="flex items-center gap-4 px-4 py-3 text-indigo-600 transition rounded-lg bg-indigo-50">
+                    <i class="w-6 text-lg text-center fa-solid fa-inbox"></i>
+                    <span class="font-medium">Inbox</span>
+                </a>
+                <a href="user-transaction.html" class="flex items-center gap-4 px-4 py-3 transition rounded-lg hover:bg-gray-100">
+                    <i class="w-6 text-lg text-center text-gray-600 fa-solid fa-receipt"></i>
+                    <span class="font-medium">Transaction History</span>
+                </a>
+                <a href="user-notifications.html" class="flex items-center gap-4 px-4 py-3 transition rounded-lg hover:bg-gray-100">
+                    <i class="w-6 text-lg text-center text-gray-600 fa-solid fa-bell"></i>
+                    <span class="font-medium">Notifications</span>
+                </a>
+                <a href="user-settings.html" class="flex items-center gap-4 px-4 py-3 transition rounded-lg hover:bg-gray-100">
+                    <i class="w-6 text-lg text-center text-gray-600 fa-solid fa-gear"></i>
+                    <span class="font-medium">Settings</span>
+                </a>
+            </nav>
+            
+            <div class="p-4 border-t">
+                <button onclick="openLogoutModal(); closeMobileSidebar();" class="flex items-center w-full gap-4 px-4 py-3 text-red-600 transition rounded-lg hover:bg-red-50">
+                    <i class="w-6 text-lg text-center fas fa-sign-out"></i>
+                    <span class="font-medium">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar Overlay -->
+        <div id="mobileOverlay" class="fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden mobile-overlay" onclick="closeMobileSidebar()"></div>
+
+        <!-- Main Content -->
+        <main class="flex-1 bg-[#f7f8fa] min-h-screen overflow-y-auto main-scroll lg:ml-64 md:ml-20 pb-20 md:pb-0">
+            <div class="px-4 py-8 mx-auto max-w-7xl">
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold text-[#23248a]">Inbox</h1>
+                        <p class="mt-1 text-gray-600">Messages from agents and property updates</p>
+                    </div>
+                </div>
+
+                <!-- Messages Container -->
+                <div class="p-6 bg-white shadow-lg rounded-2xl">
+                    <div class="space-y-4">
+                        <!-- Message 1 -->
+                        <div class="flex items-start gap-4 p-4 transition-colors rounded-lg bg-gray-50 hover:bg-gray-100">
+                            <span class="inline-flex items-center justify-center flex-shrink-0 w-12 h-12 text-blue-700 bg-blue-100 rounded-full">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="font-semibold text-gray-900">Mrs Mary</div>
+                                    <div class="text-xs text-gray-400">2 hours ago</div>
+                                </div>
+                                <div class="text-sm text-gray-700 md:text-base">Hi John, your property visit is confirmed for tomorrow at 10:00 AM.</div>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <button class="px-3 py-1 text-xs text-indigo-700 transition-colors bg-indigo-100 rounded-full hover:bg-indigo-200">
+                                        Reply
+                                    </button>
+                                    <button class="px-3 py-1 text-xs text-gray-700 transition-colors bg-gray-100 rounded-full hover:bg-gray-200">
+                                        Mark as Read
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message 2 -->
+                        <div class="flex items-start gap-4 p-4 transition-colors rounded-lg bg-gray-50 hover:bg-gray-100">
+                            <span class="inline-flex items-center justify-center flex-shrink-0 w-12 h-12 text-green-700 bg-green-100 rounded-full">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="font-semibold text-gray-900">Mr Paul</div>
+                                    <div class="text-xs text-gray-400">1 day ago</div>
+                                </div>
+                                <div class="text-sm text-gray-700 md:text-base">Your offer for the 3 Bedroom Apartment has been received.</div>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <button class="px-3 py-1 text-xs text-indigo-700 transition-colors bg-indigo-100 rounded-full hover:bg-indigo-200">
+                                        Reply
+                                    </button>
+                                    <button class="px-3 py-1 text-xs text-gray-700 transition-colors bg-gray-100 rounded-full hover:bg-gray-200">
+                                        Mark as Read
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message 3 -->
+                        <div class="flex items-start gap-4 p-4 transition-colors rounded-lg bg-gray-50 hover:bg-gray-100">
+                            <span class="inline-flex items-center justify-center flex-shrink-0 w-12 h-12 text-yellow-700 bg-yellow-100 rounded-full">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="font-semibold text-gray-900">Miss Lisa</div>
+                                    <div class="text-xs text-gray-400">3 days ago</div>
+                                </div>
+                                <div class="text-sm text-gray-700 md:text-base">A new property matching your search is available.</div>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <button class="px-3 py-1 text-xs text-indigo-700 transition-colors bg-indigo-100 rounded-full hover:bg-indigo-200">
+                                        Reply
+                                    </button>
+                                    <button class="px-3 py-1 text-xs text-gray-700 transition-colors bg-gray-100 rounded-full hover:bg-gray-200">
+                                        Mark as Read
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message 4 -->
+                        <div class="flex items-start gap-4 p-4 transition-colors rounded-lg bg-gray-50 hover:bg-gray-100">
+                            <span class="inline-flex items-center justify-center flex-shrink-0 w-12 h-12 text-purple-700 bg-purple-100 rounded-full">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="font-semibold text-gray-900">Mr James</div>
+                                    <div class="text-xs text-gray-400">5 days ago</div>
+                                </div>
+                                <div class="text-sm text-gray-700 md:text-base">Thank you for your interest in the Lekki property. We have scheduled a viewing.</div>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <button class="px-3 py-1 text-xs text-indigo-700 transition-colors bg-indigo-100 rounded-full hover:bg-indigo-200">
+                                        Reply
+                                    </button>
+                                    <button class="px-3 py-1 text-xs text-gray-700 transition-colors bg-gray-100 rounded-full hover:bg-gray-200">
+                                        Mark as Read
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message 5 -->
+                        <div class="flex items-start gap-4 p-4 transition-colors rounded-lg bg-gray-50 hover:bg-gray-100">
+                            <span class="inline-flex items-center justify-center flex-shrink-0 w-12 h-12 text-red-700 bg-red-100 rounded-full">
+                                <i class="fa-solid fa-exclamation"></i>
+                            </span>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="font-semibold text-gray-900">System Notification</div>
+                                    <div class="text-xs text-gray-400">1 week ago</div>
+                                </div>
+                                <div class="text-sm text-gray-700 md:text-base">Your account verification has been completed successfully.</div>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <button class="px-3 py-1 text-xs text-gray-700 transition-colors bg-gray-100 rounded-full hover:bg-gray-200">
+                                        Mark as Read
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empty State (hidden when messages exist) -->
+                    <div class="hidden py-12 text-center">
+                        <i class="mb-4 text-6xl text-gray-300 fa-solid fa-inbox"></i>
+                        <h3 class="mb-2 text-xl font-semibold text-gray-600">Your inbox is empty</h3>
+                        <p class="text-gray-500">When agents send you messages, they'll appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t shadow-lg md:hidden">
+        <div class="flex items-center justify-around py-2">
+            <a href="./logged-in-homepage.html" class="flex flex-col items-center px-3 py-2 text-gray-500 transition-colors hover:text-indigo-600">
+                <i class="mb-1 text-xl fa-solid fa-home"></i>
+                <span class="text-xs">Home</span>
+            </a>
+            <a href="user-dashboard.html" class="flex flex-col items-center px-3 py-2 text-gray-500 transition-colors hover:text-indigo-600">
+                <i class="mb-1 text-xl fa-solid fa-user"></i>
+                <span class="text-xs">Profile</span>
+            </a>
+            <a href="user-inbox.html" class="flex flex-col items-center px-3 py-2 text-indigo-600">
+                <i class="mb-1 text-xl fa-solid fa-inbox"></i>
+                <span class="text-xs font-medium">Inbox</span>
+            </a>
+            <a href="user-notifications.html" class="flex flex-col items-center px-3 py-2 text-gray-500 transition-colors hover:text-indigo-600">
+                <i class="mb-1 text-xl fa-solid fa-bell"></i>
+                <span class="text-xs">Alerts</span>
+            </a>
+            <a href="user-transaction.html" class="flex flex-col items-center px-3 py-2 text-gray-500 transition-colors hover:text-indigo-600">
+                <i class="mb-1 text-xl fa-solid fa-receipt"></i>
+                <span class="text-xs">History</span>
+            </a>
+            <button onclick="openMobileSidebar()" class="flex flex-col items-center px-3 py-2 text-gray-500 transition-colors hover:text-indigo-600">
+                <i class="mb-1 text-xl fa-solid fa-bars"></i>
+                <span class="text-xs">Menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Logout Modal -->
+    <div id="logoutModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="w-full max-w-sm p-6 mx-4 space-y-4 text-center bg-white shadow-xl rounded-xl animate-fade-in">
+            <h2 class="text-xl font-semibold text-[#23248a]">Confirm Logout</h2>
+            <p class="text-gray-600">Are you sure you want to logout?</p>
+            <div class="flex justify-center gap-4 mt-4">
+                <button onclick="closeLogoutModal()" class="px-4 py-2 text-gray-800 transition bg-gray-200 rounded hover:bg-gray-300">
+                    Cancel
+                </button>
+                <button onclick="confirmLogout()" class="px-4 py-2 text-white transition bg-red-600 rounded hover:bg-red-700">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+<script>
+  // Logout Modal Functions
+  function openLogoutModal() {
+    document.getElementById('logoutModal').classList.remove('hidden');
+  }
+
+  function closeLogoutModal() {
+    document.getElementById('logoutModal').classList.add('hidden');
+  }
+
+  function confirmLogout() {
+    window.location.href = 'login.html'; 
+  }
+
+  // Mobile Sidebar Functions
+  function openMobileSidebar() {
+    const sidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('mobileOverlay');
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  }
+
+  function closeMobileSidebar() {
+    const sidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('mobileOverlay');
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = ''; // Restore scrolling
+  }
+
+  // Touch/Swipe functionality for mobile sidebar
+  let touchStartX = null;
+  let touchStartY = null;
+  let isSwiping = false;
+
+  document.addEventListener('touchstart', function(e) {
+    if (window.innerWidth < 768) { // Only on mobile
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true }); 
+
+  document.addEventListener('touchmove', function(e) {
+    if (!touchStartX || !touchStartY || window.innerWidth >= 768) return;
+    
+    const touchCurrentX = e.touches[0].clientX;
+    const touchCurrentY = e.touches[0].clientY;
+    const diffX = touchCurrentX - touchStartX;
+    const diffY = touchCurrentY - touchStartY;
+    
+    // Only trigger if horizontal swipe is dominant
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 30) {
+      isSwiping = true;
+      
+      // Right swipe from left edge (open sidebar)
+      if (diffX > 50 && touchStartX < 50) {
+        openMobileSidebar();
+      }
+      
+      // Left swipe on open sidebar (close sidebar)
+      const sidebar = document.getElementById('mobileSidebar');
+      if (sidebar.classList.contains('open') && diffX < -50) {
+        closeMobileSidebar();
+      }
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', function() {
+    touchStartX = null;
+    touchStartY = null;
+    isSwiping = false;
+  }, { passive: true });
+
+  // Close modal when clicking outside
+  document.getElementById('logoutModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeLogoutModal();
+    }
+  });
+
+  // Handle escape key for modal and sidebar
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeLogoutModal();
+      closeMobileSidebar();
+    }
+  });
+
+  // Close sidebar when clicking on overlay
+  document.getElementById('mobileOverlay').addEventListener('click', function() {
+    closeMobileSidebar();
+  });
+
+  // Handle window resize to close mobile sidebar on larger screens
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 768) {
+      closeMobileSidebar();
+    }
+  });
+</script>
+
+</body>
+</html>
