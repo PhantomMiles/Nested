@@ -187,4 +187,4 @@
   window.ui = {
     initAll, initMobileMenu, initListingSearch, initNotifications, initTransactions
   };
-});
+})();
