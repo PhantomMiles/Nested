@@ -91,4 +91,4 @@
     login,
     getUser
   };
-});
+})
