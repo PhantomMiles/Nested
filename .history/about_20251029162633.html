@@ -128,7 +128,7 @@
             <!-- User Profile (Hidden by default) -->
             <div id="userProfile" class="relative hidden ml-4">
               <button id="profileBtn" class="flex items-center focus:outline-none">
-                <img src="img/user-avatar.png" alt="User Avatar" class="border-2 border-indigo-500 rounded-full w-9 h-9">
+                <img data-user-avatar src="img/user-avatar.png" alt="User Avatar" class="border-2 border-indigo-500 rounded-full w-9 h-9">
                 <span id="profileUserName" class="ml-2 font-semibold text-white"></span>
                 <i class='text-xl text-white bx bx-chevron-down'></i>
               </button>
@@ -152,7 +152,7 @@
             </button>
           </div>
           <div id="mobileUserInfo" class="hidden mb-4 space-y-2 text-center text-white">
-            <img src="img/user-avatar.png" alt="User Avatar" class="w-16 h-16 mx-auto border-2 border-indigo-400 rounded-full">
+            <img data-user-avatar src="img/user-avatar.png" alt="User Avatar" class="w-16 h-16 mx-auto border-2 border-indigo-400 rounded-full">
             <p id="mobileUserName" class="text-base font-semibold"></p>
           </div>            
           <div class="h-px my-8 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
@@ -253,7 +253,7 @@
                         <div class="flex flex-col items-center justify-start gap-4 lg:items-start">
                             <h6 class="text-base font-normal leading-relaxed text-gray-400">About Us</h6>
                             <div class="flex flex-col items-center justify-start w-full gap-3 lg:items-start">
-                                <h2
+                                <h2 data-user-name
                                     class="text-4xl font-bold leading-normal text-center text-indigo-700 font-manrope lg:text-start">
                                     The Tale of Our Achievement Story</h2>
                                 <p

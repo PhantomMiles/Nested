@@ -63,7 +63,7 @@
           <div class="flex items-center gap-4">
             <button id="openSidebarBtn" class="p-2 rounded hover:bg-gray-100"><svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
             <div>
-              <h1 class="text-3xl font-bold text-[#23248a]">Welcome, Amanda Rito</h1>
+              <h1 class="text-3xl font-bold text-[#23248a]"><span data-user-address>Welcome, Amanda Rito</span></h1>
               <p class="mt-1 text-gray-600">Here's your Nested profile overview</p>
             </div>
           </div>
@@ -79,7 +79,7 @@
             <div class="p-6 bg-white border border-gray-100 shadow rounded-xl">
               <div class="flex flex-col items-center">
                 <div class="relative">
-                  <img src="img/profile.jpg" alt="Amanda" class="object-cover w-20 h-20 border-2 border-gray-200 rounded-full">
+                  <img data-user-avatar src="img/profile.jpg" alt="Amanda" class="object-cover w-20 h-20 border-2 border-gray-200 rounded-full">
                   <span class="absolute bottom-0 right-0 p-1 text-white bg-indigo-600 border-2 border-white rounded-full"><i class="bi bi-camera"></i></span>
                 </div>
                 <div class="flex items-center gap-2 mt-3">
@@ -88,8 +88,8 @@
                 </div>
                 <div class="w-full mt-4 space-y-2 text-xs text-gray-700">
                   <div class="flex justify-between"><span class="text-gray-500">Full Name</span><span class="font-medium">Amanda Rito Doe</span></div>
-                  <div class="flex justify-between"><span class="text-gray-500">Phone Num</span><span class="font-medium">+234 91 3709 9242</span></div>
-                  <div class="flex justify-between"><span class="text-gray-500">E-mail</span><span class="font-medium">amanda@gmail.com</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Phone Num</span><span class="font-medium"><span data-user-phone>+234 91 3709 9242</span></span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">E-mail</span><span class="font-medium"><span data-user-email>amanda@gmail.com</span></span></div>
                   <div class="flex justify-between"><span class="text-gray-500">Password</span><span class="font-medium">*********</span></div>
                 </div>
               </div>
@@ -116,9 +116,9 @@
                 <i class="text-xs text-gray-400 bi bi-pencil"></i>
               </div>
               <div class="space-y-2 text-sm text-gray-800">
-                <div class="flex justify-between"><span class="text-gray-500">Phone Number</span><span>+234-813-709-9424</span></div>
-                <div class="flex justify-between"><span class="text-gray-500">Recovery e-mail</span><span>JohnDoe@gmail.com</span></div>
-                <div class="flex justify-between"><span class="text-gray-500">NIN</span><span>222-333-111-444</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Phone Number</span><span><span data-user-phone>+234-813-709-9424</span></span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Recovery e-mail</span><span><span data-user-email>JohnDoe@gmail.com</span></span></div>
+                <div class="flex justify-between"><span class="text-gray-500">NIN</span><span><span data-user-phone>222-333-111-444</span></span></div>
               </div>
             </div>
 
@@ -131,7 +131,7 @@
               <div><img src="img/card.jpg" alt="card" class="w-full mb-2 rounded-lg"></div>
               <div class="space-y-1 text-sm text-gray-800">
                 <div class="flex justify-between"><span class="text-gray-500">Bank:</span><span>First bank of Nigeria (FBNH)</span></div>
-                <div class="flex justify-between"><span class="text-gray-500">Acc. Num:</span><span>211-233-1234</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Acc. Num:</span><span><span data-user-phone>211-233-1234</span></span></div>
                 <div class="flex justify-between"><span class="text-gray-500">Acc. Name:</span><span>John Doe Akuna</span></div>
               </div>
             </div>
@@ -151,7 +151,7 @@
                   <img src="img/property1.jpg" alt="" class="object-cover w-12 h-12 bg-gray-100 rounded-lg">
                   <div class="flex-1">
                     <div class="font-medium text-gray-900">3 Bedroom Apartment</div>
-                    <div class="text-xs text-gray-500">Lekki, Lagos</div>
+                    <div class="text-xs text-gray-500"><span data-user-address>Lekki, Lagos</span></div>
                   </div>
                   <div class="text-right">
                     <div class="font-semibold text-gray-900">₦120,000/mo</div>
@@ -162,7 +162,7 @@
                   <img src="img/property2.jpg" alt="" class="object-cover w-12 h-12 bg-gray-100 rounded-lg">
                   <div class="flex-1">
                     <div class="font-medium text-gray-900">Luxury Duplex</div>
-                    <div class="text-xs text-gray-500">Ikoyi, Lagos</div>
+                    <div class="text-xs text-gray-500"><span data-user-address>Ikoyi, Lagos</span></div>
                   </div>
                   <div class="text-right">
                     <div class="font-semibold text-gray-900">₦350,000/mo</div>
@@ -173,7 +173,7 @@
                   <img src="img/property3.jpg" alt="" class="object-cover w-12 h-12 bg-gray-100 rounded-lg">
                   <div class="flex-1">
                     <div class="font-medium text-gray-900">Studio Flat</div>
-                    <div class="text-xs text-gray-500">Yaba, Lagos</div>
+                    <div class="text-xs text-gray-500"><span data-user-address>Yaba, Lagos</span></div>
                   </div>
                   <div class="text-right">
                     <div class="font-semibold text-gray-900">₦80,000/mo</div>

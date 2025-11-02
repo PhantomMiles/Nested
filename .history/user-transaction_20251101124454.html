@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Transaction History | Nested</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="css/output.css" rel="stylesheet">
+  <link rel="icon" type="img/ico" href="img/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>.sidebar-transform{transition:transform .28s}.animate-fade-in{animation:fadeIn .22s}@keyframes fadeIn{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:scale(1)}}</style>
+</head>
+<body class="bg-[#f7f8fa] font-sans">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside id="primarySidebar" class="fixed top-0 left-0 z-50 w-64 h-full -translate-x-full bg-white border-r shadow-md sidebar-transform">
+      <div class="flex items-center gap-2 p-6 border-b">
+        <img class="w-12" src="img/logo_alt.png" alt="Nested">
+        <button id="closeSidebarBtn" class="p-1 ml-auto rounded hover:bg-gray-100"><i class="text-2xl text-gray-600 bi bi-x"></i></button>
+      </div>
+      <nav class="px-0 mt-6 space-y-1 overflow-y-auto">
+        <a href="index.html" class="flex items-center gap-3 px-6 py-3 hover:bg-gray-100"><i class="w-5 text-lg text-center bi bi-house-door"></i><span>Home</span></a>
+        <a href="user-dashboard.html" class="flex items-center gap-3 px-6 py-3 hover:bg-gray-100"><i class="w-5 text-lg text-center bi bi-person-circle"></i><span>Profile</span></a>
+        <a href="user-inbox.html" class="flex items-center gap-3 px-6 py-3 hover:bg-gray-100"><i class="w-5 text-lg text-center bi bi-inbox"></i><span>Inbox</span></a>
+        <a href="user-transaction.html" class="flex items-center gap-3 px-6 py-3 text-indigo-700 bg-indigo-50"><i class="w-5 text-lg text-center bi bi-receipt"></i><span>Transaction History</span></a>
+        <a href="user-notifications.html" class="flex items-center gap-3 px-6 py-3 hover:bg-gray-100"><i class="w-5 text-lg text-center bi bi-bell"></i><span>Notifications</span><span id="sidebarNotifBadge" class="absolute inline-flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full right-6">0</span></a>
+        <a href="user-settings.html" class="flex items-center gap-3 px-6 py-3 hover:bg-gray-100"><i class="w-5 text-lg text-center bi bi-gear-wide-connected"></i><span>Settings</span></a>
+      </nav>
+      <div class="p-4 border-t">
+        <button onclick="openLogoutModal()" class="flex items-center w-full gap-3 px-2 py-3 text-red-600 rounded-lg hover:bg-red-50"><i class="text-lg bi bi-box-arrow-right"></i> Logout</button>
+      </div>
+    </aside>
+
+    <div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-black/40"></div>
+
+    <!-- Main content -->
+    <main class="flex-1 overflow-auto">
+      <div class="px-6 py-8 mx-auto max-w-7xl">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-4">
+            <button id="openSidebarBtn" class="p-2 rounded hover:bg-gray-100"><svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+            <div>
+              <h1 data-user-name class="text-3xl font-bold text-darkBlue">Transaction History</h1>
+              <p class="mt-1 text-gray-600">Track all your property payments and transactions</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="relative inline-block">
+              <button id="filterBtn" class="px-3 py-2 bg-white border rounded shadow-sm">All Transactions <i class="ml-2 bi bi-chevron-down"></i></button>
+              <div id="filterMenu" class="absolute right-0 hidden w-56 mt-2 bg-white border rounded shadow">
+                <button data-value="all" class="w-full px-4 py-2 text-left hover:bg-gray-50">All Transactions</button>
+                <button data-value="rent" class="w-full px-4 py-2 text-left hover:bg-gray-50">Rent Payments</button>
+                <button data-value="deposit" class="w-full px-4 py-2 text-left hover:bg-gray-50">Deposits</button>
+              </div>
+            </div>
+            <button class="px-4 py-2 text-white rounded bg-darkBlue"><i class="me-2 bi bi-download"></i>Export</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-4">
+          <div class="p-4 bg-white border border-gray-200 shadow-sm rounded-xl"><div class="text-sm text-gray-500">Total Spent</div><div class="text-2xl font-bold">₦250,000</div></div>
+          <div class="p-4 bg-white border border-gray-200 shadow-sm rounded-xl"><div class="text-sm text-gray-500">This Month</div><div class="text-2xl font-bold">₦120,000</div></div>
+          <div class="p-4 bg-white border border-gray-200 shadow-sm rounded-xl"><div class="text-sm text-gray-500">Pending</div><div class="text-2xl font-bold">₦50,000</div></div>
+          <div class="p-4 bg-white border border-gray-200 shadow-sm rounded-xl"><div class="text-sm text-gray-500">Transactions</div><div class="text-2xl font-bold">8</div></div>
+        </div>
+
+        <div class="p-6 bg-white shadow-lg rounded-2xl">
+          <div class="overflow-x-auto">
+            <table class="min-w-full">
+              <thead class="text-xs text-gray-500">
+                <tr><th class="p-4 text-left">Date</th><th class="p-4 text-left">Property</th><th class="p-4 text-left">Type</th><th class="p-4 text-left">Amount</th><th class="p-4 text-left">Status</th><th class="p-4 text-left">Action</th></tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2025-06-10</span></span></td><td class="p-4"><div class="font-medium">3 Bedroom Apartment<div class="text-xs text-gray-500"><span data-user-address>Lekki, Lagos</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦120,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2025-05-22</span></span></td><td class="p-4"><div class="font-medium">Luxury Duplex<div class="text-xs text-gray-500"><span data-user-address>Ikoyi, Lagos</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦50,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2025-04-15</span></span></td><td class="p-4"><div class="font-medium">Studio Flat<div class="text-xs text-gray-500"><span data-user-address>Yaba, Lagos</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦80,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2025-01-15</span></span></td><td class="p-4"><div class="font-medium">Enugu GRA Duplex<div class="text-xs text-gray-500"><span data-user-address>GRA, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦95,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-12-28</span></span></td><td class="p-4"><div class="font-medium">New Haven Studio<div class="text-xs text-gray-500"><span data-user-address>New Haven, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦40,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-12-10</span></span></td><td class="p-4"><div class="font-medium">Ogui Road Apartment<div class="text-xs text-gray-500"><span data-user-address>Ogui, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦60,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-11-22</span></span></td><td class="p-4"><div class="font-medium">Independence Layout Flat<div class="text-xs text-gray-500"><span data-user-address>Independence Layout, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦55,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-11-05</span></span></td><td class="p-4"><div class="font-medium">Emene Mini Estate<div class="text-xs text-gray-500"><span data-user-address>Emene, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦72,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-10-18</span></span></td><td class="p-4"><div class="font-medium">Awkunanaw Terrace<div class="text-xs text-gray-500"><span data-user-address>Awkunanaw, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦35,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-10-01</span></span></td><td class="p-4"><div class="font-medium">Coal Camp Bungalow<div class="text-xs text-gray-500"><span data-user-address>Coal Camp, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦50,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-09-20</span></span></td><td class="p-4"><div class="font-medium">Nsukka Student Lodge<div class="text-xs text-gray-500"><span data-user-address>Nsukka, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦20,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-09-03</span></span></td><td class="p-4"><div class="font-medium">Agbani Family Home<div class="text-xs text-gray-500"><span data-user-address>Agbani, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦48,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-08-17</span></span></td><td class="p-4"><div class="font-medium">Trans-Ekulu Flat<div class="text-xs text-gray-500">Trans-Ekulu, Enugu</div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦30,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-08-01</span></span></td><td class="p-4"><div class="font-medium">Uwani Terrace<div class="text-xs text-gray-500"><span data-user-address>Uwani, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦68,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-07-20</span></span></td><td class="p-4"><div class="font-medium">Achara Layout Apartment<div class="text-xs text-gray-500"><span data-user-address>Achara Layout, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦25,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-07-04</span></span></td><td class="p-4"><div class="font-medium">Hilltop Cottage<div class="text-xs text-gray-500"><span data-user-address>Hilltop, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦58,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-06-18</span></span></td><td class="p-4"><div class="font-medium">Oji River House<div class="text-xs text-gray-500"><span data-user-address>Oji River, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦22,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-06-02</span></span></td><td class="p-4"><div class="font-medium">Abakpa Mini Flat<div class="text-xs text-gray-500"><span data-user-address>Abakpa, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦46,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-05-15</span></span></td><td class="p-4"><div class="font-medium">New Market Studio<div class="text-xs text-gray-500"><span data-user-address>Enugu New Market, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦18,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-05-01</span></span></td><td class="p-4"><div class="font-medium">GRA Mini Duplex<div class="text-xs text-gray-500"><span data-user-address>GRA, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦110,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-04-18</span></span></td><td class="p-4"><div class="font-medium">Emene Serviced Flat<div class="text-xs text-gray-500"><span data-user-address>Emene, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦28,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-04-02</span></span></td><td class="p-4"><div class="font-medium">Ogui Market Apartment<div class="text-xs text-gray-500"><span data-user-address>Ogui, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦52,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-03-16</span></span></td><td class="p-4"><div class="font-medium">Independence Layout BQ<div class="text-xs text-gray-500"><span data-user-address>Independence Layout, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦15,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-03-01</span></span></td><td class="p-4"><div class="font-medium">Nsukka Road House<div class="text-xs text-gray-500"><span data-user-address>Nsukka, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦35,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-02-13</span></span></td><td class="p-4"><div class="font-medium">Abakpa Road Studio<div class="text-xs text-gray-500"><span data-user-address>Abakpa, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦12,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-01-28</span></span></td><td class="p-4"><div class="font-medium">GRA Serviced Room<div class="text-xs text-gray-500"><span data-user-address>GRA, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦42,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2024-01-10</span></span></td><td class="p-4"><div class="font-medium">Emene Family Suite<div class="text-xs text-gray-500"><span data-user-address>Emene, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦32,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-12-22</span></span></td><td class="p-4"><div class="font-medium">Ogui New Building<div class="text-xs text-gray-500"><span data-user-address>Ogui, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦63,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-12-05</span></span></td><td class="p-4"><div class="font-medium">Independence Layout Bungalow<div class="text-xs text-gray-500"><span data-user-address>Independence Layout, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦27,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-11-18</span></span></td><td class="p-4"><div class="font-medium">New Haven Duplex<div class="text-xs text-gray-500"><span data-user-address>New Haven, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦85,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-11-02</span></span></td><td class="p-4"><div class="font-medium">Trans-Ekulu Studio<div class="text-xs text-gray-500">Trans-Ekulu, Enugu</div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦16,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-10-15</span></span></td><td class="p-4"><div class="font-medium">Achara Layout Mini Flat<div class="text-xs text-gray-500"><span data-user-address>Achara Layout, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦44,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-09-28</span></span></td><td class="p-4"><div class="font-medium">Coal Camp Room<div class="text-xs text-gray-500"><span data-user-address>Coal Camp, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦10,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-09-10</span></span></td><td class="p-4"><div class="font-medium">Nsukka Compound House<div class="text-xs text-gray-500"><span data-user-address>Nsukka, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦37,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-08-23</span></span></td><td class="p-4"><div class="font-medium">Oji River Mini Estate<div class="text-xs text-gray-500"><span data-user-address>Oji River, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦24,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-08-07</span></span></td><td class="p-4"><div class="font-medium">GRA Family Apartment<div class="text-xs text-gray-500"><span data-user-address>GRA, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦100,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-07-21</span></span></td><td class="p-4"><div class="font-medium">Emene Townhouse<div class="text-xs text-gray-500"><span data-user-address>Emene, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦29,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-07-04</span></span></td><td class="p-4"><div class="font-medium">New Haven Serviced Room<div class="text-xs text-gray-500"><span data-user-address>New Haven, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦70,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-06-18</span></span></td><td class="p-4"><div class="font-medium">Abakpa Family Home<div class="text-xs text-gray-500"><span data-user-address>Abakpa, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦33,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-06-01</span></span></td><td class="p-4"><div class="font-medium">Ogui Corner Apartment<div class="text-xs text-gray-500"><span data-user-address>Ogui, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦54,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-05-14</span></span></td><td class="p-4"><div class="font-medium">Nsukka Terrace Lodge<div class="text-xs text-gray-500"><span data-user-address>Nsukka, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦14,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-05-01</span></span></td><td class="p-4"><div class="font-medium">Independence Layout Studio<div class="text-xs text-gray-500"><span data-user-address>Independence Layout, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦39,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-04-15</span></span></td><td class="p-4"><div class="font-medium">Emene Guestroom<div class="text-xs text-gray-500"><span data-user-address>Emene, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦11,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2023-04-01</span></span></td><td class="p-4"><div class="font-medium">GRA Studio Apartment<div class="text-xs text-gray-500"><span data-user-address>GRA, Enugu</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦47,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2025-03-01</span></span></td><td class="p-4"><div class="font-medium">Property #4<div class="text-xs text-gray-500"><span data-user-address>Ikeja, Lagos</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦30,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2025-02-25</span></span></td><td class="p-4"><div class="font-medium">Property #5<div class="text-xs text-gray-500"><span data-user-address>Surulere, Lagos</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Deposit</span></td><td class="p-4 font-semibold">₦45,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-yellow-600">Pending</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Track Payment</button></td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-4"><span data-user-phone><span data-user-dob>2025-02-10</span></span></td><td class="p-4"><div class="font-medium">Property #6<div class="text-xs text-gray-500"><span data-user-address>Ajah, Lagos</span></div></div></td><td class="p-4"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">Rent</span></td><td class="p-4 font-semibold">₦25,000</td><td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></td><td class="p-4"><button class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Receipt</button></td></tr>
+                
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-6 space-y-4 sm:hidden">
+            <!-- mobile cards -->
+            <div class="p-4 bg-white rounded-lg shadow mobile-card">
+              <div class="flex items-center justify-between mb-2"><div class="text-sm text-gray-500"><span data-user-phone><span data-user-dob>2025-06-10</span></span></div><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-green-600">Paid</span></div>
+              <div class="mb-2"><div class="font-medium">3 Bedroom Apartment</div><div class="text-sm text-gray-500"><span data-user-address>Lekki, Lagos</span></div></div>
+              <div class="flex items-center justify-between"><div><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2">Rent</span><span class="font-semibold">₦120,000</span></div><button class="text-sm text-indigo-600">View Receipt</button></div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-6 mt-6 border-t border-gray-200">
+            <div id="showingText" class="text-sm text-gray-600"></div>
+            <div id="pagination" class="flex items-center gap-2"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- mobile bottom nav 
+  <nav class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t shadow-lg md:hidden">
+    <div class="flex items-center justify-around py-2">
+      <a href="index.html" class="flex flex-col items-center text-gray-500"><i class="bi bi-house"></i><span class="text-xs">Home</span></a>
+      <a href="user-dashboard.html" class="flex flex-col items-center text-gray-500"><i class="bi bi-person"></i><span class="text-xs">Profile</span></a>
+      <a href="user-inbox.html" class="flex flex-col items-center text-gray-500"><i class="bi bi-inbox"></i><span class="text-xs">Inbox</span></a>
+      <a href="user-notifications.html" class="flex flex-col items-center text-gray-500"><i class="bi bi-bell"></i><span class="text-xs">Alerts</span></a>
+      <a href="user-transaction.html" class="flex flex-col items-center text-indigo-600"><i class="bi bi-receipt"></i><span class="text-xs">History</span></a>
+      <button id="openSidebarBtnBottom" class="flex flex-col items-center text-gray-500"><i class="bi bi-list"></i><span class="text-xs">Menu</span></button>
+    </div>
+  </nav>-->
+
+  <!-- logout modal -->
+  <div id="logoutModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black/50">
+    <div class="w-full max-w-sm p-6 text-center bg-white shadow-lg rounded-xl animate-fade-in">
+      <h3 class="text-lg font-semibold">Confirm Logout</h3>
+      <p class="mt-2 text-gray-600">Are you sure you want to logout?</p>
+      <div class="flex justify-center gap-3 mt-4">
+        <button onclick="closeLogoutModal()" class="px-4 py-2 bg-gray-200 rounded">Cancel</button>
+        <button onclick="confirmLogout()" class="px-4 py-2 text-white bg-red-600 rounded">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // sidebar controls
+    const sidebar = document.getElementById('primarySidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const openBtn = document.getElementById('openSidebarBtn');
+    const openBtnBottom = document.getElementById('openSidebarBtnBottom');
+    const closeBtn = document.getElementById('closeSidebarBtn');
+
+    function openSidebar(){ sidebar.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); document.body.style.overflow='hidden'; }
+    function closeSidebar(){ sidebar.classList.add('-translate-x-full'); overlay.classList.add('hidden'); document.body.style.overflow=''; }
+
+    if(openBtn) openBtn.addEventListener('click', openSidebar);
+    if(openBtnBottom) openBtnBottom.addEventListener('click', openSidebar);
+    if(closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if(overlay) overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', e => { if(e.key==='Escape') closeSidebar(); });
+
+    function openLogoutModal(){ document.getElementById('logoutModal').classList.remove('hidden'); }
+    function closeLogoutModal(){ document.getElementById('logoutModal').classList.add('hidden'); }
+    function confirmLogout(){ localStorage.removeItem('nestedUser'); window.location.href='login.html'; }
+
+    // filter dropdown
+    const filterBtn = document.getElementById('filterBtn');
+    const filterMenu = document.getElementById('filterMenu');
+    if(filterBtn){
+      filterBtn.addEventListener('click', (e)=>{ e.stopPropagation(); filterMenu.classList.toggle('hidden'); });
+      document.addEventListener('click', ()=> filterMenu.classList.add('hidden'));
+      filterMenu.querySelectorAll('button').forEach(btn=>{
+        btn.addEventListener('click',(e)=>{
+          filterBtn.innerHTML = btn.textContent + ' <i class="ml-2 text-gray-500 bi bi-chevron-down"></i>';
+          filterMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    // improved pagination (responsive + re-queries DOM to adapt to changes)
+    document.addEventListener("DOMContentLoaded", () => {
+      const itemsPerPage = 4;
+      let currentPage = 1;
+
+      function getLists() {
+        return {
+          rows: Array.from(document.querySelectorAll("table tbody tr")),
+          cards: Array.from(document.querySelectorAll(".mobile-card"))
+        };
+      }
+
+      function render() {
+        const { rows, cards } = getLists();
+        const useCards = window.innerWidth < 640; // match mobile layout
+        const activeList = useCards ? cards : rows;
+        const inactiveList = useCards ? rows : cards;
+
+        const total = activeList.length;
+        const totalPages = total === 0 ? 1 : Math.ceil(total / itemsPerPage);
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        // hide all then show only the active slice
+        rows.forEach(r => r.style.display = "none");
+        cards.forEach(c => c.style.display = "none");
+        activeList.forEach((el, i) => el.style.display = (i >= start && i < end) ? "" : "none");
+
+        // build pagination controls
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        const prev = document.createElement("button");
+        prev.textContent = "Prev";
+        prev.disabled = currentPage === 1 || total === 0;
+        prev.className = "px-3 py-1 text-sm bg-gray-100 rounded disabled:opacity-50";
+        prev.addEventListener("click", () => { if (currentPage > 1) { currentPage--; render(); } });
+        pagination.appendChild(prev);
+
+        for (let i = 1; i <= totalPages; i++) {
+          const b = document.createElement("button");
+          b.textContent = i;
+          b.className = (i === currentPage)
+            ? "px-3 py-1 text-sm bg-indigo-600 text-white rounded"
+            : "px-3 py-1 text-sm bg-white border rounded hover:bg-gray-50";
+          b.addEventListener("click", (() => { const page = i; return () => { currentPage = page; render(); }; })());
+          pagination.appendChild(b);
+        }
+
+        const next = document.createElement("button");
+        next.textContent = "Next";
+        next.disabled = currentPage === totalPages || total === 0;
+        next.className = "px-3 py-1 text-sm bg-gray-100 rounded disabled:opacity-50";
+        next.addEventListener("click", () => { if (currentPage < totalPages) { currentPage++; render(); } });
+        pagination.appendChild(next);
+
+        const showing = document.getElementById("showingText");
+        if (showing) {
+          if (total === 0) showing.textContent = "Showing 0 of 0";
+          else showing.textContent = `Showing ${start + 1} to ${Math.min(end, total)} of ${total}`;
+        }
+      }
+
+      render();
+      // re-render on resize to switch between table/cards
+      window.addEventListener("resize", () => { currentPage = 1; render(); });
+      // optional: if rows/cards can change dynamically via JS, observe and re-render
+      const obsTarget = document.querySelector("table tbody") || document.body;
+      const mo = new MutationObserver(() => { render(); });
+      mo.observe(obsTarget, { childList: true, subtree: true });
+    });
+    function updateNotifBadges(){
+      let count = 0;
+      try{ const u = JSON.parse(localStorage.getItem('nestedUser')); if(u && Number(u.notifications)) count = Number(u.notifications); }catch{}
+      if(!count) count = 3;
+      const sb = document.getElementById('sidebarNotifBadge');
+      const mb = document.getElementById('mobileNotifBadge');
+      if(sb){ sb.textContent = count>99? '99+': count; if(count===0) sb.classList.add('hidden'); else sb.classList.remove('hidden'); }
+      if(mb){ mb.textContent = count>99? '99+': count; if(count===0) mb.classList.add('hidden'); else mb.classList.remove('hidden'); }
+    }
+    updateNotifBadges();
+    window.addEventListener('storage', updateNotifBadges);
+  </script>
+</body>
+</html>
+

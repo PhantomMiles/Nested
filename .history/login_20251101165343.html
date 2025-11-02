@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In | Nested</title>
+  <link href="css/output.css" rel="stylesheet">
+  <link rel="icon" type="img/ico" href="img/favicon.ico">
+</head>
+<body class="min-h-screen bg-center bg-no-repeat bg-cover" style="background-image:url('img/bg.jpg')">
+  <main class="min-h-screen flex items-center justify-center p-6">
+    <form id="loginForm" class="w-full max-w-sm bg-white p-6 rounded-lg shadow">
+      <h2 class="mb-4 text-2xl font-semibold text-[#23248a]">Welcome back</h2>
+
+      <label class="block mb-2 text-sm font-medium">Email</label>
+      <input id="loginEmail" name="email" type="email" required class="w-full px-3 py-2 border rounded mb-3">
+
+      <label class="block mb-2 text-sm font-medium">Password</label>
+      <input id="loginPassword" name="password" type="password" required class="w-full px-3 py-2 border rounded mb-4">
+
+      <div class="flex items-center justify-between">
+        <button type="submit" class="px-4 py-2 bg-[#23248a] text-white rounded">Log in</button>
+        <a href="signup.html" class="text-sm text-indigo-700">Sign up</a>
+      </div>
+    </form>
+  </main>
+
+  <div id="infoModal" class="fixed inset-0 z-50 items-center justify-center hidden"></div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/auth-utils.js"></script>
+  <script>
+    (function(){
+      const form = document.getElementById('loginForm');
+      const emailEl = document.getElementById('loginEmail');
+      const passEl = document.getElementById('loginPassword');
+
+      function fallbackLogin(emailRaw, password) {
+        const email = String((emailRaw||'').trim().toLowerCase());
+        const key = 'user_' + email;
+        const raw = localStorage.getItem(key);
+        if (!raw) return { ok:false, reason:'not_found' };
+        const user = JSON.parse(raw);
+        if (String(user.password||'') !== String(password||'')) return { ok:false, reason:'invalid_password' };
+        localStorage.setItem('loggedInUser', email);
+        // keep nestedProfile in sync
+        localStorage.setItem('nestedProfile', JSON.stringify(user));
+        localStorage.setItem('nestedProfile_lastUpdated', Date.now().toString());
+        return { ok:true, user };
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const email = emailEl.value;
+        const password = passEl.value;
+
+        let result;
+        if (window.authUtils && typeof window.authUtils.login === 'function') {
+          result = window.authUtils.login(email, password);
+        } else {
+          result = fallbackLogin(email, password);
+        }
+
+        if (!result.ok) {
+          const msg = result.reason === 'not_found' ? 'No account found for that email.' :
+                      result.reason === 'invalid_password' ? 'Incorrect password.' :
+                      'Login failed.';
+          if (window.authUtils && typeof window.authUtils.showModalCompat === 'function') {
+            window.authUtils.showModalCompat(msg);
+          } else {
+            alert(msg);
+          }
+          return;
+        }
+
+        // success
+        const onSuccess = function(){
+          // redirect to dashboard (could be role-based later)
+          window.location.href = 'user-dashboard.html';
+        };
+
+        if (window.authUtils && typeof window.authUtils.showModalCompat === 'function') {
+          window.authUtils.showModalCompat('Login successful', { callback: onSuccess });
+        } else if (window.showModal) {
+          window.showModal('Login successful', { callback: onSuccess });
+        } else {
+          alert('Login successful');
+          onSuccess();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

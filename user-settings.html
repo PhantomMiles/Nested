@@ -70,13 +70,13 @@
           <div id="profileContent" class="tab-content">
             <div class="flex flex-col gap-6 mb-6 md:flex-row md:items-center">
               <div class="relative">
-                <img src="img/profile.jpg" alt="Profile Picture" class="object-cover w-20 h-20 border-4 border-gray-200 rounded-full">
+                <img data-user-avatar src="img/profile.jpg" alt="Profile Picture" class="object-cover w-20 h-20 border-4 border-gray-200 rounded-full">
                 <button class="absolute bottom-0 right-0 p-2 text-white rounded-full bg-darkBlue hover:bg-indigo-800" title="Change picture">
                   <i class="text-sm bi bi-camera"></i>
                 </button>
               </div>
               <div class="flex-1">
-                <h3 class="text-xl font-semibold text-gray-900">Amanda Rito</h3>
+                <h3 class="text-xl font-semibold text-gray-900" data-user-name></h3>
                 <p class="text-gray-600">Customer since June 2023</p>
                 <button class="mt-2 text-sm text-indigo-600 hover:text-indigo-800">Change Profile Picture</button>
               </div>
@@ -104,7 +104,7 @@
                 <input name="phone" type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input" placeholder="+234 91 3709 9242">
               </div>
 
-              <div>
+              <div class="">
                 <label class="block mb-2 font-medium text-gray-700">Date of Birth</label>
                 <input name="dob" type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input" placeholder="2003-05-19">
               </div>
@@ -294,7 +294,8 @@
       </div>
     </div>
   </div>
-
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
   <script>
     // tab switching
     function showTab(tabName){

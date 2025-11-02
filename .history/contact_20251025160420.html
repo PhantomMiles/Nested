@@ -140,7 +140,7 @@
             <!-- User Profile (Hidden by default) -->
             <div id="userProfile" class="relative hidden ml-4">
               <button id="profileBtn" class="flex items-center focus:outline-none">
-                <img src="img/user-avatar.png" alt="User Avatar" class="border-2 border-indigo-500 rounded-full w-9 h-9">
+                <img data-user-avatar src="img/user-avatar.png" alt="User Avatar" class="border-2 border-indigo-500 rounded-full w-9 h-9">
               </button>
 
               <!-- Dropdown -->
@@ -229,7 +229,7 @@
   
 
 <section class="max-w-4xl px-6 py-12 mx-auto">
-  <h1 class="mt-8 text-3xl font-semibold text-center text-gray-900">Contact Us</h1>
+  <h1 data-user-name class="mt-8 text-3xl font-semibold text-center text-gray-900">Contact Us</h1>
   <p class="mb-10 text-center text-gray-600">Have a question or need help? We're here to assist you.</p>
 
   <div class="grid gap-8 md:grid-cols-2">
@@ -237,11 +237,11 @@
     <div class="space-y-6">
       <div>
         <h2 class="text-xl font-medium text-gray-800">Email</h2>
-        <p class="text-gray-600">nested@gmail.com</p>
+        <p class="text-gray-600"><span data-user-email>nested@gmail.com</span></p>
       </div>
       <div>
         <h2 class="text-xl font-medium text-gray-800">Phone</h2>
-        <p class="text-gray-600">+234 801-123-4567</p>
+        <p class="text-gray-600"><span data-user-phone>+234 801-123-4567</span></p>
       </div>
       <div>
         <h2 class="text-xl font-medium text-gray-800">Office Hours</h2>

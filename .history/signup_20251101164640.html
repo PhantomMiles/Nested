@@ -1,0 +1,44 @@
+<!-- Replace the form section with this updated version -->
+<form id="signupForm" action="/signup" method="POST" class="space-y-4" onsubmit="return handleSignup(event)">
+  <!-- Add role selection radio buttons -->
+  <div class="mb-4">
+    <p class="mb-2 text-sm font-semibold text-gray-700">Register as:</p>
+    <div class="flex space-x-4">
+      <label class="flex items-center">
+        <input type="radio" name="role" value="user" class="mr-2 text-[#23248a]" checked>
+        <span class="text-sm text-gray-700">User</span>
+      </label>
+      <label class="flex items-center">
+        <input type="radio" name="role" value="realtor" class="mr-2 text-[#23248a]">
+        <span class="text-sm text-gray-700">Realtor</span>
+      </label>
+      <label class="flex items-center">
+        <input type="radio" name="role" value="landlord" class="mr-2 text-[#23248a]">
+        <span class="text-sm text-gray-700">Landlord</span>
+      </label>
+    </div>
+  </div>
+  
+  <!-- Rest of the form remains the same -->
+  <!-- ... -->
+</form>
+
+<script>
+function handleSignup(event) {
+    event.preventDefault();
+    
+    const selectedRole = document.querySelector('input[name="role"]:checked').value;
+    
+    // Define redirect URLs for each role
+    const redirects = {
+        'user': '/user-registration',
+        'realtor': '/realtor-registration',
+        'landlord': '/landlord-registration'
+    };
+    
+    // Redirect to the appropriate page
+    window.location.href = redirects[selectedRole];
+    
+    return false;
+}
+</script>

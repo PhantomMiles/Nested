@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Register | Nested</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="css/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body class="bg-[#f7f8fa] font-sans min-h-screen flex items-center justify-center p-6">
+  <main class="w-full max-w-2xl bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-2xl font-semibold text-[#23248a] mb-4">Create an account</h1>
+
+    <form id="regForm" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">First name</label>
+          <input name="firstName" required class="w-full px-3 py-2 border rounded" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Last name</label>
+          <input name="lastName" required class="w-full px-3 py-2 border rounded" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input name="email" type="email" required class="w-full px-3 py-2 border rounded" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Phone</label>
+          <input name="phone" class="w-full px-3 py-2 border rounded" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Date of birth</label>
+          <input name="dob" type="date" class="w-full px-3 py-2 border rounded" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Address</label>
+        <textarea name="address" rows="2" class="w-full px-3 py-2 border rounded"></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Password</label>
+          <input name="password" type="password" required class="w-full px-3 py-2 border rounded" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Confirm password</label>
+          <input name="confirmPassword" type="password" required class="w-full px-3 py-2 border rounded" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">NIN</label>
+          <input name="nin" class="w-full px-3 py-2 border rounded" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Gender</label>
+          <select name="gender" class="w-full px-3 py-2 border rounded">
+            <option value="">Prefer not to say</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <h3 class="text-sm font-medium mt-2">Payment (optional)</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <input name="bank" placeholder="Bank" class="px-3 py-2 border rounded" />
+        <input name="accountNumber" placeholder="Account number" class="px-3 py-2 border rounded" />
+        <input name="accountName" placeholder="Account name" class="px-3 py-2 border rounded" />
+      </div>
+
+      <div class="flex items-center justify-between gap-4 mt-4">
+        <button type="submit" class="px-5 py-2 bg-[#23248a] text-white rounded">Register & Continue</button>
+        <a href="login.html" class="text-sm text-indigo-700">Already have an account? Log in</a>
+      </div>
+    </form>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // small registration handler that integrates with js/auth.js
+    (function () {
+      const form = document.getElementById('regForm');
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        // basic validation
+        if (!data.email) return alert('Please provide email');
+        if (data.password !== data.confirmPassword) return alert('Passwords do not match');
+
+        // normalize email key
+        const email = data.email.trim().toLowerCase();
+        // build user object expected by auth.js
+        const user = {
+          email,
+          firstName: (data.firstName || '').trim(),
+          lastName: (data.lastName || '').trim(),
+          name: ((data.firstName || '') + ' ' + (data.lastName || '')).trim(),
+          phone: data.phone || '',
+          dob: data.dob || '',
+          address: data.address || '',
+          nin: data.nin || '',
+          gender: data.gender || '',
+          bank: data.bank || '',
+          accountNumber: data.accountNumber || '',
+          accountName: data.accountName || '',
+          password: data.password || '',
+          avatar: data.avatar || '' // optional
+        };
+
+        // save to user_{email} and set as logged in
+        try {
+          localStorage.setItem('user_' + email, JSON.stringify(user));
+          localStorage.setItem('loggedInUser', email);
+
+          // use auth helper to persist nestedProfile and update UI if available
+          if (window.saveLoggedInUserChanges) {
+            window.saveLoggedInUserChanges(user);
+            // show modal via auth.js helper and redirect on OK
+            if (window.showModal) {
+              window.showModal('Registration successful. Redirecting to dashboard...', {
+                title: 'Success',
+                callback: () => { window.location.href = 'user-dashboard.html'; }
+              });
+            } else {
+              alert('Registration successful');
+              window.location.href = 'user-dashboard.html';
+            }
+          } else {
+            // fallback
+            alert('Registration successful');
+            window.location.href = 'user-dashboard.html';
+          }
+        } catch (err) {
+          alert('Failed to save account: ' + (err && err.message));
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

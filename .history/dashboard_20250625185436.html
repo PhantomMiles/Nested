@@ -50,20 +50,20 @@
       <main class="flex-1 p-10 bg-gray-50">
         <!-- Top Bar -->
         <div class="flex items-center justify-between mb-8">
-          <h1 class="text-3xl font-bold text-darkBlue">Dashboard</h1>
+          <h1 data-user-name class="text-3xl font-bold text-darkBlue">Dashboard</h1>
           <div class="flex items-center gap-4">
             <input type="text" placeholder="Search products..." class="px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-200" />
             <button class="relative">
               <i class="fa-solid fa-shopping-cart text-2xl text-indigo-600"></i>
               <span class="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full">2</span>
             </button>
-            <img src="img/user_avatar.png" alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-indigo-500" />
+            <img data-user-avatar src="img/user_avatar.png" alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-indigo-500" />
           </div>
         </div>
 
         <!-- Featured Profile Card as Store Owner -->
         <div class="flex flex-col items-center p-6 mb-6 bg-white rounded-lg shadow md:flex-row md:items-start md:gap-8">
-          <img src="img/user_avatar.png" alt="User Avatar" class="w-24 h-24 mb-4 rounded-full md:mb-0" />
+          <img data-user-avatar src="img/user_avatar.png" alt="User Avatar" class="w-24 h-24 mb-4 rounded-full md:mb-0" />
           <div class="flex-1 text-center md:text-left">
             <h2 class="mb-1 text-xl font-bold">Francis Doe</h2>
             <p class="mb-2 text-gray-500">Store Owner</p>
@@ -162,17 +162,17 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-4 py-2">2024-06-01</td>
+                  <td class="px-4 py-2"><span data-user-phone><span data-user-dob>2024-06-01</span></span></td>
                   <td class="px-4 py-2">Order #1234 placed</td>
                   <td class="px-4 py-2"><span class="px-2 py-1 text-green-700 bg-green-100 rounded">Success</span></td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-2">2024-05-30</td>
+                  <td class="px-4 py-2"><span data-user-phone><span data-user-dob>2024-05-30</span></span></td>
                   <td class="px-4 py-2">Product updated</td>
                   <td class="px-4 py-2"><span class="px-2 py-1 text-blue-700 bg-blue-100 rounded">Updated</span></td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-2">2024-05-28</td>
+                  <td class="px-4 py-2"><span data-user-phone><span data-user-dob>2024-05-28</span></span></td>
                   <td class="px-4 py-2">Inventory uploaded</td>
                   <td class="px-4 py-2"><span class="px-2 py-1 text-yellow-700 bg-yellow-100 rounded">Pending</span></td>
                 </tr>

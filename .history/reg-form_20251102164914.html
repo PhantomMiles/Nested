@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Register | Nested</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="css/output.css" rel="stylesheet">
+  <link rel="icon" type="img/ico" href="img/favicon.ico">
+</head>
+<body style="background-image: url('img/bg.jpg');" class="bg-center bg-no-repeat bg-cover font-sans min-h-screen flex items-center justify-center p-6">
+  <div class="relative flex flex-col items-end justify-center order-2 hidden w-1/2 px-12 md:flex md:order-2">
+    <div class="relative z-10">
+      <div class="flex flex-col items-end">
+        <img src="img/logo.png" alt="Nested Logo" class="mb-4 w-28">
+        <h1 class="max-w-md mb-4 text-5xl font-bold text-right text-white">Hello There!</h1>
+        <p class="max-w-md mb-8 text-lg text-right text-white">
+          Nigeria’s number one platform for real estate and properties, connecting realtors and landlords to clients.
+        </p>
+        <a href="index.html" class="bg-white text-[#0a1e6b] font-semibold px-8 py-3 rounded-lg shadow hover:bg-gray-100 transition">Learn More</a>
+      </div>
+    </div>
+    </div>
+  </div>
+  <main class="w-[500px] max-w-2xl bg-white shadow-md rounded-lg p-6">
+    <h1 id="formTitle" class="text-2xl font-semibold text-[#23248a] mb-4">Create an account</h1>
+
+    <form id="regForm" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">First name</label>
+          <input name="firstName" required class="w-full px-3 py-2 border rounded" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Last name</label>
+          <input name="lastName" required class="w-full px-3 py-2 border rounded" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input name="email" type="email" required class="w-full px-3 py-2 border rounded" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Phone</label>
+          <input name="phone" class="w-full px-3 py-2 border rounded" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Date of birth</label>
+          <input name="dob" type="date" class="w-full px-3 py-2 border rounded" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Address</label>
+        <textarea name="address" rows="2" class="w-full px-3 py-2 border rounded resize-none"></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Password</label>
+          <input name="password" type="password" required class="w-full px-3 py-2 border rounded" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Confirm password</label>
+          <input name="confirmPassword" type="password" required class="w-full px-3 py-2 border rounded" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">NIN</label>
+          <input name="nin" class="w-full px-3 py-2 border rounded" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Gender</label>
+          <select name="gender" class="w-full px-3 py-2 border rounded">
+            <option value="">Prefer not to say</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <h3 class="text-sm font-medium mt-2">Payment (optional)</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <input name="bank" placeholder="Bank" class="px-3 py-2 border rounded" />
+        <input name="accountNumber" placeholder="Account number" class="px-3 py-2 border rounded" />
+        <input name="accountName" placeholder="Account name" class="px-3 py-2 border rounded" />
+      </div>
+
+      <div class="flex items-center justify-between gap-4 mt-4">
+        <button type="submit" class="px-6 py-2 bg-darkBlue text-white rounded">Register & Continue</button>
+        <a href="login.html" class="text-sm text-indigo-700">Already have an account? Log in</a>
+      </div>
+    </form>
+  </main>
+
+  <div id="infoModal" class="fixed inset-0 z-50 items-center justify-center hidden"></div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/auth-utils.js"></script>
+  <script>
+    (function(){
+      const urlParams = new URLSearchParams(window.location.search);
+      const role = urlParams.get('role') || 'user';
+      const title = document.getElementById('formTitle');
+      if (role === 'realtor') title.textContent = 'Realtor Registration';
+      else if (role === 'landlord') title.textContent = 'Landlord Registration';
+      else title.textContent = 'Create an account';
+
+      const form = document.getElementById('regForm');
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        if (data.password !== data.confirmPassword) {
+          if (window.authUtils && window.authUtils.showModalCompat) window.authUtils.showModalCompat('Passwords do not match');
+          else alert('Passwords do not match');
+          return;
+        }
+
+        let res;
+        if (window.authUtils && typeof window.authUtils.register === 'function') {
+          res = window.authUtils.register(data);
+        } else {
+          // fallback registration
+          const email = (data.email||'').trim().toLowerCase();
+          if (!email) { alert('Email required'); return; }
+          if (localStorage.getItem('user_' + email)) { alert('Account exists'); return; }
+          const user = {
+            email, firstName: data.firstName||'', lastName: data.lastName||'', name: ((data.firstName||'') + ' ' + (data.lastName||'')).trim(),
+            phone: data.phone||'', dob: data.dob||'', address: data.address||'', nin: data.nin||'', gender: data.gender||'',
+            bank: data.bank||'', accountNumber: data.accountNumber||'', accountName: data.accountName||'', password: data.password||''
+          };
+          localStorage.setItem('user_' + email, JSON.stringify(user));
+          localStorage.setItem('loggedInUser', email);
+          localStorage.setItem('nestedProfile', JSON.stringify(user));
+          localStorage.setItem('nestedProfile_lastUpdated', Date.now().toString());
+          res = { ok: true, user };
+        }
+
+        if (!res.ok) {
+          const reason = res.reason === 'exists' ? 'An account with that email already exists.' : ('Registration failed: ' + (res.reason||'unknown'));
+          if (window.authUtils && window.authUtils.showModalCompat) window.authUtils.showModalCompat(reason);
+          else alert(reason);
+          return;
+        }
+
+        const redirectMap = {
+          user: 'user-dashboard.html',
+          realtor: 'realtor-dashboard.html',
+          landlord: 'user-dashboard.html'
+        };
+        const redirectTo = redirectMap[role] || 'user-dashboard.html';
+
+        const onOk = () => { window.location.href = redirectTo; };
+        if (window.authUtils && window.authUtils.showModalCompat) {
+          window.authUtils.showModalCompat('Registration successful', { callback: onOk });
+        } else if (window.showModal) {
+          window.showModal('Registration successful', { callback: onOk });
+        } else {
+          alert('Registration successful');
+          onOk();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

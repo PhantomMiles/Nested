@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/output.css">
+  <title>Sign Up | Nested</title>
+  <link rel="icon" type="img/ico" href="img/favicon.ico">
+</head>
+<body style="background-image: url('img/bg.jpg');" class="min-h-screen bg-center bg-no-repeat bg-cover">
+  <div class="flex min-h-screen">
+    <!-- Left: Welcome Section -->
+    <div class="relative flex-col justify-center hidden w-1/2 px-12 md:flex">
+      <div class="absolute inset-0 z-0 opacity-30" style="background-image: url('img/bg-pattern.png'); background-repeat: repeat;"></div>
+      <div class="relative z-10">
+        <div class="flex flex-col items-start">
+          <img src="img/logo.png" alt="Nested Logo" class="mb-4 w-28">
+          <h1 class="mb-4 text-5xl font-bold text-white">Welcome Back!</h1>
+          <p class="max-w-md mb-8 text-lg text-white">
+            Nigeria’s number one platform for real estate and properties, connecting realtors and landlords to clients.
+          </p>
+          <a href="index.html" class="bg-white text-[#0a1e6b] font-semibold px-8 py-3 rounded-lg shadow hover:bg-gray-100 transition">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <!-- Right: Signup Form -->
+    <div class="flex flex-col items-center justify-center w-full md:w-1/2">
+      <div class="w-full max-w-md p-8 bg-white shadow-lg rounded-xl">
+        <h2 class="text-3xl font-bold text-center text-[#23248a] mb-8">Sign Up</h2>
+        <div class="flex justify-center gap-4 mb-6">
+          <button class="p-2 transition border border-gray-200 rounded-lg hover:bg-gray-100">
+            <img src="img/google.svg" alt="Google" class="w-6 h-6">
+          </button>
+          <button class="p-2 transition border border-gray-200 rounded-lg hover:bg-gray-100">
+            <img src="img/apple.svg" alt="Apple" class="w-6 h-6">
+          </button>
+          <button class="p-2 transition border border-gray-200 rounded-lg hover:bg-gray-100">
+            <img src="img/facebook.svg" alt="Facebook" class="w-6 h-6">
+          </button>
+        </div>
+        <div class="flex items-center mb-6">
+          <hr class="flex-grow border-gray-300">
+          <span class="mx-3 text-sm text-gray-400">or continue with email</span>
+          <hr class="flex-grow border-gray-300">
+        </div>
+        <form id="signupForm" action="/signup" method="POST" class="space-y-4" onsubmit="return handleSignup(event)">
+          <!-- Add role selection radio buttons -->
+          <div class="mb-4">
+            <p class="mb-2 text-sm font-semibold text-gray-700">Register as:</p>
+            <div class="flex space-x-4">
+              <label class="flex items-center">
+                <input type="radio" name="role" value="user" class="mr-2 text-[#23248a]" checked>
+                <span class="text-sm text-gray-700">User</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="role" value="realtor" class="mr-2 text-[#23248a]">
+                <span class="text-sm text-gray-700">Realtor</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="role" value="landlord" class="mr-2 text-[#23248a]">
+                <span class="text-sm text-gray-700">Landlord</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full bg-[#23248a] text-white py-2 px-4 rounded-md hover:bg-[#1a1b66] transition-colors">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleSignup(event) {
+      event.preventDefault();
+      
+      const selectedRole = document.querySelector('input[name="role"]:checked').value;
+      
+      // Define redirect URLs for each role
+      const redirects = {
+        'user': 'reg-form.html',
+        'realtor': 'rea',
+        'landlord': '/landlord-registration'
+      };
+      
+      // Redirect to the appropriate page
+      window.location.href = redirects[selectedRole];
+      
+      return false;
+    }
+  </script>
+</body>
+</html>

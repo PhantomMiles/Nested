@@ -1,0 +1,60 @@
+<!-- Replace the form section with this updated version -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-md w-full bg-white rounded-lg shadow-md p-8">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Sign Up</h2>
+    
+    <form id="signupForm" action="/signup" method="POST" class="space-y-4" onsubmit="return handleSignup(event)">
+      <!-- Add role selection radio buttons -->
+      <div class="mb-4">
+        <p class="mb-2 text-sm font-semibold text-gray-700">Register as:</p>
+        <div class="flex space-x-4">
+          <label class="flex items-center">
+            <input type="radio" name="role" value="user" class="mr-2 text-[#23248a]" checked>
+            <span class="text-sm text-gray-700">User</span>
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="role" value="realtor" class="mr-2 text-[#23248a]">
+            <span class="text-sm text-gray-700">Realtor</span>
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="role" value="landlord" class="mr-2 text-[#23248a]">
+            <span class="text-sm text-gray-700">Landlord</span>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="w-full bg-[#23248a] text-white py-2 px-4 rounded-md hover:bg-[#1a1b66] transition-colors">
+        Continue
+      </button>
+    </form>
+  </div>
+
+  <script>
+    function handleSignup(event) {
+      event.preventDefault();
+      
+      const selectedRole = document.querySelector('input[name="role"]:checked').value;
+      
+      // Define redirect URLs for each role
+      const redirects = {
+        'user': '/user-registration',
+        'realtor': '/realtor-registration',
+        'landlord': '/landlord-registration'
+      };
+      
+      // Redirect to the appropriate page
+      window.location.href = redirects[selectedRole];
+      
+      return false;
+    }
+  </script>
+</body>
+</html>

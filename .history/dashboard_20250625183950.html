@@ -48,11 +48,11 @@
 
       <!-- Main Content -->
       <main class="flex-1 p-10">
-        <h1 class="text-3xl font-semibold">Profile</h1>
+        <h1 data-user-name class="text-3xl font-semibold">Profile</h1>
         <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-3">
           <!-- Profile Card -->
           <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow">
-            <img src="img/user_avatar.png" alt="User Avatar" class="w-24 h-24 mb-4 rounded-full">
+            <img data-user-avatar src="img/user_avatar.png" alt="User Avatar" class="w-24 h-24 mb-4 rounded-full">
             <h2 class="mb-1 text-xl font-bold">Francis Doe</h2>
             <p class="mb-4 text-gray-500">UI/UX Designer</p>
             <button class="px-4 py-2 text-white transition bg-indigo-600 rounded hover:bg-indigo-700">Edit Profile</button>
@@ -112,17 +112,17 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-4 py-2">2024-06-01</td>
+                  <td class="px-4 py-2"><span data-user-phone><span data-user-dob>2024-06-01</span></span></td>
                   <td class="px-4 py-2">Logged in</td>
                   <td class="px-4 py-2"><span class="px-2 py-1 text-green-700 bg-green-100 rounded">Success</span></td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-2">2024-05-30</td>
+                  <td class="px-4 py-2"><span data-user-phone><span data-user-dob>2024-05-30</span></span></td>
                   <td class="px-4 py-2">Changed password</td>
                   <td class="px-4 py-2"><span class="px-2 py-1 text-blue-700 bg-blue-100 rounded">Updated</span></td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-2">2024-05-28</td>
+                  <td class="px-4 py-2"><span data-user-phone><span data-user-dob>2024-05-28</span></span></td>
                   <td class="px-4 py-2">Uploaded document</td>
                   <td class="px-4 py-2"><span class="px-2 py-1 text-yellow-700 bg-yellow-100 rounded">Pending</span></td>
                 </tr>
