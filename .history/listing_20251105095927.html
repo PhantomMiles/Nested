@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/output.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+<style>
+  /* --- Mobile nav stays fixed above everything --- */
+    #navbar-mobile,
+    #menu-overlay {
+      position: fixed !important;
+      top: 0;
+      right: 0;
+      z-index: 9999 !important;
+    }
+
+    /* Overlay dim (optional; keeps scroll visible but adds depth) */
+    #menu-overlay {
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(2px);
+      pointer-events: none; /* allows background scroll */
+    }
+
+    /* Mobile menu panel */
+    #navbar-mobile {
+      height: 100vh;
+      width: 16rem; /* adjust width as you like */
+      background: linear-gradient(135deg, #00008B, #1e3a8a, #134e4a);
+      color: #fff;
+      transform: translateX(100%);
+      transition: transform 0.4s ease-in-out;
+      overflow-y: auto;
+      box-shadow: -4px 0 25px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Open state */
+    #navbar-mobile.active {
+      transform: translateX(0);
+    }
+
+    /* Prevent parallax stacking issues */
+    section.bg-fixed {
+      position: relative;
+      z-index: 0;
+    }
+
+    /* Keep main header fixed */
+    #myHeader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1001;
+    }
+  </style>
+
+</head>
+<body class="overflow-x-hidden text-gray-800 bg-gray-50">
+
+  <nav id="myHeader" class="top-0 left-0 z-[9999] w-full bg-indigo-900 text-white shadow-md lg:fixed">
+  <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between w-full">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center">
+        <img class="w-16 h-16" src="img/logo.png" alt="Logo">
+      </a>
+      <button id="mobile-menu-toggle" type="button" class="inline-flex items-center p-2 text-sm text-indigo-400 rounded-lg lg:hidden hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-white">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" cip-rule="evenodd"></path>
+        </svg>
+      </button>
+      <!-- Desktop Menu (md and up) -->
+        <div class="hidden w-full lg:flex lg:pl-11 max-lg:py-4" id="navbar">
+          <ul class="flex flex-col mt-4 lg:items-center max-lg:gap-4 lg:mt-0 lg:flex-row max-lg:mb-4">
+            <li>
+              <a href="index.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Home
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                About us
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+
+             <li>
+                <a href="listing.html"
+               class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Listings
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue w-full"></span>
+                </a>
+                </li>
+
+            <li>
+              <a href="contact.html"
+                class="relative block mb-2 text-base font-medium text-white transition-all duration-500 lg:text-base lg:mr-6 md:mb-0 lg:text-left group">
+                Contact
+                <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          </ul>
+          <div class="flex flex-col justify-start lg:items-center lg:flex-row lg:gap-4 lg:flex-1 lg:justify-end">
+            <a href="login.html" id="loginLink"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer">
+              Login
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="signup.html" id="signupLink"
+              class="relative px-3 py-1 overflow-hidden text-sm font-semibold text-center text-white transition-all duration-500 shadow-xs cursor-pointer">
+              Sign Up              
+              <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primeBlue transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <!-- User Profile (Hidden by default) -->
+            <div id="userProfile" class="relative hidden ml-4">
+              <button id="profileBtn" class="flex items-center focus:outline-none">
+                <img data-user-avatar src="img/user-avatar.png" alt="User Avatar" class="border-2 border-indigo-500 rounded-full w-9 h-9">
+                <span id="profileUserName" class="ml-2 font-semibold text-white"></span>
+                <i class='text-xl text-white bx bx-chevron-down'></i>
+              </button>
+
+              <!-- Dropdown -->
+              <div id="profileDropdown" class="absolute right-0 z-50 hidden w-48 mt-2 transition-all duration-200 ease-in-out bg-white border border-gray-100 rounded-lg shadow-lg">
+                <a href="user-dashboard.html" class="block px-4 py-2 text-indigo-700 text-md hover:bg-indigo-100"><i class='text-md bx bx-user-circle'></i> Profile</a>
+                <a href="user-notifications.html" class="block px-4 py-2 text-indigo-700 text-md hover:bg-indigo-100"><i class='text-md bx bx-bell'></i> Notifications</a>
+                <a href="user-settings.html" class="block px-4 py-2 text-indigo-700 text-md hover:bg-indigo-100"><i class='text-md bx bx-cog'></i> Settings</a>
+                <a href="#" id="logoutLink" class="block px-4 py-2 text-red-600 text-md hover:bg-red-100"><i class='text-md bx bx-log-out'></i> Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="navbar-mobile" class="fixed top-0 right-0 z-[1000] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-darkblue via-indigo-900 to-teal-900 shadow-2xl backdrop-blur-md lg:hidden">
+         <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-2xl text-white transition hover:text-red-400">
+              <i class='bx bx-x'></i>
+            </button>
+          </div>
+
+          <ul class="flex flex-col gap-2 px-6 py-3 text-white">
+            <li><div id="navbar-mobile" class="fixed top-0 right-0 z-[1000] w-64 h-full transform translate-x-full transition-transform duration-500 bg-gradient-to-br from-darkBlue via-indigo-900 to-teal-900 shadow-2xl backdrop-blur-md lg:hidden">
+         <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-2xl text-white transition hover:text-red-400">
+              <i class='bx bx-x'></i>
+            </button>
+          </div>
+          <div id="mobileUserInfo" class="hidden mb-4 space-y-2 text-center text-white">
+            <img data-user-avatar src="img/user-avatar.png" alt="User Avatar" class="w-16 h-16 mx-auto border-2 border-indigo-400 rounded-full">
+            <p id="mobileUserName" class="text-base font-semibold"></p>
+          </div>            
+          <div class="h-px my-8 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+          <ul class="flex flex-col gap-2 px-6 py-3 text-white">
+            <li>
+              <a href="index.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-home'></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-info-circle'></i>
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="listing.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-building-house'></i>
+                Listings
+              </a>
+            </li>
+            <li>
+              <a href="contact.html" class="flex items-center px-6 py-4 text-white transition-all duration-300 menu-item rounded-2xl prism-effect">
+                <i class='text-xl bx bx-phone'></i>
+                Contact
+              </a>
+            </li>
+
+            <div class="h-px my-8 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+            <li id="mobileAuthLinks">
+              <div class="flex flex-col items-center w-full gap-4">
+                <a href="login.html"
+                  id="mobileLogin"
+                  class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 border-2 menu-item border-indigo-400/50 rounded-2xl backdrop-filter backdrop-blur-lg hover:border-indigo-400 hover:bg-indigo-500/20">
+                  <i class='text-xl bx bx-log-in'></i> Login
+                </a>
+                <a href="signup.html"
+                  id="mobileSignup"
+                  class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 border-2 prism-effect menu-item border-indigo-400/50 rounded-2xl backdrop-filter backdrop-blur-lg hover:border-indigo-400 hover:bg-indigo-500/20">
+                  <i class='text-xl bx bx-user-plus'></i> Sign Up
+                </a>
+              </div>
+            </li>
+            <li id="mobileProfileLinks" class="hidden">
+              <div class="flex flex-col items-center w-full gap-4">
+                <a href="user-dashboard.html"
+                  class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 border-2 prism-effect menu-item border-indigo-400/50 rounded-2xl backdrop-filter backdrop-blur-lg hover:border-indigo-400 hover:bg-indigo-500/20">
+                  <i class='text-xl bx bx-user'></i> Profile
+                </a>
+                <a href="user-notifications.html"
+                  class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 border-2 prism-effect menu-item border-indigo-400/50 rounded-2xl backdrop-filter backdrop-blur-lg hover:border-indigo-400 hover:bg-indigo-500/20">
+                  <i class='text-xl bx bx-bell'></i> Notifications
+                </a>
+                <a href="user-settings.html"
+                  class="flex items-center justify-center px-6 py-4 text-white transition-all duration-300 border-2 prism-effect menu-item border-indigo-400/50 rounded-2xl backdrop-filter backdrop-blur-lg hover:border-indigo-400 hover:bg-indigo-500/20">
+                  <i class='text-xl bx bx-cog'></i> Settings
+                </a>
+                <a href="#" id="mobileLogout"
+                  class="flex items-center justify-center px-6 py-4 text-red-400 transition-all duration-300 border-2 menu-item border-red-400/50 rounded-2xl backdrop-filter backdrop-blur-lg hover:border-red-400 hover:bg-red-500/20">
+                  <i class='text-xl bx bx-log-out'></i> Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+          <div class="pt-6 mt-12 border-t border-white/10">
+            <p class="text-sm text-center text-indigo-200/70">© 2024 Nested. All rights reserved.</p>
+            <div class="flex justify-center mt-4 space-x-6">
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                </svg>
+              </a>
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-5 h-5 bi bi-facebook" viewBox="0 0 16 16">
+                  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                </svg>
+
+              </a>
+              <a href="#" class="text-indigo-300 transition-colors hover:text-white">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378 0 0-.599 2.282-.744 2.840-.282 1.084-1.064 2.456-1.549 3.235C9.584 23.815 10.77 24.001 12.017 24.001c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+     
+    </div>
+  </div>
+</nav>
+  <section class="p-6 pt-16 mx-auto sm:pt-20 md:pt-24 lg:pt-28 max-w-7xl">
+
+
+    
+    <div class="flex flex-col items-start justify-between gap-4 mb-6 md:flex-row md:items-center">
+      <div>
+        <h1 data-user-name class="text-3xl font-bold">Explore House Listings</h1>
+        <p class="text-gray-600">Browse through our selection of available properties</p>
+      </div>
+      <div class="w-full md:w-1/3">
+        <input id="searchInput" type="text" placeholder="Search by city, price, or features..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+      </div>
+    </div>
+
+    
+    <div class="flex flex-wrap gap-4 mb-6">
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Price Range</option>
+        <option>₦0 - ₦250,000</option>
+        <option>₦250,000 - ₦500,000</option>
+        <option>₦500,000+</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Size</option>
+        <option>1-2 bedrooms</option>
+        <option>3-4 bedrooms</option>
+        <option>5+ bedrooms</option>
+      </select>
+      
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Brand</option>
+        <option>Luxury Homes</option>
+        <option>Family Homes</option>
+        <option>Starter Homes</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Customer Ratings</option>
+        <option>4 stars & up</option>
+        <option>3 stars & up</option>
+        <option>All ratings</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Availability</option>
+        <option>Vacant</option>
+        <option>Occupied</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg">
+        <option>Sort By</option>
+        <option>New Vacancies</option>
+        <option>Best Sellers</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+      </select>
+    </div>
+
+    
+    <div id="listingsContainer" class="grid gap-6 mb-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+
+  <!-- 1 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/duplex-enugu-1.jpg" alt="Luxury Duplex Ind. Layout" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-600 rounded-full top-4 right-4">New</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">6-Bedroom Luxury Duplex</h2>
+        <p class="mt-2 text-gray-600">Independence Layout, Enugu</p>
+        <div class="flex gap-4 mt-4"><span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bed'></i>6 beds</span><span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bath'></i>6 baths</span><span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-area'></i>7,000 sq.ft</span></div>
+        <p class="mt-4 text-gray-600">High-end finishes, pool, landscaped garden, private garage.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦320,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Luxury Collection</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.9 (82 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/apartment-trans-ekulu-2.jpg" alt="3-Bedroom Trans-Ekulu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-blue-600 rounded-full top-4 right-4">Featured</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">3-Bedroom Serviced Apartment</h2>
+        <p class="mt-2 text-gray-600">Trans-Ekulu, Enugu East</p>
+        <div class="flex gap-4 mt-4"><span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bed'></i>3 beds</span><span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-bath'></i>2 baths</span><span class="flex items-center text-gray-700"><i class='mr-2 text-lg bx bx-area'></i>2,300 sq.ft</span></div>
+        <p class="mt-4 text-gray-600">Serviced estate with standby generator and gated security.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦48,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Urban Living</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.6 (41 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/self-contain-newhaven-3.jpg" alt="Self Contain New Haven" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-teal-500 rounded-full top-4 right-4">Affordable</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Self-Contain Room</h2>
+        <p class="mt-2 text-gray-600">New Haven, Enugu North</p>
+        <p class="mt-4 text-gray-600">Tiled room, modern bathroom, prepaid meter, 24-hour water.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦650,000 / year</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Budget Collection</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.4 (36 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/student-lodge-nsukka-4.jpg" alt="Student Lodge UNN" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-yellow-500 rounded-full top-4 right-4">Student</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Student Lodge (8 Units)</h2>
+        <p class="mt-2 text-gray-600">UNN area, Nsukka</p>
+        <p class="mt-4 text-gray-600">En-suite rooms, shared kitchen, close to lecture halls and eateries.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦28,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Rental Yield</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.2 (18 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/bungalow-awkunanaw-5.jpg" alt="Bungalow Awkunanaw" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-yellow-500 rounded-full top-4 right-4">Popular</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">4-Bedroom Bungalow</h2>
+        <p class="mt-2 text-gray-600">Awkunanaw, Enugu South</p>
+        <p class="mt-4 text-gray-600">Single-storey family home, compound space and good road access.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦72,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Family Collection</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.7 (29 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/office-ogui-6.jpg" alt="Office Complex Ogui" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-orange-500 rounded-full top-4 right-4">Commercial</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Office Complex (3 Floors)</h2>
+        <p class="mt-2 text-gray-600">Ogui Road, Enugu</p>
+        <p class="mt-4 text-gray-600">Open-plan floors, parking, backup power, ideal for SMEs and consultancies.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦160,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Business Zone</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.7 (24 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/warehouse-emene-7.jpg" alt="Warehouse Emene" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-gray-700 rounded-full top-4 right-4">Industrial</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Warehouse (2,500 sq.ft)</h2>
+        <p class="mt-2 text-gray-600">Emene Industrial Layout</p>
+        <p class="mt-4 text-gray-600">Truck access, fenced yard, CCTV, ideal for logistics and storage.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦95,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Industrial Zone</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.5 (14 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/land-thinkers-8.jpg" alt="Land Thinkers Corner" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-700 rounded-full top-4 right-4">Land</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">1 Plot of Land (Fenced)</h2>
+        <p class="mt-2 text-gray-600">Thinkers Corner, Enugu</p>
+        <p class="mt-4 text-gray-600">Dry land with Certificate of Occupancy, suitable for building a duplex.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦20,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Land Listings</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.8 (33 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/plaza-abakpa-9.jpg" alt="Plaza Abakpa" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full top-4 right-4">Commercial</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Shopping Plaza (12 Units)</h2>
+        <p class="mt-2 text-gray-600">Abakpa Nike, Enugu East</p>
+        <p class="mt-4 text-gray-600">High footfall location, good for retail, salon, pharmacy and eateries.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦72,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Retail Space</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.4 (27 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/annex-duplex-indlayout-10.jpg" alt="Annex Duplex Independence Layout" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-indigo-500 rounded-full top-4 right-4">New</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">4-Bedroom Modern Duplex</h2>
+        <p class="mt-2 text-gray-600">Independence Layout, Enugu</p>
+        <p class="mt-4 text-gray-600">Modern finishes, fitted kitchen, tiled floors, ensuite master.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦95,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Property Highlight</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.6 (21 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/mini-estate-11.jpg" alt="Mini Estate Emene" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-600 rounded-full top-4 right-4">Estate</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Mini Estate (6 Units)</h2>
+        <p class="mt-2 text-gray-600">Emene, Enugu</p>
+        <p class="mt-4 text-gray-600">Gated community, paved roads, communal generator and borehole.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦140,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Development</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.5 (17 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/short-let-12.jpg" alt="Short Let Enugu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-orange-500 rounded-full top-4 right-4">Short-Let</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Furnished Short-Let Apartment</h2>
+        <p class="mt-2 text-gray-600">GRA Extension, Enugu</p>
+        <p class="mt-4 text-gray-600">Fully-furnished, ideal for visiting professionals and travellers.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦45,000 / night</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">Book Now</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Guest Ready</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.8 (61 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/duplex-new-design-13.jpg" alt="New Duplex New Haven" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-indigo-500 rounded-full top-4 right-4">Featured</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Contemporary 5-Bed Duplex</h2>
+        <p class="mt-2 text-gray-600">New Haven, Enugu North</p>
+        <p class="mt-4 text-gray-600">Contemporary layout, fitted wardrobes, security gate and lawn.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦155,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Modern Homes</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.6 (34 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/plot-enugu-14.jpg" alt="Plot Enugu-Udi Road" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-700 rounded-full top-4 right-4">Land</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">5 Plots of Land</h2>
+        <p class="mt-2 text-gray-600">Enugu-Udi Road</p>
+        <p class="mt-4 text-gray-600">Bulk sale, suitable for estate developers, good road frontage.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦70,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Investment</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.5 (12 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/hotel-15.jpg" alt="Boutique Hotel Enugu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-orange-500 rounded-full top-4 right-4">Commercial</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Boutique Hotel</h2>
+        <p class="mt-2 text-gray-600">GRA, Enugu</p>
+        <p class="mt-4 text-gray-600">12 ensuite rooms, restaurant space, established clientele.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦95,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Hospitality</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.6 (22 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 16 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/serviced-office-16.jpg" alt="Co-working Enugu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-blue-600 rounded-full top-4 right-4">Co-Work</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Co-working Space</h2>
+        <p class="mt-2 text-gray-600">G.R.A. Extension, Enugu</p>
+        <p class="mt-4 text-gray-600">Shared desks, private booths and meeting rooms with internet & power backup.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦18,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>SME Friendly</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.3 (10 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 17 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/duplex-trans-ekulu-17.jpg" alt="Duplex Trans-Ekulu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-indigo-500 rounded-full top-4 right-4">Hot</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">5-Bedroom Duplex</h2>
+        <p class="mt-2 text-gray-600">Trans-Ekulu, Enugu East</p>
+        <p class="mt-4 text-gray-600">Spacious living areas, servants quarters and fenced compound.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦120,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Family Home</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.6 (27 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 18 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/condo-thinkers-18.jpg" alt="Condo Thinkers Corner" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full top-4 right-4">Featured</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">2-Bedroom Condo</h2>
+        <p class="mt-2 text-gray-600">Thinkers Corner, Enugu</p>
+        <p class="mt-4 text-gray-600">Secure apartment block, modern kitchen and parking slot.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦32,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Urban Comfort</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.5 (20 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 19 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/land-udeme-19.jpg" alt="Plot Udi" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-700 rounded-full top-4 right-4">Land</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">2 Plots (Bulk Sale)</h2>
+        <p class="mt-2 text-gray-600">Udi Road, outskirts of Enugu</p>
+        <p class="mt-4 text-gray-600">Investment opportunity, good for residential development.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦25,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Growth Area</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.2 (9 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 20 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/compact-studio-20.jpg" alt="Studio GRA" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-indigo-500 rounded-full top-4 right-4">Studio</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Compact Studio</h2>
+        <p class="mt-2 text-gray-600">GRA, Enugu</p>
+        <p class="mt-4 text-gray-600">Perfect for singles, close to amenities and transit routes.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦18,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>City Living</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.1 (11 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 21 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/office-abakpa-21.jpg" alt="Office Abakpa" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-orange-500 rounded-full top-4 right-4">Commercial</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Ground-Floor Office Units</h2>
+        <p class="mt-2 text-gray-600">Abakpa, Enugu East</p>
+        <p class="mt-4 text-gray-600">Multiple office units for lease or purchase; high visibility.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦42,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Leasing</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.3 (13 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 22 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/walkup-apartment-22.jpg" alt="Walkup Apartment Enugu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-teal-500 rounded-full top-4 right-4">Affordable</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">2-Bedroom Walkup</h2>
+        <p class="mt-2 text-gray-600">Ogui, Enugu</p>
+        <p class="mt-4 text-gray-600">Low-rise apartment with nearby markets and transport links.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦22,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Budget Homes</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.0 (8 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 23 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/shopfront-23.jpg" alt="Retail Shop Enugu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full top-4 right-4">Retail</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Retail Shop Unit</h2>
+        <p class="mt-2 text-gray-600">Ogbete Main Market, Enugu</p>
+        <p class="mt-4 text-gray-600">High foot traffic, ideal for kiosks, fashion retail or food stall.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦9,500,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Market Spot</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.1 (19 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/guest-house-24.jpg" alt="Guest House Enugu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-orange-500 rounded-full top-4 right-4">Commercial</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">3-Room Guest House</h2>
+        <p class="mt-2 text-gray-600">New Haven, Enugu</p>
+        <p class="mt-4 text-gray-600">Guest house with simple accommodation and breakfast area.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦28,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Small Scale</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.2 (15 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 25 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/land-25.jpg" alt="Farmland Enugu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-700 rounded-full top-4 right-4">Farm</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">10 Acres Farmland</h2>
+        <p class="mt-2 text-gray-600">Along Enugu—Nsukka Road</p>
+        <p class="mt-4 text-gray-600">Fertile land for cash crops or poultry, with water source nearby.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦55,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Agriculture</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.0 (7 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 26 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/industrial-26.jpg" alt="Industrial Land Emene" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-gray-700 rounded-full top-4 right-4">Industrial</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Industrial Plot</h2>
+        <p class="mt-2 text-gray-600">Emene Industrial Zone</p>
+        <p class="mt-4 text-gray-600">Large plot suitable for factory or warehouse development.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦125,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Heavy Use</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.3 (8 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 27 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/serviced-land-27.jpg" alt="Serviced Plots Enugu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-600 rounded-full top-4 right-4">Serviced</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Serviced Plots (3 Available)</h2>
+        <p class="mt-2 text-gray-600">Thinkers Corner Extension</p>
+        <p class="mt-4 text-gray-600">Paved roads, drains, and electricity access; ready for building.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦12,500,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Ready Plots</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.7 (14 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 28 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/mini-warehouse-28.jpg" alt="Mini Warehouse" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-gray-700 rounded-full top-4 right-4">Industrial</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Mini Warehouse (1,200 sq.ft)</h2>
+        <p class="mt-2 text-gray-600">Emene, Enugu</p>
+        <p class="mt-4 text-gray-600">Secure unit for SMEs and e-commerce businesses.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦28,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Logistics</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.1 (6 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 29 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/guest-apartment-29.jpg" alt="Guest Apt Nsukka" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-orange-500 rounded-full top-4 right-4">Guest</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">2-Bed Guest Apartment</h2>
+        <p class="mt-2 text-gray-600">Nsukka Town</p>
+        <p class="mt-4 text-gray-600">Short-let friendly, near markets and transport hubs.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦32,000 / night</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">Book</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Tourist</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.6 (44 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 30 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/retail-30.jpg" alt="Retail Complex" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full top-4 right-4">Retail</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Retail Complex (20 Units)</h2>
+        <p class="mt-2 text-gray-600">GRA Boulevard, Enugu</p>
+        <p class="mt-4 text-gray-600">Anchor tenants possible, secure compound and parking.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦250,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Prime Site</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.8 (38 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 31 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/plot-thinkers-31.jpg" alt="Plot Thinkers Corner" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-700 rounded-full top-4 right-4">Plot</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Single Plot (Serviced)</h2>
+        <p class="mt-2 text-gray-600">Thinkers Corner Extension</p>
+        <p class="mt-4 text-gray-600">Good neighbourhood, ideal for family home project.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦10,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Entry Buy</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.1 (6 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 32 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/mini-estate-32.jpg" alt="Mini Estate Nsukka" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-600 rounded-full top-4 right-4">Estate</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Mini Estate (12 Plots)</h2>
+        <p class="mt-2 text-gray-600">Nsukka Perimeter</p>
+        <p class="mt-4 text-gray-600">Gated mini-estate with provisions for utilities and roads.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦95,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Developer Pack</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.4 (11 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 33 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/land-33.jpg" alt="Riparian Land" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-700 rounded-full top-4 right-4">Land</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Hilltop Plot</h2>
+        <p class="mt-2 text-gray-600">Near New Haven Hills</p>
+        <p class="mt-4 text-gray-600">Scenic view, great for a luxury build or guesthouse.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦35,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Scenic</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.3 (9 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 34 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/duplex-34.jpg" alt="Duplex Awkunanaw" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-indigo-500 rounded-full top-4 right-4">Hot</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Modern 4-Bed Duplex</h2>
+        <p class="mt-2 text-gray-600">Awkunanaw, Enugu South</p>
+        <p class="mt-4 text-gray-600">Contemporary interior, garage, and small garden.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦82,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Family</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.5 (26 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 35 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/apartment-35.jpg" alt="Apartment Ogui" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-blue-600 rounded-full top-4 right-4">Urban</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">4-Bedroom Apartment (Duplex Unit)</h2>
+        <p class="mt-2 text-gray-600">Ogui, Enugu</p>
+        <p class="mt-4 text-gray-600">Large family apartment with balcony and parking.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦78,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View Details</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Comfort</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.6 (30 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 36 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/land-36.jpg" alt="Bulk Land" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-700 rounded-full top-4 right-4">Bulk</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">20 Plots - Estate Project</h2>
+        <p class="mt-2 text-gray-600">Along Enugu—Abakaliki Road</p>
+        <p class="mt-4 text-gray-600">Great for larger estate projects and investors.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦350,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">Enquire</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Development Ready</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.7 (8 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 37 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/new-project-37.jpg" alt="New Project Enugu" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-indigo-500 rounded-full top-4 right-4">Project</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Upcoming Residential Project</h2>
+        <p class="mt-2 text-gray-600">Uwani—Enugu Corridor</p>
+        <p class="mt-4 text-gray-600">Pre-launch prices; modern layouts and amenities planned.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">From ₦8,000,000 / plot</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">Register Interest</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Prelaunch</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.2 (5 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 38 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/serviced-apartment-38.jpg" alt="Serviced Apt Emene" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-blue-600 rounded-full top-4 right-4">Serviced</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">1-Bed Serviced Apartment</h2>
+        <p class="mt-2 text-gray-600">Emene, Enugu</p>
+        <p class="mt-4 text-gray-600">Ideal for professionals and short stays; utilities included.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦120,000 / month</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">Enquire</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Letting</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.5 (39 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 39 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/duplex-39.jpg" alt="Luxury Duplex GRA" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-600 rounded-full top-4 right-4">Luxury</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Executive 6-Bed Duplex</h2>
+        <p class="mt-2 text-gray-600">GRA, Enugu</p>
+        <p class="mt-4 text-gray-600">Premium fixtures, secure estate and private compound.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦285,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Executive</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.9 (47 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 40 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/retail-40.jpg" alt="Retail Unit GRA" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full top-4 right-4">Retail</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Prime Retail Unit</h2>
+        <p class="mt-2 text-gray-600">GRA Shopping Strip, Enugu</p>
+        <p class="mt-4 text-gray-600">High-end retail frontage, ideal for boutique or cafe.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦85,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Premium</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.6 (21 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 41 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/land-41.jpg" alt="Corner Plot" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-700 rounded-full top-4 right-4">Plot</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Corner Plot (Good Road)</h2>
+        <p class="mt-2 text-gray-600">Uwani, Enugu</p>
+        <p class="mt-4 text-gray-600">Prominent corner plot with established neighbours and road access.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦15,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">Enquire</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Prime Plot</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.2 (7 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 42 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/renovated-42.jpg" alt="Renovated Townhouse" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-gray-700 rounded-full top-4 right-4">Renovated</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Renovated Townhouse</h2>
+        <p class="mt-2 text-gray-600">Old GRA, Enugu</p>
+        <p class="mt-4 text-gray-600">Classic style with modern upgrades, walkable neighbourhood.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦68,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Heritage</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.7 (20 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 43 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/compact-43.jpg" alt="Compact Home" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-teal-500 rounded-full top-4 right-4">Compact</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">3-Bedroom Terrace</h2>
+        <p class="mt-2 text-gray-600">Abakpa, Enugu</p>
+        <p class="mt-4 text-gray-600">Affordable terrace with fenced compound and good neighbours.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦36,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">View</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Neighborhood</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.3 (12 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 44 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/land-44.jpg" alt="Estate Land" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-green-700 rounded-full top-4 right-4">Land</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Estate Parcel (8 Plots)</h2>
+        <p class="mt-2 text-gray-600">Along Abakaliki Road</p>
+        <p class="mt-4 text-gray-600">Serviced with road layout and drainage; ideal for gated estate.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦160,000,000</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">Contact</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Estate Pack</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.5 (10 reviews)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 45 -->
+  <div class="flex flex-col overflow-hidden transition-transform duration-300 bg-white shadow-lg listing-item rounded-2xl hover:-translate-y-1">
+    <div class="relative"><img src="./img/short-let-45.jpg" alt="Luxury Short Let" class="object-cover w-full h-56"><span class="absolute px-3 py-1 text-sm font-semibold text-white bg-indigo-500 rounded-full top-4 right-4">Short-Let</span></div>
+    <div class="flex flex-col justify-between p-6">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Luxury Short-Let Penthouse</h2>
+        <p class="mt-2 text-gray-600">Skyview, Enugu</p>
+        <p class="mt-4 text-gray-600">Top-floor penthouse with terrace and city views — fully serviced.</p>
+      </div>
+      <div class="flex items-center justify-between mt-6"><div class="text-2xl font-bold text-indigo-600">₦120,000 / night</div><button class="px-6 py-2 text-sm font-semibold text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700">Book</button></div>
+      <div class="flex items-center justify-between mt-4 text-sm text-gray-500"><span>Exclusive</span><div class="flex items-center"><i class='text-yellow-400 bx bxs-star'></i><span class="ml-1">4.9 (72 reviews)</span></div></div>
+    </div>
+  </div>
+
+</div>
+
+
+    <!-- Pagination -->
+    <div id="pagination" class="flex items-center justify-center gap-2 mt-8">
+      <button id="prevPage" class="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">Prev</button>
+      <span id="pageNumbers" class="flex gap-2"></span>
+      <button id="nextPage" class="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">Next</button>
+    </div>
+
+
+     
+  </section>
+  <footer class="py-10 text-indigo-100 bg-indigo-900">
+    <div class="flex flex-col items-center justify-between px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex-row">
+      <div class="flex items-center mb-6 md:mb-0">
+        <img src="img/logo.png" alt="Logo" class="w-20 mr-3">
+        <span class="text-xl font-bold">Nested</span>
+      </div>
+      <div class="flex mb-6 space-x-6 md:mb-0">
+        <a href="#" class="transition hover:text-teal-400">Home</a>
+        <a href="#" class="transition hover:text-teal-400">About</a>
+        <a href="#" class="transition hover:text-teal-400">Products</a>
+        <a href="#" class="transition hover:text-teal-400">Contact</a>
+      </div>
+      <div class="text-sm text-indigo-200">&copy; 2024 Nested. All rights reserved.</div>
+    </div>
+  </footer>
+<script> 
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const closeBtn = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('navbar-mobile');
+
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+  });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const listingItems = document.querySelectorAll(".listing-item");
+  const paginationEl = document.getElementById("pagination");
+
+  // Responsive itemsPerPage
+  function getItemsPerPage() {
+    if (window.innerWidth < 640) return 9;   // mobile
+    if (window.innerWidth < 1024) return 12; // tablet
+    return 15;                               // desktop
+  }
+
+  let itemsPerPage = getItemsPerPage();
+  let currentPage = 1;
+
+  function showPage(page) {
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+
+    listingItems.forEach((item, index) => {
+      item.style.display = (index >= start && index < end) ? "block" : "none";
+    });
+
+    renderPagination();
+  }
+
+  function renderPagination() {
+    const totalPages = Math.ceil(listingItems.length / itemsPerPage);
+    paginationEl.innerHTML = "";
+
+    const prevBtn = document.createElement("button");
+    prevBtn.textContent = "Prev";
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.className = "px-3 py-1 border rounded disabled:opacity-50";
+    prevBtn.onclick = () => {
+      currentPage--;
+      showPage(currentPage);
+    };
+    paginationEl.appendChild(prevBtn);
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      btn.className = `px-3 py-1 border rounded ₦{i === currentPage ? "bg-blue-600 text-white" : ""}`;
+      btn.onclick = () => {
+        currentPage = i;
+        showPage(currentPage);
+      };
+      paginationEl.appendChild(btn);
+    }
+
+    const nextBtn = document.createElement("button");
+    nextBtn.textContent = "Next";
+    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.className = "px-3 py-1 border rounded disabled:opacity-50";
+    nextBtn.onclick = () => {
+      currentPage++;
+      showPage(currentPage);
+    };
+    paginationEl.appendChild(nextBtn);
+  }
+
+  // Handle resize → recalc itemsPerPage
+  window.addEventListener("resize", () => {
+    const newItemsPerPage = getItemsPerPage();
+    if (newItemsPerPage !== itemsPerPage) {
+      itemsPerPage = newItemsPerPage;
+      currentPage = 1; // reset to first page
+      showPage(currentPage);
+    }
+  });
+
+  // Initialize
+  showPage(currentPage);
+});
+
+
+ 
+
+</script>
+    
+<script src="js/nav2.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>
+        
